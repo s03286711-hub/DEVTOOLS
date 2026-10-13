@@ -1,3 +1,4 @@
 import type { MetadataRoute } from 'next';
+export const dynamic = 'force-static';
 import { siteConfig, tools, guides } from '@/lib/site';
 export default function sitemap():MetadataRoute.Sitemap{const now=new Date();const staticPages=['','/about','/contact','/privacy','/terms'];return [...staticPages.map(path=>({url:`${siteConfig.url}${path}`,lastModified:now,changeFrequency:'monthly' as const,priority:path===''?1:.4})),...tools.map(t=>({url:`${siteConfig.url}/tools/${t.slug}`,lastModified:now,changeFrequency:'monthly' as const,priority:.8})),...guides.map(g=>({url:`${siteConfig.url}/guides/${g.slug}`,lastModified:now,changeFrequency:'monthly' as const,priority:.6}))]}
