@@ -1,0 +1,5 @@
+import Link from 'next/link';
+import type { ReactNode } from 'react';
+import { ArrowLeft, ShieldCheck } from 'lucide-react';
+import { tools } from '@/lib/site';
+export default function ToolShell({slug,title,description,children}:{slug:string;title:string;description:string;children:ReactNode}){const current=tools.find(t=>t.slug===slug);return <main className="tool-page"><div className="container"><Link href="/#tools" className="mb-7 inline-flex items-center gap-2 text-sm font-semibold text-[#667085] hover:text-[#0d9488]"><ArrowLeft size={16}/> All tools</Link><div className="mx-auto max-w-3xl"><div className="mb-7 text-center"><span className="tag">{current?.category||'Free online tool'}</span><h1 className="mt-4 text-3xl font-black tracking-[-.045em] sm:text-4xl">{title}</h1><p className="mx-auto mt-3 max-w-2xl leading-7 text-[#667085]">{description}</p><p className="mt-3 inline-flex items-center gap-1.5 text-xs font-medium text-[#667085]"><ShieldCheck size={14} className="text-emerald-600"/> Designed for local browser processing</p></div>{children}</div></div></main>}
