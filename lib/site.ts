@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: 'DevToolbox',
   description: 'Free, fast and privacy-conscious online tools for developers. Format JSON, compare text, encode URLs, decode Base64 and test regular expressions.',
-  url: process.env.NEXT_PUBLIC_SITE_URL || 'https://example.com',
+  url: process.env.NEXT_PUBLIC_SITE_URL || 'https://devtools.publicvm.com',
 };
 
 export const tools = [
