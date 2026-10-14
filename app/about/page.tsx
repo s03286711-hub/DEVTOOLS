@@ -1,3 +1,43 @@
 import type { Metadata } from 'next';
-export const metadata:Metadata={title:'About DevToolbox',description:'Learn about DevToolbox, a practical collection of free online utilities for developers and problem-solvers.'};
-export default function About(){return <main className="section"><div className="container"><article className="article"><p className="eyebrow">About</p><h1 className="mt-3 text-4xl font-black tracking-[-.05em]">Useful tools should feel simple.</h1><p className="mt-5 text-lg leading-8 text-[#667085]">DevToolbox is a small collection of free online utilities designed to help developers, students, and everyday problem-solvers complete common text and coding tasks with less friction.</p><h2>Our approach</h2><p>We focus on tools with a clear purpose, helpful defaults, and explanations that make the output easier to understand. The first collection includes JSON formatting, text comparison, Base64 conversion, URL component encoding, and regular expression testing.</p><h2>Privacy-conscious by design</h2><p>The included tools are designed to process inputs locally in the browser where practical. This is not a promise that every future feature or third-party service will operate the same way. Review each feature's behavior and the privacy policy before entering sensitive information.</p><h2>Corrections and feedback</h2><p>We want the tools and guides to be accurate and useful. If you find a bug or have a suggestion, use the Contact page to get in touch. Replace the placeholder contact details before publishing this website.</p></article></div></main>}
+import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: 'About DevToolbox — Mission & Privacy-First Developer Tools',
+  description: 'Learn about DevToolbox, our commitment to client-side data privacy, and our mission to provide lightning-fast web developer utilities.',
+};
+
+export default function About() {
+  return (
+    <main className="section">
+      <div className="container">
+        <article className="article">
+          <p className="eyebrow">About DevToolbox</p>
+          <h1 className="mt-3 text-4xl font-black tracking-[-.05em]">Fast, Free, and Privacy-Conscious Developer Utilities</h1>
+          <p className="mt-5 text-lg leading-8 text-[#667085]">
+            DevToolbox was built with a straightforward mission: eliminate friction from repetitive developer workflows by providing clean, fast, and secure web-based utilities that respect user privacy.
+          </p>
+
+          <h2>Why We Built DevToolbox</h2>
+          <p>
+            Every software engineer, system administrator, and web developer encounters the same routine tasks daily: formatting an API JSON payload, comparing configuration diffs, encoding URL query strings, checking regular expressions, or converting timestamps.
+          </p>
+          <p>
+            Unfortunately, many online tool websites are bloated with intrusive popups, sluggish tracking scripts, and questionable privacy models where sensitive payload data is silently forwarded to remote servers. DevToolbox provides a clean, modern alternative built on local client-side execution.
+          </p>
+
+          <h2>Our Core Engineering Principles</h2>
+          <ol>
+            <li><strong>Browser-First Privacy:</strong> Wherever technically possible, data transformations are executed locally in your browser sandbox using modern Web APIs (such as the Web Crypto API, native JSON parser, and TextEncoder/TextDecoder). Your code, logs, and tokens never touch our backend servers.</li>
+            <li><strong>Zero Artificial Paywalls:</strong> Every tool and technical guide on DevToolbox is 100% free with no account creation, credit cards, or subscription tiers required.</li>
+            <li><strong>Educational Clarity:</strong> Beyond simply producing an output, each utility includes detailed reference guides explaining the underlying protocols, RFC specifications, and common pitfalls.</li>
+          </ol>
+
+          <h2>Get in Touch</h2>
+          <p>
+            We are actively expanding our collection of developer tools. If you have recommendations for new features, have identified a bug, or want to suggest improvements to our technical guides, please reach out via our <Link href="/contact" className="text-[#0d9488] font-bold underline">Contact Page</Link>.
+          </p>
+        </article>
+      </div>
+    </main>
+  );
+}

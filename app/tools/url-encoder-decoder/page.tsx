@@ -1,3 +1,39 @@
-import type { Metadata } from 'next'; import ToolShell from '@/components/ToolShell'; import {UrlTool} from '@/components/Tools';
-export const metadata:Metadata={title:'URL Encoder & Decoder Online',description:'Encode URL components and decode percent-encoded text online. Free URL encoding utility with clear examples.'};
-export default function Page(){return <ToolShell slug="url-encoder-decoder" title="URL Encoder & Decoder" description="Encode text for use in a URL component or decode percent-encoded values. Handles common characters and UTF-8 text."><UrlTool/><section className="article mt-12"><h2>What is URL encoding?</h2><p>URL encoding, commonly called percent encoding, represents characters that cannot safely appear in a particular URL component. A character may be represented by a percent sign followed by its encoded byte value, such as a space represented as <code>%20</code> in UTF-8 percent encoding.</p><h2>When should I encode a URL?</h2><p>Encoding is commonly needed for query parameter values and path components that contain spaces, punctuation, or non-ASCII characters. Use component encoding for individual values rather than blindly encoding an entire URL, because separators such as <code>?</code>, <code>&amp;</code>, and <code>/</code> can have structural meaning.</p><h2>Common mistakes</h2><ul><li>Double-encoding already encoded values.</li><li>Encoding a complete URL when only one query value needs encoding.</li><li>Assuming every plus sign represents a space in every URL context.</li><li>Decoding malformed percent sequences without checking the source.</li></ul><h2>Privacy</h2><p>Input is processed in your browser. Avoid putting sensitive credentials into URLs; URLs can be recorded in browser history, logs, and referrer data.</p></section></ToolShell>}
+import type { Metadata } from 'next';
+import ToolShell from '@/components/ToolShell';
+import { UrlTool } from '@/components/Tools';
+
+export const metadata: Metadata = {
+  title: 'URL Encoder & Decoder Online — Percent-Encoding Tool',
+  description: 'Encode special characters into percent-encoded URL formats and decode percent-encoded URLs back to readable text online. Safe and browser-based.',
+};
+
+export default function Page() {
+  return (
+    <ToolShell
+      slug="url-encoder-decoder"
+      title="URL Encoder & Decoder"
+      description="Encode special characters into RFC 3986 percent-encoded strings or decode encoded query parameters back to human-readable text."
+    >
+      <UrlTool />
+      <section className="article mt-12">
+        <h2>What Is URL Encoding (Percent-Encoding)?</h2>
+        <p>Uniform Resource Identifiers (URIs) are constrained by the RFC 3986 standard to a restricted subset of the US-ASCII character set. Characters that carry syntactic meaning in URLs (such as <code>?</code>, <code>&amp;</code>, <code>=</code>, <code>/</code>, and <code>#</code>) or characters outside the printable ASCII range (such as spaces and non-Latin alphabets) cannot be transmitted literally inside query parameters.</p>
+        <p>URL encoding replaces unsafe or reserved characters with a <code>%</code> followed by their two-digit hexadecimal representation (for instance, a space becomes <code>%20</code>, and an ampersand becomes <code>%26</code>).</p>
+
+        <h2>Component Encoding vs. Full URL Encoding</h2>
+        <ul>
+          <li><strong>encodeURIComponent:</strong> Used to encode individual parameter values. It encodes delimiters like <code>&amp;</code>, <code>=</code>, and <code>/</code> so they do not inadvertently split URL query strings.</li>
+          <li><strong>encodeURI:</strong> Used when encoding a complete URL without escaping structural protocol and domain separators (like <code>https://</code> or <code>?</code>).</li>
+        </ul>
+        <p>This tool performs strict component encoding and decoding, ideal for preparing search queries, tracking parameters, and OAuth redirect URIs.</p>
+
+        <h2>Common URL Encoding Pitfalls</h2>
+        <ul>
+          <li><strong>Double Encoding:</strong> Encoding an already encoded string results in corrupt sequences like <code>%2520</code> (where the <code>%</code> itself was re-encoded).</li>
+          <li><strong>Plus Signs (+) vs. %20:</strong> In application/x-www-form-urlencoded form data, spaces are frequently represented as <code>+</code>. In standard URI paths, <code>%20</code> should be strictly preferred.</li>
+          <li><strong>Truncated Sequences:</strong> Incomplete percent sequences (e.g. <code>hello%2</code>) will trigger URI decode exceptions.</li>
+        </ul>
+      </section>
+    </ToolShell>
+  );
+}

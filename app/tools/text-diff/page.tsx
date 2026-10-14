@@ -1,3 +1,43 @@
-import type { Metadata } from 'next'; import ToolShell from '@/components/ToolShell'; import {TextDiff} from '@/components/Tools';
-export const metadata:Metadata={title:'Text Diff Checker — Compare Two Texts Online',description:'Compare two text blocks side by side and spot changed lines with this free online text diff checker.'};
-export default function Page(){return <ToolShell slug="text-diff" title="Text Diff Checker" description="Compare two text blocks side by side to spot lines that changed. Useful for notes, drafts, snippets, and configuration files."><TextDiff/><section className="article mt-12"><h2>What is a text diff?</h2><p>A text diff describes the differences between two versions of text. Developers use diffs to review code changes, while writers and students can use them to compare drafts, notes, and documents. A visual comparison can make small changes easier to spot than reading both versions independently.</p><h2>How to compare text</h2><ul><li>Paste the earlier version in the Original text box.</li><li>Paste the newer version in Changed text.</li><li>Select Compare text to see lines side by side.</li><li>Review the highlighted rows and copy a summary if needed.</li></ul><h2>Understand the result</h2><p>Matching lines appear without a change highlight. Different lines are highlighted on both sides. This starter tool compares lines by position, so a complex rearrangement may appear as multiple changes; it is not a full Git diff algorithm and does not calculate an optimal edit sequence.</p><h2>Privacy</h2><p>Comparison runs in your browser. Do not use any online service with confidential information unless its privacy and security practices meet your requirements.</p></section></ToolShell>}
+import type { Metadata } from 'next';
+import ToolShell from '@/components/ToolShell';
+import { TextDiff } from '@/components/Tools';
+
+export const metadata: Metadata = {
+  title: 'Text Diff Checker Online — Compare Two Text Files',
+  description: 'Compare two text blocks or code snippets online. Spot additions, deletions, and line-by-line differences instantly in your browser.',
+};
+
+export default function Page() {
+  return (
+    <ToolShell
+      slug="text-diff"
+      title="Text Diff Checker"
+      description="Compare two text blocks side-by-side to detect additions, deletions, and modifications. Fast, secure, and browser-based."
+    >
+      <TextDiff />
+      <section className="article mt-12">
+        <h2>What Is a Text Diff Checker?</h2>
+        <p>A text diff checker is a comparison tool that evaluates two versions of a document, source code file, or text block to isolate changes between them. By juxtaposing the "original" reference text with the "modified" revision, developers, editors, and writers can pinpoint exact line differences, additions, and removals without tedious manual inspection.</p>
+
+        <h2>How to Compare Text Using This Utility</h2>
+        <ol>
+          <li><strong>Enter Original Text:</strong> Paste your initial reference document into the left-hand text area.</li>
+          <li><strong>Enter Modified Text:</strong> Paste your updated version into the right-hand text area.</li>
+          <li><strong>Click "Compare text":</strong> The utility generates a side-by-side visual analysis highlighting matching lines in neutral tones, deleted lines in red, and newly inserted lines in green.</li>
+          <li><strong>Copy Diff Summary:</strong> Click "Copy summary" to export an annotated text log of all differences for Git commit notes, pull requests, or audit records.</li>
+        </ol>
+
+        <h2>Common Use Cases for Text Differences</h2>
+        <ul>
+          <li><strong>Code Review & Debugging:</strong> Quickly comparing snippets of code or configuration files (YAML, JSON, INI) between staging and production environments to diagnose regressions.</li>
+          <li><strong>Legal & Contract Revisions:</strong> Verifying edits across contract versions to ensure no clauses were unexpectedly removed or altered.</li>
+          <li><strong>Copywriting & Content Editing:</strong> Reviewing editorial revisions made by teammates before publishing articles or documentation.</li>
+          <li><strong>Database SQL Queries:</strong> Checking queries across migrations to catch missing clauses or updated columns.</li>
+        </ul>
+
+        <h2>Privacy & Confidentiality</h2>
+        <p>Document comparison is computed locally within your browser sandbox. None of the text you enter is sent over the network, ensuring complete privacy for proprietary source code, legal agreements, and internal documentation.</p>
+      </section>
+    </ToolShell>
+  );
+}
