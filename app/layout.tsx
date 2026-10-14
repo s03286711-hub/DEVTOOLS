@@ -82,6 +82,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
   return (
     <html lang="en">
       <head>
+        <meta name="google-site-verification" content="googleb35642988ece0ba2" />
         <meta name="google-adsense-account" content="ca-pub-1887267392383699" />
         <script
           async
