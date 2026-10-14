@@ -70,6 +70,33 @@ export default function Page() {
   <li>Use native 128-bit binary types (such as PostgreSQL's <code>UUID</code> or MySQL's <code>BINARY(16)</code>) rather than 36-character <code>VARCHAR</code> strings.</li>
   <li>Consider time-ordered identifiers like UUID v7 or ULID for primary keys that need high insertion throughput with clustered indexing.</li>
 </ul>
+    <h2>Frequently Asked Questions About UUIDs</h2>
+      <h3>Are UUIDs completely anonymous and private?</h3>
+      <p>Version 4 UUIDs are completely anonymous because they are generated from pure random bits. However, legacy Version 1 UUIDs contain the physical MAC address of the network interface card that generated them, along with an exact timestamp. Using UUID v1 in public-facing identifiers can inadvertently disclose internal hardware details and creation timing to third parties.</p>
+
+      <h3>Should I use UUIDs or auto-incrementing integers for database IDs?</h3>
+      <p>Auto-incrementing serial integers (1, 2, 3...) are easy to read and provide compact 4-byte or 8-byte indexing. However, they expose business intelligence (competitors can gauge your order volume by inspecting invoice IDs: <code>/order/1052</code> vs <code>/order/1053</code>) and suffer from enumeration attacks. UUIDs allow distributed systems and client applications to create unique IDs independently without querying a central database sequence, preventing ID-guessing attacks.</p>
+
+      <h3>What is a ULID and how does it compare to UUID v7?</h3>
+      <p>A ULID (Universally Unique Lexicographically Sortable Identifier) is a 128-bit identifier compatible with UUID storage, encoding 48 bits of timestamp followed by 80 bits of randomness, formatted as 26 Crockford Base32 characters. UUID v7 standardized this identical concept in RFC 9562, ensuring high-performance database B-tree index locality without custom libraries.</p>
+
+      <h2>Generating UUIDs in Modern Programming Languages</h2>
+      <h3>JavaScript (Browser & Node.js 16+)</h3>
+      <pre><code>// Native Web Crypto API
+const id = crypto.randomUUID();
+console.log(id); // e.g. "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d"</code></pre>
+
+      <h3>Python 3</h3>
+      <pre><code>import uuid
+# Generate a cryptographically random UUID v4
+id = uuid.uuid4()
+print(str(id))</code></pre>
+
+      <h3>Go (Golang)</h3>
+      <pre><code>import "github.com/google/uuid"
+
+id := uuid.New()
+fmt.Println(id.String())</code></pre>
     </GuideArticle>
   );
 }

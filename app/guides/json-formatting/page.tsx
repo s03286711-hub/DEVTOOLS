@@ -45,6 +45,24 @@ export default function Page() {
         <li><strong>Unescaped Quotes Inside Strings:</strong> If your string contains quotation marks, escape them with a backslash (e.g., <code>"description": "A \"quoted\" word"</code>).</li>
         <li><strong>Copy-Paste Smart Quotes:</strong> Text copied from rich text editors or chat apps often converts straight quotes to slanted "smart" quotes (<code>“ ”</code>), which JSON parsers reject.</li>
       </ul>
+    <h2>Frequently Asked Questions About JSON</h2>
+      <h3>Can JSON have comments?</h3>
+      <p>No. Standard JSON (RFC 8259) deliberately excludes comments to prevent people from using parsing directives or annotations that break interoperability across languages. Douglas Crockford removed comments from early specs so that parsers would remain lightweight and deterministic. If your application requires comments in configuration files, consider adopting YAML, JSON5, or TOML instead.</p>
+
+      <h3>What is the difference between JSON and JavaScript objects?</h3>
+      <p>While JSON syntax is derived from JavaScript object literal notation, they are distinct standards. In JavaScript, keys do not require quotes unless they contain special characters, single quotes are valid for strings, and values can be functions, symbols, or undefined. In JSON, keys and strings <em>must</em> be double-quoted, trailing commas are strictly invalid, and functions or undefined are completely forbidden.</p>
+
+      <h3>How do I handle very large numbers in JSON?</h3>
+      <p>JSON numbers are arbitrary-precision decimal numbers according to the specification. However, most JavaScript parsers decode numbers into 64-bit IEEE 754 floating-point values (floats). Integers greater than <code>Number.MAX_SAFE_INTEGER</code> (2<sup>53</sup> - 1, or 9,007,199,254,740,991) will lose precision. When exchanging 64-bit database IDs (such as Twitter snowflakes or BigInt integers), always serialize them as quoted strings.</p>
+
+      <h2>JSON Schema: Validating Data Structure</h2>
+      <p>While basic syntax validation confirms whether a string can be parsed, <strong>JSON Schema</strong> provides a vocabulary that allows you to annotate and validate the structure, constraints, and data types of JSON documents. JSON Schema can enforce:</p>
+      <ul>
+        <li>Required object fields and permissible property names.</li>
+        <li>Minimum and maximum numerical boundaries.</li>
+        <li>String formats such as regular expression patterns, email addresses, and date-times.</li>
+        <li>Array length constraints and element type consistency.</li>
+      </ul>
     </GuideArticle>
   );
 }

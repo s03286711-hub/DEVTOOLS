@@ -69,6 +69,21 @@ export default function Page() {
 
       <h2>Guarding Against ReDoS (Catastrophic Backtracking)</h2>
       <p>Most programming languages use NFA (Nondeterministic Finite Automaton) regex engines that rely on backtracking. When evaluating ambiguous patterns with nested quantifiers (such as <code>(a+)+$</code>) against non-matching input strings like <code>aaaaaaaaaaaaaaaaaaaa!</code>, the engine tests every combinatorial variation. This causes execution time to explode exponentially, freezing the CPU thread in what is termed a Regular Expression Denial of Service (ReDoS). Always audit regex patterns for overlapping quantifiers.</p>
+    <h2>Frequently Asked Questions About Regular Expressions</h2>
+      <h3>What are lookaround assertions in regex?</h3>
+      <p>Lookarounds are zero-length assertions that match a character pattern without including it in the matched result:</p>
+      <ul>
+        <li><strong>Positive Lookahead (<code>(?=...)</code>):</strong> Asserts that the pattern matches immediately following the current position.</li>
+        <li><strong>Negative Lookahead (<code>(?!...)</code>):</strong> Asserts that the pattern does NOT match following the current position.</li>
+        <li><strong>Positive Lookbehind (<code>(?&lt;=...)</code>):</strong> Asserts that the pattern matches immediately preceding the current position.</li>
+        <li><strong>Negative Lookbehind (<code>(?&lt;!...)</code>):</strong> Asserts that the pattern does NOT match preceding the current position.</li>
+      </ul>
+
+      <h3>Why should you not use regex to parse HTML?</h3>
+      <p>Regular expressions are mathematically designed to parse <em>regular languages</em> (Chomsky Type 3 grammars). HTML is a context-free language (Chomsky Type 2) characterized by arbitrary, recursive tag nesting, unquoted attributes, and conditional comments. Attempting to parse nested HTML elements with regular expressions inevitably fails on edge cases. Always use proper DOM parsers (such as <code>DOMParser</code> in browsers or Cheerio/BeautifulSoup) for HTML processing.</p>
+
+      <h3>How do I test regex performance?</h3>
+      <p>To avoid ReDoS vulnerabilities in production, use regex benchmarking tools, ensure pattern quantifiers do not overlap, and set execution timeout boundaries when evaluating user-supplied patterns in server environments.</p>
     </GuideArticle>
   );
 }

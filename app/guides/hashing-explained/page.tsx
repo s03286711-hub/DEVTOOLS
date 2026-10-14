@@ -41,6 +41,18 @@ export default function Page() {
   <li><strong>bcrypt:</strong> Battle-tested, built-in blowfish-based algorithm with adjustable work factors.</li>
   <li><strong>PBKDF2:</strong> NIST-standardized key derivation function using repeated iterations with salt.</li>
 </ul>
+    <h2>Frequently Asked Questions About Hashes</h2>
+      <h3>Can you reverse a hash to find the original text?</h3>
+      <p>No. A cryptographic hash is an irreversible mathematical one-way operation. Because information is compressed down to a fixed-size digest (e.g., 256 bits for a gigabyte of data), the pigeonhole principle guarantees infinite inputs map to identical digest sizes. Instead of "reversing" the algorithm, attackers compare hashes against massive precomputed databases called <em>rainbow tables</em> or execute brute-force dictionary attacks.</p>
+
+      <h3>What is a salt and why is it mandatory for passwords?</h3>
+      <p>A cryptographic salt is a unique, cryptographically random string appended to each user's password prior to hashing. Salting ensures that even if two users choose the identical password (e.g., "password123"), their resulting stored hashes will be completely different. This completely neutralizes rainbow tables and forces attackers to crack each password individually.</p>
+
+      <h3>What is an HMAC (Hash-Based Message Authentication Code)?</h3>
+      <p>An HMAC (RFC 2104) is a mechanism for message authentication using cryptographic hash functions combined with a shared secret key. While a plain hash verifies data integrity (ensuring a file was not corrupted during transit), an HMAC verifies both integrity <em>and authenticity</em> (guaranteeing that the message was authored by someone in possession of the private secret key).</p>
+
+      <h2>HMAC vs. Digital Signatures</h2>
+      <p>HMAC relies on symmetric cryptography: both the sender and receiver share the exact same secret key. If the key is leaked, any party can forge messages. Digital signatures (such as RSA or ECDSA) utilize asymmetric public/private key cryptography, where only the author possesses the signing private key, while anyone with the public key can verify authenticity without gaining the ability to forge signatures.</p>
     </GuideArticle>
   );
 }

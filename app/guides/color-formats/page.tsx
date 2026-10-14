@@ -51,6 +51,15 @@ background-color: rgb(13 148 136 / 85%);</code></pre>
   <li><strong>Level AAA Enhanced:</strong> Demands <strong>7.0:1</strong> for body text and <strong>4.5:1</strong> for large text.</li>
 </ul>
 <p>Use our interactive Color Converter tool to test contrast ratios against both light and dark backgrounds instantly.</p>
+    <h2>Frequently Asked Questions About Web Colors</h2>
+      <h3>What is the difference between RGB and CMYK?</h3>
+      <p>RGB is an <strong>additive color model</strong> used for digital screens: pixels start as black (unlit) and adding Red, Green, and Blue light creates brighter colors, with all three channels combined producing pure white. CMYK (Cyan, Magenta, Yellow, Key/Black) is a <strong>subtractive color model</strong> used for physical ink printing: ink absorbs light reflected off paper, and mixing inks produces darker tones.</p>
+
+      <h3>What are the new CSS Color Module Level 4 formats (oklch, lch)?</h3>
+      <p>Modern CSS introduced perceptual color spaces like <strong>OKLCH</strong> and <strong>LCH</strong>. Unlike sRGB or HSL, OKLCH is <em>perceptually uniform</em>: an adjustment to lightness looks equally bright across all hues (in HSL, pure yellow appears far brighter to human eyes than pure blue at the identical 50% lightness value). OKLCH also unlocks wide-gamut displays (Display P3) capable of showing vibrant shades unattainable in traditional sRGB.</p>
+
+      <h3>How does color blindness affect web accessibility?</h3>
+      <p>Approximately 8% of men and 0.5% of women experience color vision deficiency (most commonly deuteranomaly or red-green color blindness). Never convey critical status solely through color (e.g., red for error, green for success). Always pair color changes with text labels, icons, or patterns so that all users can interpret state changes unambiguously.</p>
     </GuideArticle>
   );
 }

@@ -52,6 +52,53 @@ export default function Page() {
 
       <h2>Crucial Reminder: Encoding vs. Encryption</h2>
       <p>Base64 contains <strong>no key, secret, or cryptographic protection</strong>. It is purely an encoding mechanism designed for data transport, not confidentiality. Anyone who can inspect a Base64 string can decode it instantly. Always use proven encryption standards (such as AES-GCM or ChaCha20) when securing sensitive data.</p>
+    <h2>Frequently Asked Questions About Base64</h2>
+      <h3>Why does Base64 increase data size by ~33%?</h3>
+      <p>Standard binary files store data in 8-bit bytes (values from 0 to 255). Base64 restricts itself to 64 safe ASCII characters, meaning each character only carries 6 bits of informational entropy (<code>2^6 = 64</code>). To transmit 24 bits of data, you need 3 standard 8-bit bytes, but you need 4 Base64 characters (<code>4 x 6 = 24 bits</code>). The ratio of 4 characters to 3 bytes results in an exact 33.33% payload expansion.</p>
+
+      <h3>What happens if I try to decode corrupted Base64?</h3>
+      <p>If characters outside the 64-character alphabet appear (excluding whitespace and padding), or if the total character length is not a multiple of 4, standard decoders throw an exception. If the decoded binary represents compressed data or UTF-8 text, any flipped bit will cause either a character decoding failure or a corrupted unreadable file.</p>
+
+      <h3>How are data URLs used with Base64 in web development?</h3>
+      <p>Data URLs allow small assets (such as SVGs, PNG icons, or web fonts) to be embedded directly inside HTML or CSS files without triggering separate HTTP requests: <code>background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAE...")</code>. While convenient for reducing request counts in legacy HTTP/1.1 environments, inline Base64 eliminates browser caching advantages and inflates file transfer size, so modern HTTP/2 and HTTP/3 workflows generally prefer separate static asset caching.</p>
+
+      <h2>Base64 vs. Other Binary-to-Text Encodings</h2>
+      <table className="w-full text-left border-collapse my-4">
+        <thead>
+          <tr className="border-b">
+            <th className="py-2">Encoding</th>
+            <th className="py-2">Alphabet Size</th>
+            <th className="py-2">Overhead</th>
+            <th className="py-2">Primary Domain</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr className="border-b">
+            <td className="py-2"><strong>Base16 (Hex)</strong></td>
+            <td className="py-2">16 (0-9, a-f)</td>
+            <td className="py-2">100% (2x size)</td>
+            <td className="py-2">Cryptographic hashes, color codes, memory dumps.</td>
+          </tr>
+          <tr className="border-b">
+            <td className="py-2"><strong>Base32</strong></td>
+            <td className="py-2">32 (A-Z, 2-7)</td>
+            <td className="py-2">60%</td>
+            <td className="py-2">TOTP two-factor auth seeds (case-insensitive for human typing).</td>
+          </tr>
+          <tr className="border-b">
+            <td className="py-2"><strong>Base64</strong></td>
+            <td className="py-2">64</td>
+            <td className="py-2">33.3%</td>
+            <td className="py-2">MIME email, data URLs, JWT tokens, API payloads.</td>
+          </tr>
+          <tr className="border-b">
+            <td className="py-2"><strong>Base85 (Ascii85)</strong></td>
+            <td className="py-2">85</td>
+            <td className="py-2">25%</td>
+            <td className="py-2">PostScript, PDF file embedding, Git binary patches.</td>
+          </tr>
+        </tbody>
+      </table>
     </GuideArticle>
   );
 }

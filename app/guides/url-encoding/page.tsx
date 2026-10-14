@@ -44,6 +44,15 @@ export default function Page() {
 
       <h2>The Danger of Double-Encoding</h2>
       <p>Double encoding occurs when an already encoded string is mistakenly passed through an encoder a second time. Because the percent symbol (<code>%</code>) is itself encoded as <code>%25</code>, the sequence <code>%20</code> transforms into <code>%2520</code>. When decoded once by the server, the application receives <code>%20</code> instead of the intended space character, leading to subtle database bugs, broken search queries, and 404 errors.</p>
+    <h2>Frequently Asked Questions About URL Encoding</h2>
+      <h3>What is the difference between encodeURI and encodeURIComponent?</h3>
+      <p><code>encodeURI</code> assumes you are passing an entire, complete URL. It preserves structural delimiters like <code>http://</code>, <code>/</code>, <code>?</code>, <code>&amp;</code>, and <code>#</code> so the browser can navigate the path correctly. In contrast, <code>encodeURIComponent</code> assumes you are encoding a single query parameter value, and escapes all structural delimiters so they do not inadvertently break query string parsing.</p>
+
+      <h3>Why do spaces sometimes encode as '+' and sometimes as '%20'?</h3>
+      <p>In standard RFC 3986 URL paths and query strings, spaces are encoded as <code>%20</code>. However, when HTML forms submit data using the legacy <code>application/x-www-form-urlencoded</code> MIME format, spaces are historically encoded as <code>+</code>. Modern REST APIs and single-page applications generally prefer <code>%20</code> everywhere to maintain strict RFC compliance.</p>
+
+      <h3>Are Unicode characters allowed in URLs?</h3>
+      <p>URIs are strictly defined in ASCII. When non-ASCII characters (such as accents, Cyrillic, Chinese, or emojis) appear in URLs, they must first be converted into UTF-8 byte sequences, and then each byte must be individually percent-encoded (for example, the emoji 🚀 encodes as <code>%F0%9F%9A%80</code>).</p>
     </GuideArticle>
   );
 }

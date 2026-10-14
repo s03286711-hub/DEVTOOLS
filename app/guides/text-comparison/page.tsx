@@ -35,6 +35,15 @@ export default function Page() {
         <li><strong>Ignore Trailing Whitespace:</strong> Stray spaces at the end of lines often clutter diffs without impacting code execution. Configure diff tools to trim trailing spaces.</li>
         <li><strong>Use Semantic Comparisons for Structured Data:</strong> For JSON or XML documents, property ordering can vary without altering data semantics. Use specialized JSON diff tools or format both files with identical indentation before computing text diffs.</li>
       </ol>
+    <h2>Frequently Asked Questions About Text Diffing</h2>
+      <h3>What is a Unified Diff format?</h3>
+      <p>Unified diff (commonly produced by <code>diff -u</code> and displayed in Git patches) is the universal standard for sharing code modifications. It presents deletions and additions in a single contiguous block with leading <code>-</code> and <code>+</code> signs, preserving 3 lines of surrounding unmodified context so that patch tools can locate and apply edits even if line numbers have shifted.</p>
+
+      <h3>What is character-level vs. line-level diffing?</h3>
+      <p>Line-level diffing compares entire lines of text as discrete units, ideal for source code where statements occupy distinct lines. Character-level (or word-level) diffing evaluates changes within a single line, making it significantly easier to spot subtle typo fixes, spelling corrections, or single-character modifications in prose.</p>
+
+      <h3>How does Git track file renames?</h3>
+      <p>Unlike some version control systems, Git does not explicitly store a "rename" metadata record. Instead, during a commit inspection, Git compares the cryptographic hashes and similarity percentages of deleted files against newly added files. If two files share more than a threshold percentage of identical text (typically 50%), Git automatically classifies the operation as a rename.</p>
     </GuideArticle>
   );
 }

@@ -50,6 +50,20 @@ export default function Page() {
   <li><strong>Storing Sensitive Secrets in Payloads:</strong> Remember that JWT payloads are only encoded in Base64URL, not encrypted! Anyone who intercepts the token can read the claims. Never store database passwords, API tokens, or credit card numbers in a JWT payload.</li>
   <li><strong>Indefinite Lifespans:</strong> Always configure reasonable <code>exp</code> timestamps (e.g., 15 minutes for access tokens) coupled with secure, rotating refresh tokens stored in HTTP-only, SameSite cookies.</li>
 </ul>
+    <h2>Frequently Asked Questions About JWT</h2>
+      <h3>Where should I store JWTs in a web browser?</h3>
+      <p>The most secure storage location for authentication JWTs is an <strong>HTTP-only, Secure, SameSite=Lax (or Strict) cookie</strong>. Storing tokens inside browser <code>localStorage</code> or <code>sessionStorage</code> exposes them to Cross-Site Scripting (XSS) attacks; any third-party script or compromised dependency can read <code>localStorage</code> and steal the token. HTTP-only cookies cannot be accessed by client-side JavaScript, mitigating XSS token theft.</p>
+
+      <h3>How do I revoke or invalidate a JWT before it expires?</h3>
+      <p>Because standard JWTs are stateless, once signed they remain valid until their <code>exp</code> timestamp passes. To support instant revocation (e.g., when a user logs out or changes their password):</p>
+      <ul>
+        <li><strong>Short-lived access tokens:</strong> Configure access tokens with very brief lifetimes (5 to 15 minutes), paired with stateful refresh tokens stored in a database or Redis cache.</li>
+        <li><strong>Token Blocklists:</strong> Store revoked token IDs (<code>jti</code> claim) in a high-speed in-memory store like Redis until their original expiration passes.</li>
+        <li><strong>Token Versioning:</strong> Store a <code>token_version</code> integer on the user's database record and include it in the JWT claims; incrementing the version instantly invalidates all previously issued tokens.</li>
+      </ul>
+
+      <h3>What is the difference between JWS, JWE, and JWT?</h3>
+      <p>JWT (JSON Web Token) is the overarching data format. <strong>JWS (JSON Web Signature)</strong> signs the content so its integrity is verifiable, but leaves the payload readable in Base64URL text. <strong>JWE (JSON Web Encryption)</strong> encrypts the payload so that only authorized parties possessing the decryption key can read the claims.</p>
     </GuideArticle>
   );
 }

@@ -44,6 +44,15 @@ export default function Page() {
   <li><strong>Use a Password Manager:</strong> Generate and store 20+ character random strings inside trusted password vaults like Bitwarden or 1Password.</li>
   <li><strong>Adopt Hardware 2FA / Passkeys:</strong> Whenever possible, upgrade to WebAuthn / FIDO2 security keys to neutralize phishing attacks completely.</li>
 </ol>
+    <h2>Frequently Asked Questions About Passwords</h2>
+      <h3>Why do periodic password expiration policies do more harm than good?</h3>
+      <p>Both NIST (Special Publication 800-63B) and Microsoft now advise against mandatory periodic password rotation (e.g., forcing users to change passwords every 90 days). When users are forced to change passwords frequently without an active breach, they predictably resort to predictable patterns: incrementing numbers (<code>Spring2026!</code> &rarr; <code>Summer2026!</code>) or selecting weaker variations that make accounts easier to crack.</p>
+
+      <h3>Are password generators in browsers and password managers truly random?</h3>
+      <p>Yes. Reputable password generators utilize operating system cryptographic pseudo-random number generators (such as <code>/dev/urandom</code> on Linux/macOS, <code>BCryptGenRandom</code> on Windows, or <code>crypto.getRandomValues()</code> in web browsers). These algorithms collect hardware entropy from thermal noise, keystroke timings, and interrupt requests, ensuring outputs cannot be mathematically predicted.</p>
+
+      <h3>What are Passkeys and will they replace passwords?</h3>
+      <p>Passkeys are built on the FIDO2 / WebAuthn open standards, replacing shared secrets with public-key cryptography. When creating a passkey, your device generates a private key secured by biometric authentication (Face ID, Touch ID, or PIN) that never leaves your device. Because websites only receive the public key and every authentication exchange is cryptographically bound to the domain, passkeys are mathematically immune to credential phishing attacks.</p>
     </GuideArticle>
   );
 }
