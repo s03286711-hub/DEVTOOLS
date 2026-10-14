@@ -17,5 +17,5 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
-  return <html lang="en"><head><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1887267392383699" crossOrigin="anonymous"></script></head><body><Header />{children}<Footer /><ScrollReveal /></body></html>;
+  return <html lang="en"><head><meta name="google-adsense-account" content="ca-pub-1887267392383699" /><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1887267392383699" crossOrigin="anonymous"></script></head><body><Header />{children}<Footer /><ScrollReveal /></body></html>;
 }
