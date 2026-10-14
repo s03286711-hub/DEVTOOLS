@@ -7,14 +7,151 @@ function CopyButton({text,label='Copy result'}:{text:string;label?:string}){cons
 function DownloadButton({text,filename='result.txt'}:{text:string;filename?:string}){return <button type="button" className="btn btn-secondary !py-2" onClick={()=>{const url=URL.createObjectURL(new Blob([text],{type:'text/plain;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download=filename;a.click();URL.revokeObjectURL(url)}}><Download size={15}/> Download</button>}
 function ResetButton({onClick}:{onClick:()=>void}){return <button className="btn btn-ghost !py-2" onClick={onClick} type="button"><RotateCcw size={15}/> Reset</button>}
 function ResultHeader({title,actions}:{title:string;actions?:ReactNode}){return <div className="mb-3 flex flex-wrap items-center justify-between gap-2"><h2 className="text-sm font-bold">{title}</h2><div className="flex flex-wrap gap-2">{actions}</div></div>}
-function TextArea({label,value,onChange,placeholder,rows=10}:{label:string;value:string;onChange:(s:string)=>void;placeholder:string;rows?:number}){return <label className="block min-w-0"><span className="mb-2 block text-sm font-bold">{label}</span><textarea className="field tool-textarea" rows={rows} value={value} onChange={e=>onChange(e.target.value)} placeholder={placeholder} spellCheck={false}/></label>}
+function TextArea({id,name,label,value,onChange,placeholder,rows=10}:{id?:string;name?:string;label:string;value:string;onChange:(s:string)=>void;placeholder:string;rows?:number}){
+  const fieldId = id || (name ? `field-${name}` : undefined);
+  return (
+    <label htmlFor={fieldId} className="block min-w-0">
+      <span className="mb-2 block text-sm font-bold">{label}</span>
+      <textarea
+        id={fieldId}
+        name={name || fieldId}
+        className="field tool-textarea"
+        rows={rows}
+        value={value}
+        onChange={e=>onChange(e.target.value)}
+        placeholder={placeholder}
+        spellCheck={false}
+      />
+    </label>
+  );
+}
 
-export function JsonFormatter(){const [input,setInput]=useState('{\n  "name": "DevToolbox",\n  "free": true,\n  "tools": ["JSON", "Base64", "URL"]\n}');const [indent,setIndent]=useState('2');const [result,setResult]=useState('');const [error,setError]=useState('');function format(){try{const parsed=JSON.parse(input);setResult(JSON.stringify(parsed,null,Number(indent)));setError('')}catch(e){setResult('');setError(e instanceof Error?e.message:'Invalid JSON')}}function minify(){try{setResult(JSON.stringify(JSON.parse(input)));setError('')}catch(e){setResult('');setError(e instanceof Error?e.message:'Invalid JSON')}}return <div className="panel tool-card"><div className="mb-4 flex flex-wrap items-center justify-between gap-3"><div><span className="text-xs font-semibold uppercase tracking-wider text-[#667085]">Indentation</span><select className="field ml-2 !w-auto !py-2" value={indent} onChange={e=>setIndent(e.target.value)}><option value="2">2 spaces</option><option value="4">4 spaces</option><option value="1">1 space</option><option value="0">Compact</option></select></div><div className="flex gap-2"><button className="btn btn-primary !py-2" onClick={format}><WandSparkles size={15}/> Format & validate</button><button className="btn btn-secondary !py-2" onClick={minify}>Minify</button></div></div><TextArea label="JSON input" value={input} onChange={setInput} placeholder="Paste JSON here…"/><div className="mt-4 flex flex-wrap gap-2"><ResetButton onClick={()=>{setInput('');setResult('');setError('')}}/><span className="self-center text-xs text-[#98a2b3]">Input stays in your browser.</span></div>{error&&<div className="notice notice-error mt-4" role="alert"><strong>JSON error:</strong> {error}</div>}{result&&<div className="mt-6"><ResultHeader title="Formatted output" actions={<><CopyButton text={result}/><DownloadButton text={result} filename="formatted.json"/></>}/><textarea className="field tool-textarea" value={result} readOnly aria-label="Formatted JSON output"/></div>}</div>}
+export function JsonFormatter(){
+  const [input,setInput]=useState('{\n  "name": "DevToolbox",\n  "free": true,\n  "tools": ["JSON", "Base64", "URL"]\n}');
+  const [indent,setIndent]=useState('2');
+  const [result,setResult]=useState('');
+  const [error,setError]=useState('');
+  function format(){try{const parsed=JSON.parse(input);setResult(JSON.stringify(parsed,null,Number(indent)));setError('')}catch(e){setResult('');setError(e instanceof Error?e.message:'Invalid JSON')}}
+  function minify(){try{setResult(JSON.stringify(JSON.parse(input)));setError('')}catch(e){setResult('');setError(e instanceof Error?e.message:'Invalid JSON')}}
+  return (
+    <div className="panel tool-card">
+      <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <label htmlFor="json-indent-select" className="text-xs font-semibold uppercase tracking-wider text-[#667085]">Indentation</label>
+          <select id="json-indent-select" name="json_indentation" className="field ml-2 !w-auto !py-2" value={indent} onChange={e=>setIndent(e.target.value)}>
+            <option value="2">2 spaces</option>
+            <option value="4">4 spaces</option>
+            <option value="1">1 space</option>
+            <option value="0">Compact</option>
+          </select>
+        </div>
+        <div className="flex gap-2">
+          <button className="btn btn-primary !py-2" onClick={format} type="button"><WandSparkles size={15}/> Format & validate</button>
+          <button className="btn btn-secondary !py-2" onClick={minify} type="button">Minify</button>
+        </div>
+      </div>
+      <TextArea id="json-input" name="json_input" label="JSON input" value={input} onChange={setInput} placeholder="Paste JSON here…"/>
+      <div className="mt-4 flex flex-wrap gap-2">
+        <ResetButton onClick={()=>{setInput('');setResult('');setError('')}}/>
+        <span className="self-center text-xs text-[#98a2b3]">Input stays in your browser.</span>
+      </div>
+      {error&&<div className="notice notice-error mt-4" role="alert"><strong>JSON error:</strong> {error}</div>}
+      {result&&<div className="mt-6"><ResultHeader title="Formatted output" actions={<><CopyButton text={result}/><DownloadButton text={result} filename="formatted.json"/></>}/><textarea id="json-formatted-output" name="json_formatted_output" className="field tool-textarea" value={result} readOnly aria-label="Formatted JSON output"/></div>}
+    </div>
+  );
+}
 
-export function TextDiff(){const [left,setLeft]=useState('DevToolbox\nFree online tools\nFast and simple');const [right,setRight]=useState('DevToolbox\nFree developer utilities\nFast and private');const [compared,setCompared]=useState(false);const lines=useMemo(()=>{if(!compared)return[];const a=left.split('\n'),b=right.split('\n'),max=Math.max(a.length,b.length);return Array.from({length:max},(_,i)=>({a:a[i],b:b[i],same:a[i]===b[i]}))},[left,right,compared]);return <div className="panel tool-card"><div className="grid gap-4 md:grid-cols-2"><TextArea label="Original text" value={left} onChange={s=>{setLeft(s);setCompared(false)}} placeholder="Paste original text…" rows={9}/><TextArea label="Changed text" value={right} onChange={s=>{setRight(s);setCompared(false)}} placeholder="Paste changed text…" rows={9}/></div><div className="mt-4 flex flex-wrap gap-2"><button className="btn btn-primary" onClick={()=>setCompared(true)}><WandSparkles size={15}/> Compare text</button><ResetButton onClick={()=>{setLeft('');setRight('');setCompared(false)}}/></div>{compared&&<div className="mt-6"><ResultHeader title="Line-by-line comparison" actions={<CopyButton text={lines.map((l,i)=>`${i+1}. ${l.same?'  ':l.a===undefined?'+ ':'- '}${l.a??''}${l.a!==l.b?'  →  '+(l.b??''):''}`).join('\n')} label="Copy summary"/>}/><div className="overflow-hidden rounded-xl border border-[#e6e8ef]">{lines.map((l,i)=><div key={i} className="grid border-b border-[#edf0f5] last:border-0 md:grid-cols-2"><div className={`min-w-0 whitespace-pre-wrap break-words px-3 py-2 font-mono text-xs ${l.same?'bg-white text-[#475467]':'bg-red-50 text-red-800'}`}><span className="mr-2 text-[#98a2b3]">{i+1}</span>{l.a??<em className="text-red-400">(line removed)</em>}</div><div className={`min-w-0 whitespace-pre-wrap break-words border-t border-[#edf0f5] px-3 py-2 font-mono text-xs md:border-l md:border-t-0 ${l.same?'bg-white text-[#475467]':'bg-emerald-50 text-emerald-800'}`}><span className="mr-2 text-[#98a2b3]">{i+1}</span>{l.b??<em className="text-emerald-600">(line added)</em>}</div></div>)}</div><p className="mt-3 text-xs text-[#667085]">This lightweight view compares lines by position; it is not a full Git diff algorithm.</p></div>}</div>}
+export function TextDiff(){
+  const [left,setLeft]=useState('DevToolbox\nFree online tools\nFast and simple');
+  const [right,setRight]=useState('DevToolbox\nFree developer utilities\nFast and private');
+  const [compared,setCompared]=useState(false);
+  const lines=useMemo(()=>{if(!compared)return[];const a=left.split('\n'),b=right.split('\n'),max=Math.max(a.length,b.length);return Array.from({length:max},(_,i)=>({a:a[i],b:b[i],same:a[i]===b[i]}))},[left,right,compared]);
+  return (
+    <div className="panel tool-card">
+      <div className="grid gap-4 md:grid-cols-2">
+        <TextArea id="text-diff-original" name="original_text" label="Original text" value={left} onChange={s=>{setLeft(s);setCompared(false)}} placeholder="Paste original text…" rows={9}/>
+        <TextArea id="text-diff-changed" name="changed_text" label="Changed text" value={right} onChange={s=>{setRight(s);setCompared(false)}} placeholder="Paste changed text…" rows={9}/>
+      </div>
+      <div className="mt-4 flex flex-wrap gap-2">
+        <button className="btn btn-primary" onClick={()=>setCompared(true)} type="button"><WandSparkles size={15}/> Compare text</button>
+        <ResetButton onClick={()=>{setLeft('');setRight('');setCompared(false)}}/>
+      </div>
+      {compared&&<div className="mt-6"><ResultHeader title="Line-by-line comparison" actions={<CopyButton text={lines.map((l,i)=>`${i+1}. ${l.same?'  ':l.a===undefined?'+ ':'- '}${l.a??''}${l.a!==l.b?'  →  '+(l.b??''):''}`).join('\n')} label="Copy summary"/>}/><div className="overflow-hidden rounded-xl border border-[#e6e8ef]">{lines.map((l,i)=><div key={i} className="grid border-b border-[#edf0f5] last:border-0 md:grid-cols-2"><div className={`min-w-0 whitespace-pre-wrap break-words px-3 py-2 font-mono text-xs ${l.same?'bg-white text-[#475467]':'bg-red-50 text-red-800'}`}><span className="mr-2 text-[#98a2b3]">{i+1}</span>{l.a??<em className="text-red-400">(line removed)</em>}</div><div className={`min-w-0 whitespace-pre-wrap break-words border-t border-[#edf0f5] px-3 py-2 font-mono text-xs md:border-l md:border-t-0 ${l.same?'bg-white text-[#475467]':'bg-emerald-50 text-emerald-800'}`}><span className="mr-2 text-[#98a2b3]">{i+1}</span>{l.b??<em className="text-emerald-600">(line added)</em>}</div></div>)}</div><p className="mt-3 text-xs text-[#667085]">This lightweight view compares lines by position; it is not a full Git diff algorithm.</p></div>}
+    </div>
+  );
+}
 
-export function Base64Tool(){const [input,setInput]=useState('Hello, DevToolbox!');const [output,setOutput]=useState('');const [error,setError]=useState('');function encode(){try{const bytes=new TextEncoder().encode(input);let binary='';bytes.forEach(b=>binary+=String.fromCharCode(b));setOutput(btoa(binary));setError('')}catch(e){setError('Could not encode this input.');setOutput('')}}function decode(){try{const binary=atob(input.trim());const bytes=Uint8Array.from(binary,c=>c.charCodeAt(0));setOutput(new TextDecoder('utf-8',{fatal:true}).decode(bytes));setError('')}catch{setOutput('');setError('Invalid Base64 or the decoded bytes are not valid UTF-8 text.')}}return <div className="panel tool-card"><TextArea label="Input text or Base64" value={input} onChange={setInput} placeholder="Enter text to encode, or Base64 to decode…"/><div className="mt-4 flex flex-wrap gap-2"><button className="btn btn-primary" onClick={encode}>Encode to Base64</button><button className="btn btn-secondary" onClick={decode}>Decode Base64</button><ResetButton onClick={()=>{setInput('');setOutput('');setError('')}}/></div>{error&&<div className="notice notice-error mt-4" role="alert">{error}</div>}{output!==''&&<div className="mt-6"><ResultHeader title="Result" actions={<><CopyButton text={output}/><DownloadButton text={output}/></>}/><textarea className="field tool-textarea" value={output} readOnly aria-label="Base64 result"/></div>}<div className="notice notice-info mt-5">Base64 is an encoding format, not encryption. Do not use it to protect passwords, tokens, or confidential information.</div></div>}
+export function Base64Tool(){
+  const [input,setInput]=useState('Hello, DevToolbox!');
+  const [output,setOutput]=useState('');
+  const [error,setError]=useState('');
+  function encode(){try{const bytes=new TextEncoder().encode(input);let binary='';bytes.forEach(b=>binary+=String.fromCharCode(b));setOutput(btoa(binary));setError('')}catch(e){setError('Could not encode this input.');setOutput('')}}
+  function decode(){try{const binary=atob(input.trim());const bytes=Uint8Array.from(binary,c=>c.charCodeAt(0));setOutput(new TextDecoder('utf-8',{fatal:true}).decode(bytes));setError('')}catch{setOutput('');setError('Invalid Base64 or the decoded bytes are not valid UTF-8 text.')}}
+  return (
+    <div className="panel tool-card">
+      <TextArea id="base64-input" name="base64_input" label="Input text or Base64" value={input} onChange={setInput} placeholder="Enter text to encode, or Base64 to decode…"/>
+      <div className="mt-4 flex flex-wrap gap-2">
+        <button className="btn btn-primary" onClick={encode} type="button">Encode to Base64</button>
+        <button className="btn btn-secondary" onClick={decode} type="button">Decode Base64</button>
+        <ResetButton onClick={()=>{setInput('');setOutput('');setError('')}}/>
+      </div>
+      {error&&<div className="notice notice-error mt-4" role="alert">{error}</div>}
+      {output!==''&&<div className="mt-6"><ResultHeader title="Result" actions={<><CopyButton text={output}/><DownloadButton text={output}/></>}/><textarea id="base64-output" name="base64_output" className="field tool-textarea" value={output} readOnly aria-label="Base64 result"/></div>}
+      <div className="notice notice-info mt-5">Base64 is an encoding format, not encryption. Do not use it to protect passwords, tokens, or confidential information.</div>
+    </div>
+  );
+}
 
-export function UrlTool(){const [input,setInput]=useState('hello world & dev tools');const [output,setOutput]=useState('');const [error,setError]=useState('');function encode(){try{setOutput(encodeURIComponent(input));setError('')}catch{setError('Could not encode this input.')}}function decode(){try{setOutput(decodeURIComponent(input));setError('')}catch{setOutput('');setError('Invalid percent-encoded URL component. Check that every % sequence is complete and valid.')}}return <div className="panel tool-card"><TextArea label="Text or URL component" value={input} onChange={setInput} placeholder="Enter text to encode or decode…" rows={7}/><div className="mt-4 flex flex-wrap gap-2"><button className="btn btn-primary" onClick={encode}>Encode component</button><button className="btn btn-secondary" onClick={decode}>Decode component</button><ResetButton onClick={()=>{setInput('');setOutput('');setError('')}}/></div>{error&&<div className="notice notice-error mt-4" role="alert">{error}</div>}{output!==''&&<div className="mt-6"><ResultHeader title="Result" actions={<CopyButton text={output}/>}/><textarea className="field tool-textarea !min-h-[120px]" value={output} readOnly aria-label="URL encoding result"/></div>}<div className="notice notice-info mt-5">This tool encodes a URL component, not a complete URL. Use it for individual query values or path components, and avoid double-encoding text.</div></div>}
+export function UrlTool(){
+  const [input,setInput]=useState('hello world & dev tools');
+  const [output,setOutput]=useState('');
+  const [error,setError]=useState('');
+  function encode(){try{setOutput(encodeURIComponent(input));setError('')}catch{setError('Could not encode this input.')}}
+  function decode(){try{setOutput(decodeURIComponent(input));setError('')}catch{setOutput('');setError('Invalid percent-encoded URL component. Check that every % sequence is complete and valid.')}}
+  return (
+    <div className="panel tool-card">
+      <TextArea id="url-input" name="url_input" label="Text or URL component" value={input} onChange={setInput} placeholder="Enter text to encode or decode…" rows={7}/>
+      <div className="mt-4 flex flex-wrap gap-2">
+        <button className="btn btn-primary" onClick={encode} type="button">Encode component</button>
+        <button className="btn btn-secondary" onClick={decode} type="button">Decode component</button>
+        <ResetButton onClick={()=>{setInput('');setOutput('');setError('')}}/>
+      </div>
+      {error&&<div className="notice notice-error mt-4" role="alert">{error}</div>}
+      {output!==''&&<div className="mt-6"><ResultHeader title="Result" actions={<CopyButton text={output}/>}/><textarea id="url-output" name="url_output" className="field tool-textarea !min-h-[120px]" value={output} readOnly aria-label="URL encoding result"/></div>}
+      <div className="notice notice-info mt-5">This tool encodes a URL component, not a complete URL. Use it for individual query values or path components, and avoid double-encoding text.</div>
+    </div>
+  );
+}
 
-export function RegexTool(){const [pattern,setPattern]=useState('\\b(dev|tool)\\w*');const [flags,setFlags]=useState('gi');const [sample,setSample]=useState('DevToolbox has free developer tools. Test your regex here.');const [error,setError]=useState('');const [matches,setMatches]=useState<string[]>([]);const [didTest,setDidTest]=useState(false);function test(){try{const unique=[...new Set(flags.split(''))].join('');const re=new RegExp(pattern,unique.includes('g')?unique:unique+'g');const found=Array.from(sample.matchAll(re),m=>`${m[0]}${m.index!==undefined?` (index ${m.index})`:''}`);setMatches(found);setError('');setDidTest(true)}catch(e){setError(e instanceof Error?e.message:'Invalid regular expression');setMatches([]);setDidTest(false)}}return <div className="panel tool-card"><label className="block"><span className="mb-2 block text-sm font-bold">Regular expression pattern</span><div className="flex gap-2"><span className="flex items-center rounded-xl border border-[#dfe2eb] bg-[#f8f9fc] px-3 font-mono text-lg text-[#667085]">/</span><input className="field font-mono" value={pattern} onChange={e=>setPattern(e.target.value)} placeholder="Enter regex pattern"/><span className="flex items-center rounded-xl border border-[#dfe2eb] bg-[#f8f9fc] px-3 font-mono text-[#667085]">/</span><input className="field !w-20 font-mono" value={flags} onChange={e=>setFlags(e.target.value)} aria-label="Regular expression flags"/></div></label><div className="mt-4"><TextArea label="Test text" value={sample} onChange={setSample} placeholder="Enter text to search…" rows={7}/></div><div className="mt-4 flex flex-wrap gap-2"><button className="btn btn-primary" onClick={test}><WandSparkles size={15}/> Test regex</button><ResetButton onClick={()=>{setPattern('');setFlags('g');setSample('');setMatches([]);setError('');setDidTest(false)}}/></div>{error&&<div className="notice notice-error mt-4" role="alert">Regex error: {error}</div>}{didTest&&<div className="mt-6"><ResultHeader title={`Matches (${matches.length})`} actions={<CopyButton text={matches.join('\n')} label="Copy matches"/>}/>{matches.length?<ul className="space-y-2">{matches.map((m,i)=><li key={`${m}-${i}`} className="rounded-lg border border-[#e6e8ef] bg-[#fafbff] px-3 py-2 font-mono text-sm">{m}</li>)}</ul>:<div className="notice notice-info">No matches found. Try another pattern or sample text.</div>}<p className="mt-3 text-xs text-[#667085]">Uses JavaScript regular expression syntax. The global flag is enabled for listing all matches.</p></div>}<div className="notice notice-info mt-5">Only test patterns you understand on inputs you trust. Extremely complex patterns can cause slow matching on large text.</div></div>}
+export function RegexTool(){
+  const [pattern,setPattern]=useState('\\b(dev|tool)\\w*');
+  const [flags,setFlags]=useState('gi');
+  const [sample,setSample]=useState('DevToolbox has free developer tools. Test your regex here.');
+  const [error,setError]=useState('');
+  const [matches,setMatches]=useState<string[]>([]);
+  const [didTest,setDidTest]=useState(false);
+  function test(){try{const unique=[...new Set(flags.split(''))].join('');const re=new RegExp(pattern,unique.includes('g')?unique:unique+'g');const found=Array.from(sample.matchAll(re),m=>`${m[0]}${m.index!==undefined?` (index ${m.index})`:''}`);setMatches(found);setError('');setDidTest(true)}catch(e){setError(e instanceof Error?e.message:'Invalid regular expression');setMatches([]);setDidTest(false)}}
+  return (
+    <div className="panel tool-card">
+      <label htmlFor="regex-pattern" className="block">
+        <span className="mb-2 block text-sm font-bold">Regular expression pattern</span>
+        <div className="flex gap-2">
+          <span className="flex items-center rounded-xl border border-[#dfe2eb] bg-[#f8f9fc] px-3 font-mono text-lg text-[#667085]">/</span>
+          <input id="regex-pattern" name="regex_pattern" className="field font-mono" value={pattern} onChange={e=>setPattern(e.target.value)} placeholder="Enter regex pattern"/>
+          <span className="flex items-center rounded-xl border border-[#dfe2eb] bg-[#f8f9fc] px-3 font-mono text-[#667085]">/</span>
+          <input id="regex-flags" name="regex_flags" className="field !w-20 font-mono" value={flags} onChange={e=>setFlags(e.target.value)} aria-label="Regular expression flags"/>
+        </div>
+      </label>
+      <div className="mt-4">
+        <TextArea id="regex-sample-text" name="regex_sample_text" label="Test text" value={sample} onChange={setSample} placeholder="Enter text to search…" rows={7}/>
+      </div>
+      <div className="mt-4 flex flex-wrap gap-2">
+        <button className="btn btn-primary" onClick={test} type="button"><WandSparkles size={15}/> Test regex</button>
+        <ResetButton onClick={()=>{setPattern('');setFlags('g');setSample('');setMatches([]);setError('');setDidTest(false)}}/>
+      </div>
+      {error&&<div className="notice notice-error mt-4" role="alert">Regex error: {error}</div>}
+      {didTest&&<div className="mt-6"><ResultHeader title={`Matches (${matches.length})`} actions={<CopyButton text={matches.join('\n')} label="Copy matches"/>}/>{matches.length?<ul className="space-y-2">{matches.map((m,i)=><li key={`${m}-${i}`} className="rounded-lg border border-[#e6e8ef] bg-[#fafbff] px-3 py-2 font-mono text-sm">{m}</li>)}</ul>:<div className="notice notice-info">No matches found. Try another pattern or sample text.</div>}<p className="mt-3 text-xs text-[#667085]">Uses JavaScript regular expression syntax. The global flag is enabled for listing all matches.</p></div>}
+      <div className="notice notice-info mt-5">Only test patterns you understand on inputs you trust. Extremely complex patterns can cause slow matching on large text.</div>
+    </div>
+  );
+}
