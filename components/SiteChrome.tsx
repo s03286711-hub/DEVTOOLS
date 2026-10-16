@@ -22,14 +22,14 @@ export function Header() {
 
         {/* Desktop Nav */}
         <nav className="hidden items-center gap-7 text-sm font-semibold text-[#475467] md:flex">
-          <Link href="/tools" className="hover:text-[#0d9488]">All tools</Link>
-          <Link href="/guides" className="hover:text-[#0d9488]">Guides</Link>
-          <Link href="/about" className="hover:text-[#0d9488]">About</Link>
-          <Link href="/contact" className="hover:text-[#0d9488]">Contact</Link>
+          <Link href="/tools" prefetch={false} className="hover:text-[#0d9488]">All tools</Link>
+          <Link href="/guides" prefetch={false} className="hover:text-[#0d9488]">Guides</Link>
+          <Link href="/about" prefetch={false} className="hover:text-[#0d9488]">About</Link>
+          <Link href="/contact" prefetch={false} className="hover:text-[#0d9488]">Contact</Link>
         </nav>
 
         <div className="flex items-center gap-3">
-          <Link className="btn btn-primary hidden !rounded-[10px] !px-3.5 !py-2.5 sm:inline-flex" href="/#tools">
+          <Link className="btn btn-primary hidden !rounded-[10px] !px-3.5 !py-2.5 sm:inline-flex" href="/#tools" prefetch={false}>
             <Wrench size={16} /> Explore tools
           </Link>
           
@@ -49,15 +49,15 @@ export function Header() {
       {open && (
         <div className="border-b border-[#eceef4] bg-white px-5 py-6 md:hidden anim-fade-up">
           <nav className="flex flex-col space-y-4 text-base font-bold text-[#475467]">
-            <Link href="/tools" onClick={() => setOpen(false)} className="hover:text-[#0d9488]">All tools</Link>
-            <Link href="/guides" onClick={() => setOpen(false)} className="hover:text-[#0d9488]">Guides</Link>
-            <Link href="/about" onClick={() => setOpen(false)} className="hover:text-[#0d9488]">About</Link>
-            <Link href="/contact" onClick={() => setOpen(false)} className="hover:text-[#0d9488]">Contact</Link>
-            <Link href="/privacy" onClick={() => setOpen(false)} className="hover:text-[#0d9488]">Privacy Policy</Link>
-            <Link href="/terms" onClick={() => setOpen(false)} className="hover:text-[#0d9488]">Terms of Service</Link>
+            <Link href="/tools" prefetch={false} onClick={() => setOpen(false)} className="hover:text-[#0d9488]">All tools</Link>
+            <Link href="/guides" prefetch={false} onClick={() => setOpen(false)} className="hover:text-[#0d9488]">Guides</Link>
+            <Link href="/about" prefetch={false} onClick={() => setOpen(false)} className="hover:text-[#0d9488]">About</Link>
+            <Link href="/contact" prefetch={false} onClick={() => setOpen(false)} className="hover:text-[#0d9488]">Contact</Link>
+            <Link href="/privacy" prefetch={false} onClick={() => setOpen(false)} className="hover:text-[#0d9488]">Privacy Policy</Link>
+            <Link href="/terms" prefetch={false} onClick={() => setOpen(false)} className="hover:text-[#0d9488]">Terms of Service</Link>
           </nav>
           <div className="mt-5 pt-5 border-t border-[#f0f2f7]">
-            <Link className="btn btn-primary w-full justify-center" href="/#tools" onClick={() => setOpen(false)}>
+            <Link className="btn btn-primary w-full justify-center" href="/#tools" prefetch={false} onClick={() => setOpen(false)}>
               <Wrench size={16} /> Browse 11 free tools
             </Link>
           </div>
@@ -90,7 +90,7 @@ export function Footer() {
           <ul className="space-y-3 text-sm text-[#667085]">
             {tools.slice(0, 6).map((t) => (
               <li key={t.slug}>
-                <Link className="hover:text-[#0d9488]" href={`/tools/${t.slug}`}>
+                <Link className="hover:text-[#0d9488]" href={`/tools/${t.slug}`} prefetch={false}>
                   {t.title}
                 </Link>
               </li>
@@ -100,11 +100,11 @@ export function Footer() {
         <div>
           <h3 className="mb-4 text-sm font-bold">Navigation & Legal</h3>
           <ul className="space-y-3 text-sm text-[#667085]">
-            <li><Link href="/about">About DevX Tool</Link></li>
-            <li><Link href="/contact">Contact Support</Link></li>
-            <li><Link href="/privacy">Privacy Policy</Link></li>
-            <li><Link href="/terms">Terms of Service</Link></li>
-            <li><Link href="/guides">Developer Learning Guides</Link></li>
+            <li><Link href="/about" prefetch={false}>About DevX Tool</Link></li>
+            <li><Link href="/contact" prefetch={false}>Contact Support</Link></li>
+            <li><Link href="/privacy" prefetch={false}>Privacy Policy</Link></li>
+            <li><Link href="/terms" prefetch={false}>Terms of Service</Link></li>
+            <li><Link href="/guides" prefetch={false}>Developer Learning Guides</Link></li>
           </ul>
         </div>
       </div>

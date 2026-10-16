@@ -127,6 +127,7 @@ export default function ToolShell({
           {guide && (
             <Link
               href={`/guides/${guide.slug}`}
+              prefetch={false}
               className="mt-10 flex items-center justify-between gap-3 rounded-2xl border border-[#e6e8ef] bg-[#f2fbf9] p-5 font-bold text-[#0f766e] hover:border-[#8fd8cd]"
             >
               <span className="flex items-center gap-2">
@@ -143,6 +144,7 @@ export default function ToolShell({
                 <Link
                   key={t.slug}
                   href={`/tools/${t.slug}`}
+                  prefetch={false}
                   className="rounded-xl border border-[#e6e8ef] p-4 transition duration-200 hover:border-[#8fd8cd] hover:shadow-soft"
                 >
                   <span className="font-bold text-[#1f2937]">{t.title}</span>

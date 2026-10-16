@@ -122,6 +122,7 @@ export default function GuideArticle({
                 <Link
                   key={t.slug}
                   href={`/tools/${t.slug}`}
+                  prefetch={false}
                   className="mt-2 flex items-center justify-between rounded-xl bg-white p-4 font-bold text-[#0f766e] hover:shadow-soft transition"
                 >
                   {t.title}
@@ -136,7 +137,7 @@ export default function GuideArticle({
               .filter((g) => g.slug !== slug)
               .map((g) => (
                 <li key={g.slug}>
-                  <Link className="font-semibold text-[#0d9488] hover:underline" href={`/guides/${g.slug}`}>
+                  <Link className="font-semibold text-[#0d9488] hover:underline" href={`/guides/${g.slug}`} prefetch={false}>
                     {g.title}
                   </Link>
                 </li>
