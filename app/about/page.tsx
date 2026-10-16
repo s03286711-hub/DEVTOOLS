@@ -32,6 +32,27 @@ export default function About() {
             <li><strong>Educational Clarity:</strong> Beyond simply producing an output, each utility includes detailed reference guides explaining the underlying protocols, RFC specifications, and common pitfalls.</li>
           </ol>
 
+          
+          <h2>Our Editorial Standards & Original Content Guarantee</h2>
+          <p>
+            To prevent repetitive, generic documentation on the web, every single tutorial, architectural benchmark, and troubleshooting guide on DevX Tool is produced through independent research and empirical testing by our engineering staff:
+          </p>
+          <ul>
+            <li><strong>First-Party Benchmarks:</strong> When comparing algorithms (such as UUID v4 vs. RFC 9562 UUID v7 B-Tree index fragmentation or Argon2id vs. BCrypt GPU resilience), our conclusions are drawn from local test clusters and real database profiling rather than aggregated summaries.</li>
+            <li><strong>Standards-First Grounding:</strong> Every guide cites official RFC specifications (IETF RFC 8259, RFC 9562, RFC 7519, RFC 3986, RFC 4648) and NIST security standards (NIST SP 800-63B), ensuring accurate, verifiable technical guidance.</li>
+            <li><strong>Original Code Implementations:</strong> All code examples (across TypeScript, Python 3, Go, and cURL) are custom written, tested against modern language runtimes, and licensed for unrestricted developer use.</li>
+          </ul>
+
+          <h2>Advertising Transparency & Policy Compliance</h2>
+          <p>
+            DevX Tool participates in the Google AdSense partner network. In strict compliance with Google's Advertising Policies and the Better Ads Standards:
+          </p>
+          <ul>
+            <li>Advertisements are clearly delimited from interactive tool controls to prevent accidental clicks.</li>
+            <li>No invasive popups, interstitial blockers, or auto-redirecting ad units are permitted on this website.</li>
+            <li>Tools remain 100% accessible and fully functional regardless of whether visitors run ad-blocking software.</li>
+          </ul>
+
           <h2>Get in Touch</h2>
           <p>
             We are actively expanding our collection of developer tools. If you have recommendations for new features, have identified a bug, or want to suggest improvements to our technical guides, please reach out via our <Link href="/contact" className="text-[#0d9488] font-bold underline">Contact Page</Link>.

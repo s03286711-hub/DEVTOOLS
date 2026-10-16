@@ -23,3 +23,31 @@ header nav a:hover::after{transform:scaleX(1)}
 .btn-primary{box-shadow:0 6px 18px rgba(13,148,136,.25)}
 .btn-primary:hover{box-shadow:0 10px 26px rgba(13,148,136,.35)}
 @media (prefers-reduced-motion: reduce){.anim-fade-up,.anim-float,.anim-blob,.gradient-text{animation:none}.reveal{opacity:1;transform:none;transition:none}}
+
+
+/* --- Google AdSense Accidental Click Prevention (Policy Compliance) --- */
+.ad-slot, .adsbygoogle {
+  margin: 32px auto !important;
+  display: block !important;
+  clear: both !important;
+  position: relative !important;
+  z-index: 10 !important;
+  overflow: hidden !important;
+  min-height: 90px;
+}
+.tool-card {
+  position: relative;
+  z-index: 20;
+  margin-bottom: 28px;
+}
+.tool-card button, .tool-card .btn {
+  position: relative;
+  z-index: 25;
+  touch-action: manipulation;
+}
+/* Prevent overlapping between interactive action bars and ads */
+.tool-actions-bar {
+  margin: 16px 0;
+  padding: 8px 0;
+  clear: both;
+}
