@@ -4,6 +4,7 @@ import './globals.css';
 import { siteConfig } from '@/lib/site';
 import { Header, Footer } from '@/components/SiteChrome';
 import ScrollReveal from '@/components/ScrollReveal';
+import CookieConsent from '@/components/CookieConsent';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -178,6 +179,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
         {children}
         <Footer />
         <ScrollReveal />
+        <CookieConsent />
       </body>
     </html>
   );
