@@ -3,9 +3,9 @@ import ToolShell from '@/components/ToolShell';
 import { UuidTool } from '@/components/NewTools';
 
 export const metadata: Metadata = {
-  title: 'Bulk UUID Generator Online (v4 Identifiers) — DevX Tool',
-  description: 'Generate unique random UUID v4 identifiers in bulk instantly. Clean, fast interface to copy single or multiple UUIDs for your database or development.',
-  keywords: ['random uuid generator', 'generate uuid v4 bulk', 'online guid generator'],
+  title: 'Bulk UUID v4 & v7 Generator Offline (CSPRNG, Zero Telemetry) — DevX Tool',
+  description: 'Generate unique random UUID v4 and v7 identifiers in bulk instantly. Cryptographically secure client-side generation using Web Crypto API. 100% offline & private.',
+  keywords: ['bulk random uuid v4 generator offline', 'offline uuid generator', 'cryptographic uuid v4 bulk', 'private guid generator', 'zero telemetry uuid v7'],
 };
 
 export default function Page() {

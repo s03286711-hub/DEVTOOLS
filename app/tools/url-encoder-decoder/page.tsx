@@ -3,9 +3,9 @@ import ToolShell from '@/components/ToolShell';
 import { UrlTool } from '@/components/Tools';
 
 export const metadata: Metadata = {
-  title: 'Online URL Encoder & Decoder — Percent Encoding — DevX Tool',
-  description: 'Encode URL components or decode percent-encoded text safely. Easily convert special characters in URLs using our fast browser-first tool.',
-  keywords: ['url encoder decoder', 'percent encoding online', 'url decode text'],
+  title: 'Offline URL Encoder & Decoder (RFC 3986 Percent-Encoding) — DevX Tool',
+  description: 'Encode URI components and query parameters or decode percent-encoded strings locally in your browser. Handles complex multi-byte character strings with zero server communication.',
+  keywords: ['offline url encoder decoder', 'rfc 3986 percent encoding tool', 'browser url component encoder', 'decode query parameters offline', 'safe url encoder'],
 };
 
 export default function Page() {

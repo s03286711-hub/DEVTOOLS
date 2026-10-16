@@ -1,0 +1,119 @@
+import type { Metadata } from 'next';
+import BlogLayout from '@/components/blog/BlogLayout';
+import EmbeddedTool from '@/components/EmbeddedTool';
+import { JsonFormatter } from '@/components/Tools';
+import { blogPosts } from '@/lib/blog';
+
+export const metadata: Metadata = {
+  title: 'Fixing "SyntaxError: Expected double-quoted property name in JSON at line X" — DevX Tool Blog',
+  description: 'Diagnose and resolve "Expected double-quoted property name in JSON" errors. Learn how ECMA-404 differs from Python dicts and JS objects with automated regex and AST fixes.',
+};
+
+export default function Page() {
+  const post = blogPosts.find((p) => p.slug === 'fixing-syntaxerror-expected-double-quoted-property-name-in-json')!;
+
+  return (
+    <BlogLayout post={post}>
+      <h2>1. The Anatomy of "Expected double-quoted property name in JSON"</h2>
+      <p>
+        Few errors cause more immediate friction during API integration than the parser exception:
+      </p>
+      <pre><code>{`SyntaxError: Expected double-quoted property name in JSON at line 1 column 2 (char 1)
+  or
+JSON.parse: expected property name or '}' at line 1 column 2 of the JSON data`}</code></pre>
+      <p>
+        In modern web development, engineers work simultaneously with Python dictionaries, JavaScript object literals, YAML, and JSON. While JavaScript and Python permit single quotes (<code>&apos;key&apos;</code>) or completely unquoted keys (<code>{`{ host: "127.0.0.1" }`}</code>), the JSON grammar specified in <strong>ECMA-404</strong> and <strong>IETF RFC 8259</strong> strictly mandates that every object key must be an ASCII double-quoted string literal.
+      </p>
+
+      {/* Embedded Live Tool */}
+      <EmbeddedTool
+        toolSlug="json-formatter"
+        headline="Interactive JSON Formatter & Error Localizer"
+        description="Paste unquoted or single-quoted JSON payloads below to instantly detect syntax discrepancies, line numbers, and character offsets."
+      >
+        <JsonFormatter />
+      </EmbeddedTool>
+
+      <h2>2. Why ECMAScript Object Literals Are Not JSON</h2>
+      <p>
+        A frequent misunderstanding among frontend developers is assuming JSON is a subset of JavaScript syntax. Although JSON stands for <em>JavaScript Object Notation</em>, standard JSON grammar imposes much stricter lexical rules:
+      </p>
+      <ul>
+        <li>
+          <strong>Forbidden Single Quotes:</strong> <code>{`{ 'status': 'active' }`}</code> is invalid JSON. Both keys and string values must use <code>&quot;</code>.
+        </li>
+        <li>
+          <strong>Forbidden Bare Identifiers:</strong> <code>{`{ status: "active" }`}</code> works seamlessly in JavaScript code but fails instantly when parsed via <code>JSON.parse()</code>.
+        </li>
+        <li>
+          <strong>Forbidden Trailing Commas:</strong> <code>{`{ "id": 101, }`}</code> breaks strictly compliant JSON parsers across Go, Python, and Rust.
+        </li>
+        <li>
+          <strong>Forbidden Hexadecimal or Binary Literals:</strong> Numbers like <code>0xFF</code> or <code>0b1010</code> cannot be parsed as valid JSON.
+        </li>
+      </ul>
+
+      <h2>3. The Most Common Source: Stringified Python Dictionaries</h2>
+      <p>
+        When building backend microservices with Flask, Django, or FastAPI, developers often accidentally write:
+      </p>
+      <pre><code>{`# WRONG: Python str() outputs single-quoted string representation
+user_payload = {"user_id": 42, "role": "admin"}
+raw_string = str(user_payload)
+# Result: "{'user_id': 42, 'role': 'admin'}" -> FAILS in JSON.parse()`}</code></pre>
+
+      <p>
+        To output compliant JSON from Python, always serialize with the native <code>json</code> standard library:
+      </p>
+      <pre><code>{`import json
+
+# CORRECT: Standard RFC 8259 compliant JSON
+json_string = json.dumps(user_payload)
+# Result: '{"user_id": 42, "role": "admin"}' -> Passes all parsers`}</code></pre>
+
+      <h2>4. Automated Correction: Regex & AST Sanitizers</h2>
+      <p>
+        If your system ingests external configuration or AI-generated output that contains unquoted or single-quoted keys, you can sanitize it before passing it to strict tokenizers.
+      </p>
+
+      <h3>TypeScript / JavaScript Sanitizer Utility</h3>
+      <pre><code>{`/**
+ * Transforms relaxed JavaScript object literal strings into valid JSON
+ */
+export function repairJsonString(raw: string): string {
+  return raw
+    // Replace unquoted keys: { key: "val" } -> { "key": "val" }
+    .replace(/([{,]\s*)([a-zA-Z0-9_$-]+)\s*:/g, '$1"$2":')
+    // Replace single-quoted keys and string values with double quotes
+    .replace(/'([^'\\\\]*(\\\\.[^'\\\\]*)*)'/g, '"$1"')
+    // Remove illegal trailing commas before closing braces/brackets
+    .replace(/,\s*([}\\]])/g, '$1');
+}`}</code></pre>
+
+      <h3>Validating With Python ast.literal_eval</h3>
+      <p>
+        If you must read a string generated by Python&apos;s <code>repr()</code> or <code>str()</code> safely without executing arbitrary bytecode, use <code>ast.literal_eval</code>:
+      </p>
+      <pre><code>{`import ast
+import json
+
+def convert_py_dict_string_to_json(raw_str: str) -> str:
+    # Safely parses Python literals without eval() security vulnerabilities
+    py_dict = ast.literal_eval(raw_str)
+    return json.dumps(py_dict)`}</code></pre>
+
+      <h2>5. Production Best Practices</h2>
+      <p>
+        To prevent unquoted property name errors in CI/CD pipelines and web applications:
+      </p>
+      <ol>
+        <li>
+          <strong>Enforce Content-Type Headers:</strong> Never parse responses as JSON if the upstream server returns <code>text/plain</code> or <code>text/html</code>.
+        </li>
+        <li>
+          <strong>Employ Local Verification:</strong> Before committing configurations or mocking API fixtures, pass the payload through our local, zero-telemetry <a href="/tools/json-formatter/">JSON Formatter &amp; Validator</a> to ensure perfect conformance with ECMA-404.
+        </li>
+      </ol>
+    </BlogLayout>
+  );
+}

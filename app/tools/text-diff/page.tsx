@@ -3,9 +3,9 @@ import ToolShell from '@/components/ToolShell';
 import { TextDiff } from '@/components/Tools';
 
 export const metadata: Metadata = {
-  title: 'Online Text Diff Checker — Compare Two Files — DevX Tool',
-  description: 'Compare two blocks of text or code side-by-side. Instantly highlight added, removed, or modified lines with our fast, browser-first diff tool.',
-  keywords: ['compare two text files online', 'text diff tool', 'code comparison online'],
+  title: 'Private Text & Code Diff Checker (100% In-Browser Comparison) — DevX Tool',
+  description: 'Compare source code, API responses, or documents side-by-side. Uses the Myers diff algorithm directly inside your browser so sensitive proprietary code never leaves your computer.',
+  keywords: ['private text diff checker', 'offline code comparison tool', 'compare two files locally', 'browser side text difference', 'confidential diff tool'],
 };
 
 export default function Page() {

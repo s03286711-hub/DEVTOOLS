@@ -3,9 +3,9 @@ import ToolShell from '@/components/ToolShell';
 import { Base64Tool } from '@/components/Tools';
 
 export const metadata: Metadata = {
-  title: 'Fast Base64 Encoder & Decoder Online — DevX Tool',
-  description: 'Encode or decode Base64 text instantly with full Unicode support. Safe, secure, and client-side processing means your data never leaves your device.',
-  keywords: ['base64 encoder decoder', 'decode base64 online', 'convert text to base64'],
+  title: 'Privacy-Conscious Base64 Encoder & Decoder (Unicode UTF-8, Zero Server Logs) — DevX Tool',
+  description: 'Encode or decode Base64 text instantly with full Unicode UTF-8 and emoji support. 100% client-side Web Crypto and binary memory buffers mean zero data logging.',
+  keywords: ['privacy-conscious base64 encoder', 'local base64 decoder utf8', 'browser base64 converter offline', 'safe client side base64 tool'],
 };
 
 export default function Page() {

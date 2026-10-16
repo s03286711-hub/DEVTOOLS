@@ -362,7 +362,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "year-2038-problem-unix-timestamp-overflow",
-    title: "The Year 2038 Problem (Y2038): Surviving the 32-Bit Signed Integer Unix Epoch Rollover in Legacy Systems \\u2014 DevX Tool Blog",
+    title: "The Year 2038 Problem (Y2038): Surviving the 32-Bit Signed Integer Unix Epoch Rollover in Legacy Systems \u2014 DevX Tool Blog",
     excerpt: "The Year 2038 Problem (Y2038): Surviving the 32-Bit Signed Integer Unix Epoch Rollover in Legacy Systems",
     category: "Distributed Systems",
     readingTime: "9 min read",
@@ -371,5 +371,29 @@ export const blogPosts: BlogPost[] = [
     relatedTool: "timestamp-converter",
     relatedGuide: "unix-timestamps",
     tags: ["Engineering", "Distributed", "Debugging"]
+  },
+  {
+    slug: "fixing-syntaxerror-expected-double-quoted-property-name-in-json",
+    title: "Fixing \"SyntaxError: Expected double-quoted property name in JSON at line X\": RFC 8259 vs JS Object Literals \u2014 DevX Tool Blog",
+    excerpt: "Diagnose and resolve 'Expected double-quoted property name in JSON' errors. Learn how ECMA-404 differs from Python dicts and JS objects with automated regex and AST fixes.",
+    category: "Web Standards & Debugging",
+    readingTime: "10 min read",
+    date: "2026-10-17",
+    author: "DevX Tool Engineering Lab",
+    relatedTool: "json-formatter",
+    relatedGuide: "json-formatting",
+    tags: ["JSON", "JavaScript", "Python", "Debugging", "Web"]
+  },
+  {
+    slug: "fix-openai-invalid-schema-for-response-format-json-schema",
+    title: "Fixing OpenAI 400 \"Invalid schema for response_format: 'json_schema'\": Strict Schema Rules & Pydantic / Zod Fixes \u2014 DevX Tool Blog",
+    excerpt: "Resolve OpenAI Structured Outputs 400 bad request errors. Fix missing additionalProperties: false, optional property definitions, and Pydantic v2 / Zod recursive schema constraints.",
+    category: "AI & LLM Architecture",
+    readingTime: "11 min read",
+    date: "2026-10-17",
+    author: "DevX Tool Engineering Lab",
+    relatedTool: "json-formatter",
+    relatedGuide: "json-formatting",
+    tags: ["AI", "OpenAI", "LLM", "JSON Schema", "Python", "TypeScript"]
   },
 ];
