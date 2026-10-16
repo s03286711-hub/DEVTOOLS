@@ -1,5 +1,5 @@
 export const siteConfig = {
-  name: 'DevToolbox',
+  name: 'DevX Tool',
   description: 'Free, fast and privacy-conscious online tools for developers. Format JSON, compare text, encode URLs, decode Base64 and test regular expressions.',
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://devxtool.me',
 };

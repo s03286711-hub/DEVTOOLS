@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy — DevToolbox',
+  title: 'Privacy Policy — DevX Tool',
   description: 'Our commitment to data protection, client-side processing, Google AdSense compliance, and cookie management.',
 };
 
@@ -15,7 +15,7 @@ export default function Privacy() {
           <p className="mt-2 text-sm text-[#667085]">Effective Date: October 14, 2026</p>
 
           <p className="mt-5 leading-8 text-[#667085]">
-            At DevToolbox (accessible via devxtool.me), the privacy of our visitors is one of our primary priorities. This Privacy Policy document outlines the types of information collected and how it is used.
+            At DevX Tool (accessible via devxtool.me), the privacy of our visitors is one of our primary priorities. This Privacy Policy document outlines the types of information collected and how it is used.
           </p>
 
           <h2>1. Client-Side Tool Processing</h2>
@@ -36,19 +36,19 @@ export default function Privacy() {
             We partner with third-party advertising networks, including <strong>Google AdSense</strong>, to serve advertisements when you visit our website.
           </p>
           <ul>
-            <li>Google, as a third-party vendor, uses cookies to serve ads on DevToolbox.</li>
+            <li>Google, as a third-party vendor, uses cookies to serve ads on DevX Tool.</li>
             <li>Google's use of advertising cookies enables it and its partners to serve ads to users based on their visits to this site and other sites on the Internet.</li>
             <li>Users may opt out of personalized advertising by visiting Google's <a href="https://adssettings.google.com/" target="_blank" rel="noopener noreferrer" className="text-[#0d9488] underline">Ads Settings</a>. Alternatively, you can opt out of third-party vendor cookies for personalized advertising by visiting <a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener noreferrer" className="text-[#0d9488] underline">aboutads.info</a>.</li>
           </ul>
 
           <h2>4. Third-Party Links</h2>
           <p>
-            DevToolbox may contain links to external reference documentation (such as RFC specifications, W3C standards, or official developer portals). We are not responsible for the privacy practices or content of third-party destinations.
+            DevX Tool may contain links to external reference documentation (such as RFC specifications, W3C standards, or official developer portals). We are not responsible for the privacy practices or content of third-party destinations.
           </p>
 
           <h2>5. Children's Information</h2>
           <p>
-            DevToolbox does not knowingly collect any Personal Identifiable Information from children under the age of 13.
+            DevX Tool does not knowingly collect any Personal Identifiable Information from children under the age of 13.
           </p>
 
           <h2>6. Contact Us</h2>

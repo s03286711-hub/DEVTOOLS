@@ -27,7 +27,7 @@ function TextArea({id,name,label,value,onChange,placeholder,rows=10}:{id?:string
 }
 
 export function JsonFormatter(){
-  const [input,setInput]=useState('{\n  "name": "DevToolbox",\n  "free": true,\n  "tools": ["JSON", "Base64", "URL"]\n}');
+  const [input,setInput]=useState('{\n  "name": "DevX Tool",\n  "free": true,\n  "tools": ["JSON", "Base64", "URL"]\n}');
   const [indent,setIndent]=useState('2');
   const [result,setResult]=useState('');
   const [error,setError]=useState('');
@@ -62,8 +62,8 @@ export function JsonFormatter(){
 }
 
 export function TextDiff(){
-  const [left,setLeft]=useState('DevToolbox\nFree online tools\nFast and simple');
-  const [right,setRight]=useState('DevToolbox\nFree developer utilities\nFast and private');
+  const [left,setLeft]=useState('DevX Tool\nFree online tools\nFast and simple');
+  const [right,setRight]=useState('DevX Tool\nFree developer utilities\nFast and private');
   const [compared,setCompared]=useState(false);
   const lines=useMemo(()=>{if(!compared)return[];const a=left.split('\n'),b=right.split('\n'),max=Math.max(a.length,b.length);return Array.from({length:max},(_,i)=>({a:a[i],b:b[i],same:a[i]===b[i]}))},[left,right,compared]);
   return (
@@ -82,7 +82,7 @@ export function TextDiff(){
 }
 
 export function Base64Tool(){
-  const [input,setInput]=useState('Hello, DevToolbox!');
+  const [input,setInput]=useState('Hello, DevX Tool!');
   const [output,setOutput]=useState('');
   const [error,setError]=useState('');
   function encode(){try{const bytes=new TextEncoder().encode(input);let binary='';bytes.forEach(b=>binary+=String.fromCharCode(b));setOutput(btoa(binary));setError('')}catch(e){setError('Could not encode this input.');setOutput('')}}
@@ -126,7 +126,7 @@ export function UrlTool(){
 export function RegexTool(){
   const [pattern,setPattern]=useState('\\b(dev|tool)\\w*');
   const [flags,setFlags]=useState('gi');
-  const [sample,setSample]=useState('DevToolbox has free developer tools. Test your regex here.');
+  const [sample,setSample]=useState('DevX Tool has free developer tools. Test your regex here.');
   const [error,setError]=useState('');
   const [matches,setMatches]=useState<string[]>([]);
   const [didTest,setDidTest]=useState(false);

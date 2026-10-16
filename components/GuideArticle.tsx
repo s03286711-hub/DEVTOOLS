@@ -73,7 +73,7 @@ export default function GuideArticle({
           >
             <ArrowLeft size={16} /> All guides
           </Link>
-          <span className="tag">DevToolbox guide</span>
+          <span className="tag">DevX Tool guide</span>
           <h1 className="mt-5 text-4xl font-black leading-tight tracking-[-.05em]">{title}</h1>
           <p className="mt-4 text-lg leading-8 text-[#667085]">{description}</p>
 

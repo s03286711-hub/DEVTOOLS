@@ -16,14 +16,14 @@ export function Header() {
             <Braces size={21} />
           </span>
           <span className="text-[1.05rem] font-extrabold tracking-tight">
-            Dev<span className="text-[#0d9488]">Toolbox</span>
+            DevX<span className="text-[#0d9488]"> Tool</span>
           </span>
         </Link>
 
         {/* Desktop Nav */}
         <nav className="hidden items-center gap-7 text-sm font-semibold text-[#475467] md:flex">
-          <Link href="/#tools" className="hover:text-[#0d9488]">All tools</Link>
-          <Link href="/#guides" className="hover:text-[#0d9488]">Guides</Link>
+          <Link href="/tools" className="hover:text-[#0d9488]">All tools</Link>
+          <Link href="/guides" className="hover:text-[#0d9488]">Guides</Link>
           <Link href="/about" className="hover:text-[#0d9488]">About</Link>
           <Link href="/contact" className="hover:text-[#0d9488]">Contact</Link>
         </nav>
@@ -49,8 +49,8 @@ export function Header() {
       {open && (
         <div className="border-b border-[#eceef4] bg-white px-5 py-6 md:hidden anim-fade-up">
           <nav className="flex flex-col space-y-4 text-base font-bold text-[#475467]">
-            <Link href="/#tools" onClick={() => setOpen(false)} className="hover:text-[#0d9488]">All tools</Link>
-            <Link href="/#guides" onClick={() => setOpen(false)} className="hover:text-[#0d9488]">Guides</Link>
+            <Link href="/tools" onClick={() => setOpen(false)} className="hover:text-[#0d9488]">All tools</Link>
+            <Link href="/guides" onClick={() => setOpen(false)} className="hover:text-[#0d9488]">Guides</Link>
             <Link href="/about" onClick={() => setOpen(false)} className="hover:text-[#0d9488]">About</Link>
             <Link href="/contact" onClick={() => setOpen(false)} className="hover:text-[#0d9488]">Contact</Link>
             <Link href="/privacy" onClick={() => setOpen(false)} className="hover:text-[#0d9488]">Privacy Policy</Link>
@@ -76,13 +76,13 @@ export function Footer() {
             <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#0d9488] text-white">
               <Braces size={18} />
             </span>
-            DevToolbox
+            DevX Tool
           </Link>
           <p className="mt-4 max-w-sm text-sm leading-7 text-[#667085]">
             Free, practical online utilities for developers and curious problem-solvers. Built to be simple, fast, and privacy-conscious with client-side execution.
           </p>
           <p className="mt-4 text-xs text-[#98a2b3]">
-            © {new Date().getFullYear()} DevToolbox (devxtool.me). All rights reserved.
+            © {new Date().getFullYear()} DevX Tool (devxtool.me). All rights reserved.
           </p>
         </div>
         <div>
@@ -100,11 +100,11 @@ export function Footer() {
         <div>
           <h3 className="mb-4 text-sm font-bold">Navigation & Legal</h3>
           <ul className="space-y-3 text-sm text-[#667085]">
-            <li><Link href="/about">About DevToolbox</Link></li>
+            <li><Link href="/about">About DevX Tool</Link></li>
             <li><Link href="/contact">Contact Support</Link></li>
             <li><Link href="/privacy">Privacy Policy</Link></li>
             <li><Link href="/terms">Terms of Service</Link></li>
-            <li><Link href="/#guides">Developer Learning Guides</Link></li>
+            <li><Link href="/guides">Developer Learning Guides</Link></li>
           </ul>
         </div>
       </div>

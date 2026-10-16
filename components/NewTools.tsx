@@ -33,7 +33,7 @@ export function UuidTool(){
 /* ---------- Hash ---------- */
 const algos=['SHA-1','SHA-256','SHA-384','SHA-512'] as const;
 export function HashTool(){
-  const [input,setInput]=useState('Hello, DevToolbox!');
+  const [input,setInput]=useState('Hello, DevX Tool!');
   const [out,setOut]=useState<Record<string,string>>({});
   async function run(){const data=new TextEncoder().encode(input);const r:Record<string,string>={};for(const a of algos){const buf=await crypto.subtle.digest(a,data);r[a]=Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('')}setOut(r)}
   return (

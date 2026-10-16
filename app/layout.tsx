@@ -8,12 +8,14 @@ import ScrollReveal from '@/components/ScrollReveal';
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: 'DevToolbox — Free Online Developer Tools & Utility Guides',
-    template: '%s | DevToolbox',
+    default: 'DevX Tool — Free Online Developer Tools & Utility Guides',
+    template: '%s | DevX Tool',
   },
   description: siteConfig.description,
   applicationName: siteConfig.name,
   keywords: [
+    'DevX Tool',
+    'devx tool',
     'developer tools',
     'online developer utilities',
     'JSON formatter',
@@ -28,9 +30,9 @@ export const metadata: Metadata = {
     'password generator',
     'color converter contrast checker',
   ],
-  authors: [{ name: 'DevToolbox Team', url: siteConfig.url }],
-  creator: 'DevToolbox',
-  publisher: 'DevToolbox',
+  authors: [{ name: 'DevX Tool Team', url: siteConfig.url }],
+  creator: 'DevX Tool',
+  publisher: 'DevX Tool',
   icons: {
     icon: '/favicon.svg',
     shortcut: '/favicon.svg',
@@ -55,12 +57,12 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: siteConfig.url,
     siteName: siteConfig.name,
-    title: 'DevToolbox — Free Online Developer Tools & Utility Guides',
+    title: 'DevX Tool — Free Online Developer Tools & Utility Guides',
     description: siteConfig.description,
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'DevToolbox — Free Online Developer Tools & Utility Guides',
+    title: 'DevX Tool — Free Online Developer Tools & Utility Guides',
     description: siteConfig.description,
   },
 };

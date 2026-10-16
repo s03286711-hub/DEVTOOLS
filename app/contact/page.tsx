@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Contact DevToolbox — Feedback, Support & Bug Reports',
-  description: 'Get in touch with the DevToolbox team for technical questions, bug reports, feature requests, or partnership inquiries.',
+  title: 'Contact DevX Tool — Feedback, Support & Bug Reports',
+  description: 'Get in touch with the DevX Tool team for technical questions, bug reports, feature requests, or partnership inquiries.',
 };
 
 export default function Contact() {
