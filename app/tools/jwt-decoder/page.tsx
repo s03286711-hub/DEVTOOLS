@@ -3,8 +3,9 @@ import ToolShell from '@/components/ToolShell';
 import { JwtTool } from '@/components/NewTools';
 
 export const metadata: Metadata = {
-  title: 'JWT Decoder Online — Inspect JSON Web Token Headers & Payloads',
-  description: 'Decode, inspect and analyze JSON Web Tokens (JWT) online. View payload claims, headers, and expiration dates instantly and securely in your browser.',
+  title: 'Safe JWT Decoder & Debugger Online — DevX Tool',
+  description: 'Decode JSON Web Token (JWT) headers, payloads, and check expiration time safely. Client-side execution ensures your tokens never leave your browser.',
+  keywords: ['decode jwt tokens locally', 'online jwt debugger', 'check jwt expiry'],
 };
 
 export default function Page() {

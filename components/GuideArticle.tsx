@@ -21,13 +21,44 @@ export default function GuideArticle({
     '@type': 'TechArticle',
     headline: title,
     description: description,
+    inLanguage: 'en',
     url: `${siteConfig.url}/guides/${slug}`,
     publisher: {
       '@type': 'Organization',
       name: siteConfig.name,
-      url: siteConfig.url,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${siteConfig.url}/favicon.svg`,
+      },
     },
-    inLanguage: 'en-US',
+    author: {
+      '@type': 'Organization',
+      name: `${siteConfig.name} Team`,
+    },
+    dependencies: 'No special requirements, works online in browser.',
+  };
+
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: `Does DevX Tool store my data when reading or using this guide?`,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'No, DevX Tool operates on a browser-first approach. All text formatting, decoding, and processing happen locally on your computer, meaning your sensitive data never leaves your device.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Is DevX Tool completely free to use?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes, all 11 utilities and developer tools on DevX Tool are 100% free to use with no account creation or subscription required.',
+        },
+      },
+    ],
   };
 
   const breadcrumbJsonLd = {
@@ -60,6 +91,10 @@ export default function GuideArticle({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
       <script
         type="application/ld+json"

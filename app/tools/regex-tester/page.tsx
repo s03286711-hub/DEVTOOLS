@@ -3,8 +3,9 @@ import ToolShell from '@/components/ToolShell';
 import { RegexTool } from '@/components/Tools';
 
 export const metadata: Metadata = {
-  title: 'Regex Tester Online — Regular Expression Matcher & Debugger',
-  description: 'Test and debug JavaScript regular expressions online with live match results and regex flags. Test regex patterns against sample text in your browser.',
+  title: 'Online Regex Tester & Debugger — DevX Tool',
+  description: 'Test your regular expressions, flags, and matches against sample text in real-time. Browser-first regex tester with instant pattern highlighting.',
+  keywords: ['regex tester online', 'test regular expressions', 'regex debugger'],
 };
 
 export default function Page() {

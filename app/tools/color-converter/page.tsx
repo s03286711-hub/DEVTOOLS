@@ -3,8 +3,9 @@ import ToolShell from '@/components/ToolShell';
 import { ColorTool } from '@/components/NewTools';
 
 export const metadata: Metadata = {
-  title: 'Color Converter Online — HEX to RGB, HSL & WCAG Contrast',
-  description: 'Convert colors between HEX, RGB, and HSL formats and check WCAG text contrast ratios online. Essential tool for web developers and UI designers.',
+  title: 'Web Color Converter & Text Contrast Checker — DevX Tool',
+  description: 'Easily convert colors between HEX, RGB, and HSL formats. Check foreground and background text contrast to meet accessibility compliance.',
+  keywords: ['hex to rgb converter', 'hsl color converter', 'text contrast checker'],
 };
 
 export default function Page() {

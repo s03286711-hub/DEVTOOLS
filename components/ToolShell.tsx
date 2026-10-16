@@ -26,12 +26,44 @@ export default function ToolShell({
     url: `${siteConfig.url}/tools/${slug}`,
     description: description,
     applicationCategory: 'DeveloperApplication',
-    operatingSystem: 'Any',
+    operatingSystem: 'All',
+    browserRequirements: 'Requires HTML5 support',
     offers: {
       '@type': 'Offer',
       price: '0',
       priceCurrency: 'USD',
     },
+    featureList: [
+      'Client-side execution',
+      'Local browser-first processing',
+      'Zero server transmission',
+      'Instant real-time output',
+    ],
+    applicationSubCategory: current?.category || 'Developer Tool',
+  };
+
+  // Structured Data Schema for FAQPage Rich Snippet
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: `Does DevX Tool store my ${title} data?`,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: `No, DevX Tool operates on a browser-first approach. All processing and computation happen locally on your computer, meaning your sensitive data never leaves your device.`,
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Is DevX Tool completely free to use?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes, all 11 utilities and developer tools on DevX Tool are 100% free to use with no account creation or subscription required.',
+        },
+      },
+    ],
   };
 
   const breadcrumbJsonLd = {
@@ -64,6 +96,10 @@ export default function ToolShell({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(toolJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
       <script
         type="application/ld+json"

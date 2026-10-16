@@ -3,8 +3,9 @@ import ToolShell from '@/components/ToolShell';
 import { TimestampTool } from '@/components/NewTools';
 
 export const metadata: Metadata = {
-  title: 'Unix Timestamp Converter — Epoch to Date & Human Time',
-  description: 'Convert Unix timestamps (seconds & milliseconds) to human-readable dates and convert ISO 8601 dates to Unix epoch timestamps. Fast online converter.',
+  title: 'Unix Timestamp Converter & Epoch Time Finder — DevX Tool',
+  description: 'Convert Unix epoch time to human-readable dates and vice versa instantly. Supports seconds and milliseconds with timezone breakdown.',
+  keywords: ['epoch converter', 'current unix time', 'convert timestamp to date'],
 };
 
 export default function Page() {

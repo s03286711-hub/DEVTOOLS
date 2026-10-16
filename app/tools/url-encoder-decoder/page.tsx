@@ -3,8 +3,9 @@ import ToolShell from '@/components/ToolShell';
 import { UrlTool } from '@/components/Tools';
 
 export const metadata: Metadata = {
-  title: 'URL Encoder & Decoder Online — Percent-Encoding Tool',
-  description: 'Encode special characters into percent-encoded URL formats and decode percent-encoded URLs back to readable text online. Safe and browser-based.',
+  title: 'Online URL Encoder & Decoder — Percent Encoding — DevX Tool',
+  description: 'Encode URL components or decode percent-encoded text safely. Easily convert special characters in URLs using our fast browser-first tool.',
+  keywords: ['url encoder decoder', 'percent encoding online', 'url decode text'],
 };
 
 export default function Page() {

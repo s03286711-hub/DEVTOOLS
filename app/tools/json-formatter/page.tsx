@@ -3,8 +3,9 @@ import ToolShell from '@/components/ToolShell';
 import { JsonFormatter } from '@/components/Tools';
 
 export const metadata: Metadata = {
-  title: 'JSON Formatter & Validator Online — Pretty Print & Clean JSON',
-  description: 'Format, validate, beautify, and minify JSON data online. Instant browser-based syntax validation with line-by-line error messages.',
+  title: 'Free Online JSON Formatter & Validator — DevX Tool',
+  description: 'Format, validate, and beautify your JSON data instantly. Spot syntax errors locally in your browser with clear line highlights. 100% private.',
+  keywords: ['pretty print json online', 'json validator', 'online json formatter'],
 };
 
 export default function Page() {

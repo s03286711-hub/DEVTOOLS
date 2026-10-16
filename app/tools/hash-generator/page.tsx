@@ -3,8 +3,9 @@ import ToolShell from '@/components/ToolShell';
 import { HashTool } from '@/components/NewTools';
 
 export const metadata: Metadata = {
-  title: 'SHA Hash Generator Online — SHA-256, SHA-512, SHA-1',
-  description: 'Generate cryptographic hashes including SHA-256, SHA-512, SHA-384, and SHA-1 online. Instant, browser-based hashing using Web Crypto API.',
+  title: 'Free SHA Hash Generator (SHA-256, SHA-1, SHA-512) — DevX Tool',
+  description: 'Generate secure cryptographic SHA-1, SHA-256, SHA-384, and SHA-512 hashes from plain text locally in your browser. Fast and completely secure.',
+  keywords: ['sha256 hash generator', 'online sha1 generator', 'create sha512 hash'],
 };
 
 export default function Page() {

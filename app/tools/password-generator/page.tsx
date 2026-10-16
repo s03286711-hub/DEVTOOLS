@@ -3,8 +3,9 @@ import ToolShell from '@/components/ToolShell';
 import { PasswordTool } from '@/components/NewTools';
 
 export const metadata: Metadata = {
-  title: 'Strong Password Generator Online — Secure Random Passwords',
-  description: 'Generate strong, secure, and customizable passwords with entropy calculation. Protect accounts against brute-force attacks with random password generation.',
+  title: 'Strong Random Password Generator with Entropy — DevX Tool',
+  description: 'Create highly secure random passwords with specific complexity controls and entropy estimates. Secure client-side generation prevents tracking.',
+  keywords: ['random password generator', 'strong password creator', 'password entropy tool'],
 };
 
 export default function Page() {
