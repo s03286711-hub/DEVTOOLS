@@ -1,3 +1,20 @@
+export interface Tool {
+  slug: string;
+  guide: string;
+  title: string;
+  short: string;
+  category: string;
+  icon: string;
+  color: string;
+  keywords: string;
+}
+
+export interface Guide {
+  slug: string;
+  title: string;
+  description: string;
+}
+
 export const siteConfig = {
   name: 'DevX Tool',
   description: 'Free, fast and privacy-conscious online tools for developers. Format JSON, compare text, encode URLs, decode Base64 and test regular expressions.',
