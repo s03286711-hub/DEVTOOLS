@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Braces, Menu, X, Wrench } from 'lucide-react';
+import { Braces, Menu, X, Wrench, BookOpen, Newspaper } from 'lucide-react';
 import { tools } from '@/lib/site';
 
 export function Header() {
@@ -23,7 +23,12 @@ export function Header() {
         {/* Desktop Nav */}
         <nav className="hidden items-center gap-7 text-sm font-semibold text-[#475467] md:flex">
           <Link href="/tools" prefetch={false} className="hover:text-[#0d9488]">All tools</Link>
-          <Link href="/guides" prefetch={false} className="hover:text-[#0d9488]">Guides</Link>
+          <Link href="/guides" prefetch={false} className="hover:text-[#0d9488] flex items-center gap-1.5">
+            <BookOpen size={15} className="text-[#0d9488]" /> Guides
+          </Link>
+          <Link href="/blog" prefetch={false} className="hover:text-[#0d9488] flex items-center gap-1.5">
+            <Newspaper size={15} className="text-[#0d9488]" /> Tech Blog
+          </Link>
           <Link href="/about" prefetch={false} className="hover:text-[#0d9488]">About</Link>
           <Link href="/contact" prefetch={false} className="hover:text-[#0d9488]">Contact</Link>
         </nav>
@@ -50,9 +55,10 @@ export function Header() {
         <div className="border-b border-[#eceef4] bg-white px-5 py-6 md:hidden anim-fade-up">
           <nav className="flex flex-col space-y-4 text-base font-bold text-[#475467]">
             <Link href="/tools" prefetch={false} onClick={() => setOpen(false)} className="hover:text-[#0d9488]">All tools</Link>
-            <Link href="/guides" prefetch={false} onClick={() => setOpen(false)} className="hover:text-[#0d9488]">Guides</Link>
-            <Link href="/about" prefetch={false} onClick={() => setOpen(false)} className="hover:text-[#0d9488]">About</Link>
-            <Link href="/contact" prefetch={false} onClick={() => setOpen(false)} className="hover:text-[#0d9488]">Contact</Link>
+            <Link href="/guides" prefetch={false} onClick={() => setOpen(false)} className="hover:text-[#0d9488]">Developer Guides</Link>
+            <Link href="/blog" prefetch={false} onClick={() => setOpen(false)} className="hover:text-[#0d9488]">Engineering Tech Blog</Link>
+            <Link href="/about" prefetch={false} onClick={() => setOpen(false)} className="hover:text-[#0d9488]">About DevX</Link>
+            <Link href="/contact" prefetch={false} onClick={() => setOpen(false)} className="hover:text-[#0d9488]">Contact Support</Link>
             <Link href="/privacy" prefetch={false} onClick={() => setOpen(false)} className="hover:text-[#0d9488]">Privacy Policy</Link>
             <Link href="/terms" prefetch={false} onClick={() => setOpen(false)} className="hover:text-[#0d9488]">Terms of Service</Link>
           </nav>
@@ -71,7 +77,7 @@ export function Footer() {
   return (
     <footer className="site-footer">
       <div className="container grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-4">
-        <div className="lg:col-span-2">
+        <div className="lg:col-span-1">
           <Link href="/" className="flex w-fit items-center gap-2 font-extrabold">
             <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#0d9488] text-white">
               <Braces size={18} />
@@ -79,7 +85,7 @@ export function Footer() {
             DevX Tool
           </Link>
           <p className="mt-4 max-w-sm text-sm leading-7 text-[#667085]">
-            Free, practical online utilities for developers and curious problem-solvers. Built to be simple, fast, and privacy-conscious with client-side execution.
+            Engineering knowledge base and browser-native developer utilities. Free, fast, private, and zero server roundtrips.
           </p>
           <p className="mt-4 text-xs text-[#98a2b3]">
             © {new Date().getFullYear()} DevX Tool (devxtool.me). All rights reserved.
@@ -98,13 +104,22 @@ export function Footer() {
           </ul>
         </div>
         <div>
-          <h3 className="mb-4 text-sm font-bold">Navigation & Legal</h3>
+          <h3 className="mb-4 text-sm font-bold">Educational Hub</h3>
           <ul className="space-y-3 text-sm text-[#667085]">
-            <li><Link href="/about" prefetch={false}>About DevX Tool</Link></li>
-            <li><Link href="/contact" prefetch={false}>Contact Support</Link></li>
-            <li><Link href="/privacy" prefetch={false}>Privacy Policy</Link></li>
-            <li><Link href="/terms" prefetch={false}>Terms of Service</Link></li>
-            <li><Link href="/guides" prefetch={false}>Developer Learning Guides</Link></li>
+            <li><Link href="/guides" prefetch={false} className="hover:text-[#0d9488]">Developer Knowledge Base</Link></li>
+            <li><Link href="/blog" prefetch={false} className="hover:text-[#0d9488]">Engineering Tech Blog</Link></li>
+            <li><Link href="/guides/uuid-guide" prefetch={false} className="hover:text-[#0d9488]">RFC 9562 UUID Deep Dive</Link></li>
+            <li><Link href="/guides/jwt-explained" prefetch={false} className="hover:text-[#0d9488]">JWT Cryptography & Security</Link></li>
+            <li><Link href="/guides/hashing-explained" prefetch={false} className="hover:text-[#0d9488]">SHA Hashing & Passwords</Link></li>
+          </ul>
+        </div>
+        <div>
+          <h3 className="mb-4 text-sm font-bold">About &amp; Legal</h3>
+          <ul className="space-y-3 text-sm text-[#667085]">
+            <li><Link href="/about" prefetch={false} className="hover:text-[#0d9488]">About DevX Tool</Link></li>
+            <li><Link href="/contact" prefetch={false} className="hover:text-[#0d9488]">Contact Support</Link></li>
+            <li><Link href="/privacy" prefetch={false} className="hover:text-[#0d9488]">Privacy Policy</Link></li>
+            <li><Link href="/terms" prefetch={false} className="hover:text-[#0d9488]">Terms of Service</Link></li>
           </ul>
         </div>
       </div>

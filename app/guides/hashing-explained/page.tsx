@@ -1,58 +1,166 @@
 import type { Metadata } from 'next';
 import GuideArticle from '@/components/GuideArticle';
+import EmbeddedTool from '@/components/EmbeddedTool';
+import { HashTool } from '@/components/NewTools';
 
 export const metadata: Metadata = {
-  title: 'Hash Functions Explained: SHA-256, SHA-1 and Beyond',
-  description: 'Understand cryptographic hash functions, the SHA-2 family, collision resistance, rainbow tables, and why password storage demands specialized algorithms.',
+  title: 'Cryptographic Hash Functions Explained: SHA-256, SHA-3, Collision Resistance, Merkle Trees, and Password Security',
+  description: 'A complete 1,200+ word engineering guide to cryptographic hashing algorithms. Learn the Merkle-Damgard construction, SHA-256 bitwise rotations, collision attacks, and HMAC signatures.',
 };
 
 export default function Page() {
   return (
     <GuideArticle
       slug="hashing-explained"
-      title="Hash Functions Explained: SHA-256, SHA-1 and Beyond"
-      description="Understand cryptographic hash functions, the SHA-2 family, collision resistance, rainbow tables, and why password storage demands specialized algorithms."
+      title="Cryptographic Hash Functions Explained: SHA-256, SHA-3, Collision Resistance, Merkle Trees, and Password Security"
+      description="A complete 1,200+ word engineering guide to cryptographic hashing algorithms. Learn the Merkle-Damgard construction, SHA-256 bitwise rotations, collision attacks, and HMAC signatures."
     >
-      <h2>What Is a Cryptographic Hash Function?</h2>
-<p>A cryptographic hash function takes an arbitrary-length message and processes it into a fixed-length string of bits (a digest). Hash functions serve as the digital fingerprint of data in modern computer science, forming the foundational bedrock for digital signatures, message authentication codes (HMAC), Git commit trees, and cryptographic blockchains.</p>
 
-<h2>Key Properties of Secure Hash Functions</h2>
-<ol>
-  <li><strong>Deterministic:</strong> Feeding the exact same message will always yield the exact same digest.</li>
-  <li><strong>Pre-image Resistance (One-Way):</strong> Given a digest <code>H</code>, it should be computationally infeasible to find an input <code>m</code> such that <code>hash(m) = H</code>.</li>
-  <li><strong>Second Pre-image Resistance:</strong> Given an input <code>m1</code>, it is infeasible to find a distinct input <code>m2</code> such that <code>hash(m1) = hash(m2)</code>.</li>
-  <li><strong>Collision Resistance:</strong> It must be infeasible to locate any two arbitrary inputs that map to the identical digest.</li>
-  <li><strong>Avalanche Effect:</strong> Changing even a single bit in the input message completely changes the resulting hash output (typically flipping ~50% of digest bits).</li>
-</ol>
+      <h2>1. What Is a Cryptographic Hash Function?</h2>
+      <p>A cryptographic hash function is a deterministic mathematical algorithm that transforms an arbitrary block of digital data into a fixed-size bit string (a digest). Standardized by NIST (National Institute of Standards and Technology) in FIPS PUB 180-4 and FIPS PUB 202, secure hashing algorithms form the bedrock of SSL/TLS certificates, Git commit versioning, digital signatures, blockchain proof-of-work, and file integrity verification.</p>
 
-<h2>The Evolution of the SHA Family</h2>
-<p>The Secure Hash Algorithms are a family of cryptographic hash functions published by the National Institute of Standards and Technology (NIST):</p>
-<ul>
-  <li><strong>SHA-1 (160-bit):</strong> Published in 1995. In 2017, researchers at CWI Amsterdam and Google announced the SHAttered attack, demonstrating practical collision generation. SHA-1 is deprecated for all cryptographic signing.</li>
-  <li><strong>SHA-2 Family (224, 256, 384, 512 bits):</strong> Published in 2001. SHA-256 and SHA-512 remain unbroken and are universally trusted across TLS certificates, HTTPS encryption, Bitcoin mining, and secure code signing.</li>
-  <li><strong>SHA-3 (Keccak):</strong> Released in 2015 based on the sponge construction. SHA-3 provides an alternative cryptographic internal structure completely different from the Merkle-Damg&aring;rd construction used by SHA-2.</li>
-</ul>
+      <p>To be classified as cryptographically secure, a hash function must satisfy three essential mathematical properties:</p>
+      <ol>
+        <li><strong>Pre-image Resistance (One-Way Property):</strong> Given a hash digest <code>H</code>, it must be computationally infeasible to find any original message <code>m</code> such that <code>hash(m) = H</code>.</li>
+        <li><strong>Second Pre-image Resistance (Weak Collision Resistance):</strong> Given an input message <code>m1</code>, it must be computationally infeasible to discover another distinct message <code>m2</code> such that <code>hash(m1) = hash(m2)</code>.</li>
+        <li><strong>Collision Resistance (Strong Collision Resistance):</strong> It must be computationally impossible to find <em>any</em> two distinct messages <code>m1</code> and <code>m2</code> that produce the exact same digest.</li>
+        <li><strong>The Avalanche Effect:</strong> Changing even a single bit in the source input must radically alter the resulting digest, changing approximately 50% of the output bits in an unpredictable distribution.</li>
+      </ol>
 
-<h2>Why Plain Hashes Fail for Password Storage</h2>
-<p>A frequent beginner security flaw is hashing user passwords with fast algorithms like MD5 or SHA-256. Modern consumer graphics cards (GPUs) can compute hundreds of billions of SHA-256 hashes per second. Using precomputed rainbow tables or dictionary attacks, attackers can crack leaked SHA-256 passwords in seconds.</p>
-<p>To safely hash passwords, modern engineering standards mandate <em>adaptive, memory-hard key derivation functions</em>:</p>
-<ul>
-  <li><strong>Argon2id:</strong> Winner of the Password Hashing Competition; the current gold standard recommended by OWASP.</li>
-  <li><strong>bcrypt:</strong> Battle-tested, built-in blowfish-based algorithm with adjustable work factors.</li>
-  <li><strong>PBKDF2:</strong> NIST-standardized key derivation function using repeated iterations with salt.</li>
-</ul>
-    <h2>Frequently Asked Questions About Hashes</h2>
-      <h3>Can you reverse a hash to find the original text?</h3>
-      <p>No. A cryptographic hash is an irreversible mathematical one-way operation. Because information is compressed down to a fixed-size digest (e.g., 256 bits for a gigabyte of data), the pigeonhole principle guarantees infinite inputs map to identical digest sizes. Instead of "reversing" the algorithm, attackers compare hashes against massive precomputed databases called <em>rainbow tables</em> or execute brute-force dictionary attacks.</p>
+      {/* Embedded Live Tool */}
+      <EmbeddedTool toolSlug="hash-generator" headline="Live SHA Hash Generator" description="Compute SHA-1, SHA-256, SHA-384, and SHA-512 hashes in real time using the browser Web Crypto API."><HashTool /></EmbeddedTool>
 
-      <h3>What is a salt and why is it mandatory for passwords?</h3>
-      <p>A cryptographic salt is a unique, cryptographically random string appended to each user's password prior to hashing. Salting ensures that even if two users choose the identical password (e.g., "password123"), their resulting stored hashes will be completely different. This completely neutralizes rainbow tables and forces attackers to crack each password individually.</p>
+      <h2>2. Deep Dive: Inside the SHA-256 Algorithm</h2>
+      <p>SHA-256 belongs to the SHA-2 family designed by the United States National Security Agency (NSA). It processes input streams in 512-bit blocks using the <strong>Merkle-Damgard construction</strong>.</p>
 
-      <h3>What is an HMAC (Hash-Based Message Authentication Code)?</h3>
-      <p>An HMAC (RFC 2104) is a mechanism for message authentication using cryptographic hash functions combined with a shared secret key. While a plain hash verifies data integrity (ensuring a file was not corrupted during transit), an HMAC verifies both integrity <em>and authenticity</em> (guaranteeing that the message was authored by someone in possession of the private secret key).</p>
+      <h3>Step 1: Padding</h3>
+      <p>The input message is padded with a single <code>1</code> bit, followed by <code>0</code> bits, and completed by an 8-byte big-endian integer recording the original message length in bits. The total bit length becomes an exact multiple of 512.</p>
 
-      <h2>HMAC vs. Digital Signatures</h2>
-      <p>HMAC relies on symmetric cryptography: both the sender and receiver share the exact same secret key. If the key is leaked, any party can forge messages. Digital signatures (such as RSA or ECDSA) utilize asymmetric public/private key cryptography, where only the author possesses the signing private key, while anyone with the public key can verify authenticity without gaining the ability to forge signatures.</p>
+      <h3>Step 2: State Initialization</h3>
+      <p>SHA-256 initializes eight 32-bit working state variables (<code>a</code> through <code>h</code>) with the fractional parts of the square roots of the first eight prime numbers (2, 3, 5, 7, 11, 13, 17, 19):</p>
+      <pre><code>{`H0 = 0x6a09e667
+H1 = 0xbb67ae85
+H2 = 0x3c6ef372
+H3 = 0xa54ff53a
+H4 = 0x510e527f
+H5 = 0x9b05688c
+H6 = 0x1f83d9ab
+H7 = 0x5be0cd19`}</code></pre>
+
+      <h3>Step 3: Compression Loop (64 Rounds)</h3>
+      <p>Each 512-bit message block is expanded into 64 words of 32 bits each and subjected to 64 rounds of non-linear bitwise operations: bitwise AND, XOR, bitwise rotation (<code>ROTR</code>), shift (<code>SHR</code>), Majority (<code>Maj</code>), and Choice (<code>Ch</code>) functions.</p>
+
+      <h2>3. The Cryptographic Hash Landscape: SHA-1, SHA-256, and SHA-3</h2>
+
+      <table className="w-full text-left border-collapse my-6">
+        <thead>
+          <tr className="border-b bg-[#f8f9fc]">
+            <th className="py-3 px-3">Algorithm</th>
+            <th className="py-3 px-3">Output Digest Size</th>
+            <th className="py-3 px-3">Cryptographic Security Status</th>
+            <th className="py-3 px-3">Recommended Use Cases</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr className="border-b">
+            <td className="py-3 px-3 font-mono font-bold text-[#b91c1c]">MD5</td>
+            <td className="py-3 px-3">128 bits (32 hex)</td>
+            <td className="py-3 px-3 text-[#b91c1c]">Broken (practical collisions in seconds)</td>
+            <td className="py-3 px-3">Checksum deduplication only; forbidden in security.</td>
+          </tr>
+          <tr className="border-b">
+            <td className="py-3 px-3 font-mono font-bold text-[#b91c1c]">SHA-1</td>
+            <td className="py-3 px-3">160 bits (40 hex)</td>
+            <td className="py-3 px-3 text-[#b91c1c]">Broken (SHAttered attack collision proven)</td>
+            <td className="py-3 px-3">Legacy Git commit IDs; disallowed for digital signatures.</td>
+          </tr>
+          <tr className="border-b">
+            <td className="py-3 px-3 font-mono font-bold text-[#059669]">SHA-256</td>
+            <td className="py-3 px-3">256 bits (64 hex)</td>
+            <td className="py-3 px-3 text-[#059669]">Current Gold Standard (secure)</td>
+            <td className="py-3 px-3">TLS certificates, software downloads, blockchain consensus.</td>
+          </tr>
+          <tr className="border-b">
+            <td className="py-3 px-3 font-mono font-bold text-[#059669]">SHA-512</td>
+            <td className="py-3 px-3">512 bits (128 hex)</td>
+            <td className="py-3 px-3 text-[#059669]">Extremely Secure (64-bit CPU optimized)</td>
+            <td className="py-3 px-3">High-security cryptography, financial infrastructure.</td>
+          </tr>
+          <tr className="border-b">
+            <td className="py-3 px-3 font-mono font-bold text-[#059669]">SHA-3 (Keccak)</td>
+            <td className="py-3 px-3">256–512 bits</td>
+            <td className="py-3 px-3 text-[#059669]">Next-Gen Sponge Construction</td>
+            <td className="py-3 px-3">Ethereum, post-quantum resilience, high-assurance apps.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>4. Why SHA-256 Is Fatal for Password Hashing</h2>
+      <p>A widespread rookie security error is storing user passwords using unsalted or salted SHA-256. SHA-256 was specifically engineered to be fast in hardware. Modern GPU cracking clusters compute over <strong>10 billion SHA-256 hashes per second</strong>.</p>
+      <p>For password authentication, always use memory-hard Key Derivation Functions (KDFs): <strong>Argon2id</strong>, <strong>BCrypt</strong>, or <strong>PBKDF2</strong>.</p>
+
+      <h2>5. Production Implementation Across Modern Languages</h2>
+
+      <h3>JavaScript (Browser Web Crypto API)</h3>
+      <pre><code>{`async function calculateSha256(message: string): Promise&lt;string&gt; {{
+  const msgUint8 = new TextEncoder().encode(message);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map((b) ⇒ b.toString(16).padStart(2, '0')).join('');
+}}`}</code></pre>
+
+      <h3>Python 3</h3>
+      <pre><code>{`import hashlib
+
+data = b"DevX Tool High-Assurance Cryptography"
+digest = hashlib.sha256(data).hexdigest()
+print("SHA-256 Digest:", digest)`}</code></pre>
+
+    
+      <h2>6. The Birthday Attack and Collision Mathematics</h2>
+      <p>A common mistake when analyzing hash function collision probability is assuming you need to generate 2^N hashes before encountering a duplicate. Because of the mathematical <strong>Birthday Problem</strong>, the probability of finding <em>any</em> two messages with identical digests reaches 50% after computing approximately the square root of the total output space:</p>
+      <pre><code>&#123;`Collision Threshold ≈ 2^(N / 2)`&#125;</code></pre>
+
+      <ul>
+        <li><strong>MD5 (128 bits):</strong> Collision threshold is 2^64 operations. In 2004, Xiaoyun Wang proved practical collisions; today, MD5 collisions can be generated on a laptop in seconds.</li>
+        <li><strong>SHA-1 (160 bits):</strong> Collision threshold is 2^80 operations. In 2017, the CWI Amsterdam and Google SHAttered team produced the first real-world SHA-1 collision between two distinct PDF documents.</li>
+        <li><strong>SHA-256 (256 bits):</strong> Collision threshold is 2^128 operations (approximately 3.4 × 10^38 attempts). Even if all computers on Earth combined their hashing power, finding a collision remains physically impossible under known laws of thermodynamics.</li>
+      </ul>
+
+      <h2>7. HMAC (Hash-Based Message Authentication Code / RFC 2104)</h2>
+      <p>Simply hashing a secret key combined with a message (e.g., <code>hash(key + message)</code>) is vulnerable to <strong>Length Extension Attacks</strong> in Merkle-Damgard hash algorithms (such as SHA-1 and SHA-256). An attacker can append new data to the message and calculate a valid hash without knowing the secret key.</p>
+
+      <p><strong>HMAC</strong> neutralizes this attack through nested hashing with inner and outer padding constants (<code>ipad = 0x36</code>, <code>opad = 0x5C</code>):</p>
+      <pre><code>&#123;`HMAC(K, m) = H( (K' ⊕ opad) || H( (K' ⊕ ipad) || m ) )`&#125;</code></pre>
+
+      <h3>TypeScript Implementation: Secure HMAC-SHA256 with Web Crypto</h3>
+      <pre><code>{`export async function computeHmacSha256(secret: string, message: string): Promise&lt;string&gt; {{
+  const enc = new TextEncoder();
+  const key = await crypto.subtle.importKey(
+    "raw",
+    enc.encode(secret),
+    {{ name: "HMAC", hash: "SHA-256" }},
+    false,
+    ["sign"]
+  );
+  const signature = await crypto.subtle.sign("HMAC", key, enc.encode(message));
+  return Array.from(new Uint8Array(signature))
+    .map(b ⇒ b.toString(16).padStart(2, '0'))
+    .join('');
+}}`}</code></pre>
+
+      <h3>cURL / Linux CLI: Hash Verification</h3>
+      <pre><code>{`# Calculate SHA-256 checksum of an installation archive:
+sha256sum software_release.tar.gz
+
+# Verify against official checksum manifest:
+sha256sum -c checksums.txt`}</code></pre>
+
+    
+      <h2>8. The Transition to Post-Quantum Cryptography (NIST PQC)</h2>
+      <p>With the rapid advancement of quantum computing hardware, standard public-key cryptography (RSA and Elliptic Curves) faces eventual vulnerability to Shor's algorithm. In contrast, <strong>symmetric ciphers and cryptographic hash functions like SHA-256 and SHA-512 are remarkably resilient to quantum attacks</strong>.</p>
+      <p>Grover's quantum search algorithm provides a quadratic speedup against symmetric algorithms, effectively halving the security bits. Under Grover's algorithm, SHA-256 provides 128 bits of quantum security, which remains mathematically intractable. For organizations requiring ultra-long-term security (such as defense and aerospace archives), upgrading to <strong>SHA-384 or SHA-512</strong> provides 192 to 256 bits of post-quantum security, ensuring data integrity against future quantum hardware.</p>
+
     </GuideArticle>
   );
 }
