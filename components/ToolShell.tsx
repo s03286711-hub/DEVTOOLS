@@ -2,6 +2,7 @@ import Link from 'next/link';
 import type { ReactNode } from 'react';
 import { ArrowLeft, ArrowUpRight, BookOpen, ShieldCheck } from 'lucide-react';
 import { tools, guides, siteConfig } from '@/lib/site';
+import AdSlot from '@/components/AdSlot';
 
 export default function ToolShell({
   slug,
@@ -123,6 +124,12 @@ export default function ToolShell({
           </div>
 
           {children}
+
+          
+          {/* Safe Ad Placement: Separated from Tool card and action buttons by 40px+ margin */}
+          <div className="my-10 border-t border-b border-[#f1f5f9] py-4">
+            <AdSlot slotId="tool-page-bottom" format="auto" />
+          </div>
 
           {guide && (
             <Link

@@ -2,6 +2,7 @@ import Link from 'next/link';
 import type { ReactNode } from 'react';
 import { ArrowLeft, ArrowUpRight, BookOpen, Calendar, Clock, Tag, User, Wrench } from 'lucide-react';
 import { BlogPost, blogPosts } from '@/lib/blog';
+import AdSlot from '@/components/AdSlot';
 import { tools, guides, siteConfig } from '@/lib/site';
 
 export default function BlogLayout({
@@ -129,6 +130,12 @@ export default function BlogLayout({
 
           {/* Article Main Body */}
           <div className="mt-10">{children}</div>
+
+          
+          {/* Safe In-Article Ad Placement */}
+          <div className="my-10">
+            <AdSlot slotId="blog-article-footer" format="auto" />
+          </div>
 
           {/* Cross-linking interactive block: Tool & Guide integration */}
           <div className="my-12 rounded-2xl border-2 border-[#8fd8cd] bg-[#f0fdfa] p-6 sm:p-8">

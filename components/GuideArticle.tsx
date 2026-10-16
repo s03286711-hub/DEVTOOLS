@@ -2,6 +2,7 @@ import Link from 'next/link';
 import type { ReactNode } from 'react';
 import { ArrowLeft, ArrowUpRight } from 'lucide-react';
 import { guides, tools, siteConfig } from '@/lib/site';
+import AdSlot from '@/components/AdSlot';
 
 export default function GuideArticle({
   slug,
@@ -113,6 +114,10 @@ export default function GuideArticle({
           <p className="mt-4 text-lg leading-8 text-[#667085]">{description}</p>
 
           <div className="mt-8">{children}</div>
+
+          
+          {/* Safe in-content Ad slot: 32px vertical clearance */}
+          <AdSlot slotId="guide-bottom-content" format="auto" />
 
           <div className="my-10 rounded-2xl border border-[#e6e8ef] bg-[#f2fbf9] p-5">
             <h2 className="!mt-0">Try the related tool</h2>
