@@ -21,7 +21,7 @@ export default function Page() {
       <h2>1. The Problem: Why LLMs Break JSON Parsing in Production</h2>
       <p>When engineering autonomous agents, LangChain pipelines, or LLM-powered backends, the most prevalent runtime crash is:</p>
       <pre><code>{`SyntaxError: Unexpected token '\`', "\`\`\`json\n{\n..." is not valid JSON
-  at JSON.parse (&lt;anonymous&gt;)`}</code></pre>
+  at JSON.parse (<anonymous>)`}</code></pre>
 
       <p>Even when system prompts explicitly command: <em>"You must return raw JSON only. Do not wrap in markdown or backticks"</em>, models like GPT-4o, Claude 3.5 Sonnet, and Llama 3 frequently revert to conversational formatting when uncertainty is high or when generating nested objects.</p>
 
@@ -57,7 +57,7 @@ export function extractLlmJson(rawResponse: string): unknown {
 {
   "recommendations": [
     "Upgrade to TypeScript 5.5",
-    "Enable strict mode",  // &lt;-- Trailing comma breaks JSON.parse!
+    "Enable strict mode",  // <-- Trailing comma breaks JSON.parse!
   ]
 }`}</code></pre>
       <p>To withstand trailing commas, integrate forgiving parsers like <code>dirtyjson</code> in Python or regex-sanitize before passing to standard <code>JSON.parse()</code>.</p>

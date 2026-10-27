@@ -21,7 +21,7 @@ export default function Page() {
       <h2>1. The Problem: AI Copilots Generating Malformed Mock UUIDs</h2>
       <p>When software developers ask AI coding tools (GitHub Copilot, Cursor, ChatGPT) to generate unit test mock fixtures or database migration seeds, the AI frequently outputs strings that <em>look</em> like UUIDs but fail validation:</p>
       <pre><code>{`// AI-Generated Hallucinated UUID:
-"550e8400-e29b-51d4-c716-446655440000"  // &lt;-- Invalid variant nibble! PostgreSQL throws: invalid input syntax for type uuid`}</code></pre>
+"550e8400-e29b-51d4-c716-446655440000"  // <-- Invalid variant nibble! PostgreSQL throws: invalid input syntax for type uuid`}</code></pre>
 
       {/* Embedded Live Tool */}
       <EmbeddedTool toolSlug="uuid-generator" headline="Live Valid UUID v4 / v7 Verification Sandbox" description="Generate and inspect RFC-compliant UUIDs to verify character groups, version nibbles, and variant bits."><UuidTool /></EmbeddedTool>

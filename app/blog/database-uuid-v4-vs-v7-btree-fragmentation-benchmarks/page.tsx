@@ -41,12 +41,12 @@ export default function Page() {
       <p>To understand why UUID v7 outperforms UUID v4 by hundreds of percent in high-throughput databases, we must examine how the database storage engine (such as InnoDB in MySQL or standard B-Tree in PostgreSQL) organizes pages on disk:</p>
 
       <pre><code>{`UUID v4 (Random Insertion):
-Disk Page 142: [0a1f..., 0b3c..., 3e4a...] &lt;- Inserting 1c9f... (SPLIT REQUIRED!)
-Disk Page 891: [8a4d..., 9f1e..., d4aa...] &lt;- Inserting 4e22... (SPLIT REQUIRED!)
+Disk Page 142: [0a1f..., 0b3c..., 3e4a...] <- Inserting 1c9f... (SPLIT REQUIRED!)
+Disk Page 891: [8a4d..., 9f1e..., d4aa...] <- Inserting 4e22... (SPLIT REQUIRED!)
 * Result: Every insert hits a random disk page; page fills; 50% storage waste; high I/O wait!
 
 UUID v7 (Time-Ordered Insertion):
-Disk Page 999: [018b-4a..., 018b-4b..., 018b-4c...] &lt;- Inserting 018b-4d... (APPEND TO END)
+Disk Page 999: [018b-4a..., 018b-4b..., 018b-4c...] <- Inserting 018b-4d... (APPEND TO END)
 * Result: Sequentially appends to the rightmost leaf page; zero fragmentation; 99% page fill!`}</code></pre>
 
       <h2>5. Complete Database Migration Script: PostgreSQL</h2>

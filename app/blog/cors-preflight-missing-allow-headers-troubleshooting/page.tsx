@@ -30,7 +30,7 @@ export default function Page() {
 
       <h2>3. Correct Server-Side CORS Configuration</h2>
       <pre><code>{`// Express.js Correct CORS Middleware:
-app.use((req, res, next) ⇒ {
+app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "https://app.devxtool.me");
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
   res.header("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With");

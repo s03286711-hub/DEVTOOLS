@@ -42,8 +42,8 @@ Explanation: Output parser failed to match regex pattern r"Action: (.*)\nAction 
 
 # Robust, whitespace-tolerant pattern with DOTALL:
 AGENT_ACTION_PATTERN = re.compile(
-    r"Action\s*:\s*(?P&lt;action&gt;[a-zA-Z0-9_-]+)\s*"
-    r"Action\s*Input\s*:\s*(?P&lt;input&gt;[\s\S]*?)(?:\nAction|\nObservation|$)",
+    r"Action\s*:\s*(?P<action>[a-zA-Z0-9_-]+)\s*"
+    r"Action\s*Input\s*:\s*(?P<input>[\s\S]*?)(?:\nAction|\nObservation|$)",
     re.IGNORECASE
 )
 

@@ -41,7 +41,7 @@ export default function Page() {
       <pre><code>{`import { hash, verify } from '@node-rs/argon2';
 
 // Hash password with 64MB memory cost, 3 iterations, 4 parallel threads
-async function hashUserPassword(password: string): Promise&lt;string&gt; {
+async function hashUserPassword(password: string): Promise<string> {
   return await hash(password, {
     memoryCost: 65536, // 64 MB
     timeCost: 3,       // 3 iterations
@@ -50,7 +50,7 @@ async function hashUserPassword(password: string): Promise&lt;string&gt; {
 }
 
 // Verify password
-async function checkLogin(password: string, storedHash: string): Promise&lt;boolean&gt; {
+async function checkLogin(password: string, storedHash: string): Promise<boolean> {
   return await verify(storedHash, password);
 }`}</code></pre>
 

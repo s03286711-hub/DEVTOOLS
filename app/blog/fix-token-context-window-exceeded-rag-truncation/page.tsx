@@ -41,7 +41,7 @@ def trim_conversation_history(messages: list, max_tokens: int = 4000, model: str
     non_system = [m for m in messages if m["role"] != "system"]
     for msg in reversed(non_system):
         msg_tokens = len(encoding.encode(msg["content"]))
-        if current_tokens + msg_tokens &gt; max_tokens:
+        if current_tokens + msg_tokens > max_tokens:
             break
         trimmed_messages.insert(1 if system_msg else 0, msg)
         current_tokens += msg_tokens

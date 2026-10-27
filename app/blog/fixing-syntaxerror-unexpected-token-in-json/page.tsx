@@ -21,7 +21,7 @@ export default function Page() {
       <h2>1. Deconstructing the SyntaxError</h2>
       <p>Every developer who has consumed an API has encountered the infamous exception:</p>
       <pre><code>{`SyntaxError: Unexpected token 'X', "..." is not valid JSON
-  at JSON.parse (&lt;anonymous&gt;)`}</code></pre>
+  at JSON.parse (<anonymous>)`}</code></pre>
 
       <p>Because the JavaScript V8 engine and standard JSON tokenizers operate strictly in accordance with RFC 8259, they do not recover from formatting ambiguities. Let us explore the primary reasons this exception occurs in production systems.</p>
 
@@ -32,7 +32,7 @@ export default function Page() {
       <p>The most common scenario in web frontend development is attempting to parse an HTTP 500 Internal Server Error or 404 Not Found response that returned an HTML error document instead of JSON:</p>
       <pre><code>{`// Client fetch code:
 const response = await fetch('/api/user/profile');
-const data = await response.json(); // Throws: Unexpected token &lt; in JSON at position 0`}</code></pre>
+const data = await response.json(); // Throws: Unexpected token < in JSON at position 0`}</code></pre>
       <p>Because the response body begins with <code>&lt;!DOCTYPE html&gt;</code>, the JSON parser encounters the <code>&lt;</code> character at index 0 and aborts. Always verify <code>response.ok</code> and inspect the <code>Content-Type</code> header before parsing.</p>
 
       <h2>3. Root Cause 2: Invisible Byte Order Marks (BOM) & Zero-Width Spaces</h2>

@@ -46,7 +46,7 @@ const encoded = btoa(unescape(encodeURIComponent("Hello 🌍!")));`}</code></pre
  */
 function utf8ToBase64(str: string): string {
   const bytes = new TextEncoder().encode(str);
-  const binString = Array.from(bytes, (byte) ⇒ String.fromCharCode(byte)).join('');
+  const binString = Array.from(bytes, (byte) => String.fromCharCode(byte)).join('');
   return btoa(binString);
 }
 
@@ -55,7 +55,7 @@ function utf8ToBase64(str: string): string {
  */
 function base64ToUtf8(base64: string): string {
   const binString = atob(base64);
-  const bytes = Uint8Array.from(binString, (char) ⇒ char.charCodeAt(0));
+  const bytes = Uint8Array.from(binString, (char) => char.charCodeAt(0));
   return new TextDecoder().decode(bytes);
 }
 
@@ -84,7 +84,7 @@ const decoded = Buffer.from(encoded, "base64").toString("utf-8");`}</code></pre>
 
       <pre><code>{`// ANTI-PATTERN: Inefficient string concatenation causing O(N^2) memory allocations!
 let binary = '';
-for (let i = 0; i &lt; bytes.byteLength; i++) {
+for (let i = 0; i < bytes.byteLength; i++) {
   binary += String.fromCharCode(bytes[i]); // Creates millions of transient string objects!
 }`}</code></pre>
 
@@ -94,7 +94,7 @@ for (let i = 0; i &lt; bytes.byteLength; i++) {
 function uint8ArrayToBase64Fast(bytes: Uint8Array): string {
   const CHUNK_SIZE = 0x8000; // 32KB chunk limit to prevent stack overflow
   const chunks: string[] = [];
-  for (let i = 0; i &lt; bytes.length; i += CHUNK_SIZE) {
+  for (let i = 0; i < bytes.length; i += CHUNK_SIZE) {
     chunks.push(String.fromCharCode.apply(null, bytes.subarray(i, i + CHUNK_SIZE) as unknown as number[]));
   }
   return btoa(chunks.join(''));
