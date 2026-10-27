@@ -1,13 +1,16 @@
+import { pageMetadata } from '@/lib/seo';
 import type { Metadata } from 'next';
 import BlogLayout from '@/components/blog/BlogLayout';
 import EmbeddedTool from '@/components/EmbeddedTool';
 import { JsonFormatter } from '@/components/Tools';
 import { blogPosts } from '@/lib/blog';
 
-export const metadata: Metadata = {
-  title: 'Fixing "SyntaxError: Expected double-quoted property name in JSON at line X" — DevX Tool Blog',
-  description: 'Diagnose and resolve "Expected double-quoted property name in JSON" errors. Learn how ECMA-404 differs from Python dicts and JS objects with automated regex and AST fixes.',
-};
+const seoPost = blogPosts.find((post) => post.slug === 'fixing-syntaxerror-expected-double-quoted-property-name-in-json')!;
+
+export const metadata: Metadata = pageMetadata({
+  title: seoPost.title, description: seoPost.excerpt, path: '/blog/fixing-syntaxerror-expected-double-quoted-property-name-in-json',
+  article: { published: seoPost.date, modified: seoPost.modified, author: seoPost.author, tags: seoPost.tags },
+});
 
 export default function Page() {
   const post = blogPosts.find((p) => p.slug === 'fixing-syntaxerror-expected-double-quoted-property-name-in-json')!;

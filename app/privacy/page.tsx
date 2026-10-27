@@ -1,9 +1,11 @@
+import { pageMetadata } from '@/lib/seo';
 import type { Metadata } from 'next';
 
-export const metadata: Metadata = {
-  title: 'Privacy Policy — DevX Tool',
+export const metadata: Metadata = pageMetadata({
+  title: 'Privacy Policy',
   description: 'Our commitment to data protection, client-side processing, Google AdSense compliance, and cookie management.',
-};
+  path: '/privacy',
+});
 
 export default function Privacy() {
   return (

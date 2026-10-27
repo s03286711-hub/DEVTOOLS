@@ -1,13 +1,16 @@
+import { pageMetadata } from '@/lib/seo';
 import type { Metadata } from 'next';
 import BlogLayout from '@/components/blog/BlogLayout';
 import EmbeddedTool from '@/components/EmbeddedTool';
 import { RegexTool } from '@/components/Tools';
 import { blogPosts } from '@/lib/blog';
 
-export const metadata: Metadata = {
-  title: "Preventing Catastrophic Backtracking and Regular Expression Denial of Service (ReDoS) in High-Load APIs \u2014 DevX Tool Blog",
-  description: "In-depth engineering article: Preventing Catastrophic Backtracking and Regular Expression Denial of Service (ReDoS) in High-Load APIs. Read the complete technical guide, code examples, and debugging steps.",
-};
+const seoPost = blogPosts.find((post) => post.slug === 'preventing-catastrophic-backtracking-in-regex')!;
+
+export const metadata: Metadata = pageMetadata({
+  title: seoPost.title, description: seoPost.excerpt, path: '/blog/preventing-catastrophic-backtracking-in-regex',
+  article: { published: seoPost.date, modified: seoPost.modified, author: seoPost.author, tags: seoPost.tags },
+});
 
 export default function Page() {
   const post = blogPosts.find((p) => p.slug === 'preventing-catastrophic-backtracking-in-regex')!;

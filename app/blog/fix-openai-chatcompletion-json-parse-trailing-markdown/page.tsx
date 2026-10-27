@@ -1,13 +1,16 @@
+import { pageMetadata } from '@/lib/seo';
 import type { Metadata } from 'next';
 import BlogLayout from '@/components/blog/BlogLayout';
 import EmbeddedTool from '@/components/EmbeddedTool';
 import { JsonFormatter } from '@/components/Tools';
 import { blogPosts } from '@/lib/blog';
 
-export const metadata: Metadata = {
-  title: "Fixing \"SyntaxError: Unexpected token ` in JSON at position 0\" when Parsing OpenAI & Claude LLM Structured JSON Output \u2014 DevX Tool Blog",
-  description: "In-depth engineering article: Fixing \"SyntaxError: Unexpected token ` in JSON at position 0\" when Parsing OpenAI & Claude LLM Structured JSON Output. Read the complete technical guide, code examples, and debugging steps.",
-};
+const seoPost = blogPosts.find((post) => post.slug === 'fix-openai-chatcompletion-json-parse-trailing-markdown')!;
+
+export const metadata: Metadata = pageMetadata({
+  title: seoPost.title, description: seoPost.excerpt, path: '/blog/fix-openai-chatcompletion-json-parse-trailing-markdown',
+  article: { published: seoPost.date, modified: seoPost.modified, author: seoPost.author, tags: seoPost.tags },
+});
 
 export default function Page() {
   const post = blogPosts.find((p) => p.slug === 'fix-openai-chatcompletion-json-parse-trailing-markdown')!;

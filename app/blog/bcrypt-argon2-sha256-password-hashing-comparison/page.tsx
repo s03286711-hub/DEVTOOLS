@@ -1,13 +1,16 @@
+import { pageMetadata } from '@/lib/seo';
 import type { Metadata } from 'next';
 import BlogLayout from '@/components/blog/BlogLayout';
 import EmbeddedTool from '@/components/EmbeddedTool';
 import { HashTool } from '@/components/NewTools';
 import { blogPosts } from '@/lib/blog';
 
-export const metadata: Metadata = {
-  title: "Why You Must Never Hash Passwords with SHA-256: The Math Behind GPU/ASIC Cracking vs Argon2id and BCrypt \u2014 DevX Tool Blog",
-  description: "In-depth engineering article: Why You Must Never Hash Passwords with SHA-256: The Math Behind GPU/ASIC Cracking vs Argon2id and BCrypt. Read the complete technical guide, code examples, and debugging steps.",
-};
+const seoPost = blogPosts.find((post) => post.slug === 'bcrypt-argon2-sha256-password-hashing-comparison')!;
+
+export const metadata: Metadata = pageMetadata({
+  title: seoPost.title, description: seoPost.excerpt, path: '/blog/bcrypt-argon2-sha256-password-hashing-comparison',
+  article: { published: seoPost.date, modified: seoPost.modified, author: seoPost.author, tags: seoPost.tags },
+});
 
 export default function Page() {
   const post = blogPosts.find((p) => p.slug === 'bcrypt-argon2-sha256-password-hashing-comparison')!;

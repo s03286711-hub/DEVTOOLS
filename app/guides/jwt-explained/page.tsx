@@ -1,12 +1,15 @@
+import { pageMetadata } from '@/lib/seo';
+import { guides } from '@/lib/site';
 import type { Metadata } from 'next';
 import GuideArticle from '@/components/GuideArticle';
 import EmbeddedTool from '@/components/EmbeddedTool';
 import { JwtTool } from '@/components/NewTools';
 
-export const metadata: Metadata = {
-  title: 'JSON Web Tokens (JWT) Explained: RFC 7519 Architecture, Cryptographic Signatures (RS256 vs HS256), and Production Security Pitfalls',
-  description: 'A complete 1,200+ word engineering guide to JSON Web Tokens. Understand header structures, registered claims, asymmetric public key verification, refresh token rotation, and vulnerability mitigation.',
-};
+const seoGuide = guides.find((guide) => guide.slug === 'jwt-explained')!;
+
+export const metadata: Metadata = pageMetadata({
+  title: seoGuide.title, description: seoGuide.description, path: '/guides/jwt-explained',
+});
 
 export default function Page() {
   return (

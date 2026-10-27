@@ -1,12 +1,15 @@
+import { pageMetadata } from '@/lib/seo';
+import { guides } from '@/lib/site';
 import type { Metadata } from 'next';
 import GuideArticle from '@/components/GuideArticle';
 import EmbeddedTool from '@/components/EmbeddedTool';
 import { TimestampTool } from '@/components/NewTools';
 
-export const metadata: Metadata = {
-  title: 'Unix Timestamps: A Complete Guide to Epoch Time, 64-Bit Transitions, Leap Seconds, and the Year 2038 Bug',
-  description: 'A complete 1,200+ word engineering guide to Unix epoch time. Learn seconds vs milliseconds, timezone normalization, UTC conversions, and distributed timestamp synchronization.',
-};
+const seoGuide = guides.find((guide) => guide.slug === 'unix-timestamps')!;
+
+export const metadata: Metadata = pageMetadata({
+  title: seoGuide.title, description: seoGuide.description, path: '/guides/unix-timestamps',
+});
 
 export default function Page() {
   return (

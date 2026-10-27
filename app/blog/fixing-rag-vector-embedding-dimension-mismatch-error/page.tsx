@@ -1,13 +1,16 @@
+import { pageMetadata } from '@/lib/seo';
 import type { Metadata } from 'next';
 import BlogLayout from '@/components/blog/BlogLayout';
 import EmbeddedTool from '@/components/EmbeddedTool';
 import { HashTool } from '@/components/NewTools';
 import { blogPosts } from '@/lib/blog';
 
-export const metadata: Metadata = {
-  title: "Resolving \"ValueError: Vector dimension mismatch\" (1536 vs 3072) in Pinecone, ChromaDB, and pgvector \u2014 DevX Tool Blog",
-  description: "In-depth engineering article: Resolving \"ValueError: Vector dimension mismatch\" (1536 vs 3072) in Pinecone, ChromaDB, and pgvector. Read the complete technical guide, code examples, and debugging steps.",
-};
+const seoPost = blogPosts.find((post) => post.slug === 'fixing-rag-vector-embedding-dimension-mismatch-error')!;
+
+export const metadata: Metadata = pageMetadata({
+  title: seoPost.title, description: seoPost.excerpt, path: '/blog/fixing-rag-vector-embedding-dimension-mismatch-error',
+  article: { published: seoPost.date, modified: seoPost.modified, author: seoPost.author, tags: seoPost.tags },
+});
 
 export default function Page() {
   const post = blogPosts.find((p) => p.slug === 'fixing-rag-vector-embedding-dimension-mismatch-error')!;

@@ -1,13 +1,16 @@
+import { pageMetadata } from '@/lib/seo';
 import type { Metadata } from 'next';
 import BlogLayout from '@/components/blog/BlogLayout';
 import EmbeddedTool from '@/components/EmbeddedTool';
 import { TextDiff } from '@/components/Tools';
 import { blogPosts } from '@/lib/blog';
 
-export const metadata: Metadata = {
-  title: "Under the Hood of Git Diff: Implementing the Myers Longest Common Subsequence (LCS) Algorithm in TypeScript \u2014 DevX Tool Blog",
-  description: "In-depth engineering article: Under the Hood of Git Diff: Implementing the Myers Longest Common Subsequence (LCS) Algorithm in TypeScript. Read the complete technical guide, code examples, and debugging steps.",
-};
+const seoPost = blogPosts.find((post) => post.slug === 'myers-diff-algorithm-how-git-and-text-comparators-work')!;
+
+export const metadata: Metadata = pageMetadata({
+  title: seoPost.title, description: seoPost.excerpt, path: '/blog/myers-diff-algorithm-how-git-and-text-comparators-work',
+  article: { published: seoPost.date, modified: seoPost.modified, author: seoPost.author, tags: seoPost.tags },
+});
 
 export default function Page() {
   const post = blogPosts.find((p) => p.slug === 'myers-diff-algorithm-how-git-and-text-comparators-work')!;

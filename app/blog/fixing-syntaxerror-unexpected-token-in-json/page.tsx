@@ -1,13 +1,16 @@
+import { pageMetadata } from '@/lib/seo';
 import type { Metadata } from 'next';
 import BlogLayout from '@/components/blog/BlogLayout';
 import EmbeddedTool from '@/components/EmbeddedTool';
 import { JsonFormatter } from '@/components/Tools';
 import { blogPosts } from '@/lib/blog';
 
-export const metadata: Metadata = {
-  title: "Mastering \"SyntaxError: Unexpected token in JSON at position X\": Root Causes and Automated Linting \u2014 DevX Tool Blog",
-  description: "In-depth engineering article: Mastering \"SyntaxError: Unexpected token in JSON at position X\": Root Causes and Automated Linting. Read the complete technical guide, code examples, and debugging steps.",
-};
+const seoPost = blogPosts.find((post) => post.slug === 'fixing-syntaxerror-unexpected-token-in-json')!;
+
+export const metadata: Metadata = pageMetadata({
+  title: seoPost.title, description: seoPost.excerpt, path: '/blog/fixing-syntaxerror-unexpected-token-in-json',
+  article: { published: seoPost.date, modified: seoPost.modified, author: seoPost.author, tags: seoPost.tags },
+});
 
 export default function Page() {
   const post = blogPosts.find((p) => p.slug === 'fixing-syntaxerror-unexpected-token-in-json')!;

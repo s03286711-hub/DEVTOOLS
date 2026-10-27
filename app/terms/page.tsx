@@ -1,9 +1,11 @@
+import { pageMetadata } from '@/lib/seo';
 import type { Metadata } from 'next';
 
-export const metadata: Metadata = {
-  title: 'Terms of Service — DevX Tool',
+export const metadata: Metadata = pageMetadata({
+  title: 'Terms of Service',
   description: 'Terms of service and usage conditions governing the DevX Tool developer tools platform.',
-};
+  path: '/terms',
+});
 
 export default function Terms() {
   return (

@@ -1,9 +1,11 @@
+import { pageMetadata } from '@/lib/seo';
 import type { Metadata } from 'next';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: 'Contact DevX Tool — Feedback, Support & Bug Reports',
   description: 'Get in touch with the DevX Tool team for technical questions, bug reports, feature requests, or partnership inquiries.',
-};
+  path: '/contact',
+});
 
 export default function Contact() {
   return (

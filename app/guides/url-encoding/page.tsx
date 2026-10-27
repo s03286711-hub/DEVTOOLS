@@ -1,12 +1,15 @@
+import { pageMetadata } from '@/lib/seo';
+import { guides } from '@/lib/site';
 import type { Metadata } from 'next';
 import GuideArticle from '@/components/GuideArticle';
 import EmbeddedTool from '@/components/EmbeddedTool';
 import { UrlTool } from '@/components/Tools';
 
-export const metadata: Metadata = {
-  title: 'URL Encoding: RFC 3986 Percent-Encoding, URI Reserved Characters, and Query Parameter Serialization',
-  description: 'A complete 1,200+ word guide to URL percent-encoding. Master reserved vs unreserved ASCII characters, query string pitfalls, encodeURI vs encodeURIComponent, and multi-language implementation code.',
-};
+const seoGuide = guides.find((guide) => guide.slug === 'url-encoding')!;
+
+export const metadata: Metadata = pageMetadata({
+  title: seoGuide.title, description: seoGuide.description, path: '/guides/url-encoding',
+});
 
 export default function Page() {
   return (

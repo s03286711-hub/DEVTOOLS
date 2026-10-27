@@ -1,24 +1,14 @@
+import { pageMetadata } from '@/lib/seo';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft, ArrowUpRight, BookOpen, Sparkles, GraduationCap } from 'lucide-react';
 import { guides, tools, siteConfig } from '@/lib/site';
 
-export const metadata: Metadata = {
-  title: 'Developer Guides & Technical Tutorials — DevX Tool Hub',
+export const metadata: Metadata = pageMetadata({
+  title: 'Developer Guides & Technical Tutorials Hub',
   description: 'In-depth engineering guides, protocol tutorials, and best practices. Learn JSON validation, Base64 encoding, regex patterns, JWT security, and password entropy.',
-  keywords: [
-    'developer guides',
-    'web development tutorials',
-    'JSON format guide',
-    'base64 encoding tutorial',
-    'regex beginner guide',
-    'JWT authentication guide',
-    'cryptographic hash guide',
-  ],
-  alternates: {
-    canonical: `${siteConfig.url}/guides`,
-  },
-};
+  path: '/guides',
+});
 
 export default function GuidesPage() {
   // ItemList Schema for Topic List & Guide Hub SEO

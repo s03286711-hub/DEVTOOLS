@@ -1,12 +1,15 @@
+import { pageMetadata } from '@/lib/seo';
+import { guides } from '@/lib/site';
 import type { Metadata } from 'next';
 import GuideArticle from '@/components/GuideArticle';
 import EmbeddedTool from '@/components/EmbeddedTool';
 import { TextDiff } from '@/components/Tools';
 
-export const metadata: Metadata = {
-  title: 'How Text Diff Algorithms Work: The Myers Longest Common Subsequence (LCS) Algorithm and Modern Code Comparison',
-  description: 'A complete 1,200+ word engineering guide to text comparison algorithms. Learn the edit graph, breadth-first search heuristics, line-by-line diffing, and unified diff formatting.',
-};
+const seoGuide = guides.find((guide) => guide.slug === 'text-comparison')!;
+
+export const metadata: Metadata = pageMetadata({
+  title: seoGuide.title, description: seoGuide.description, path: '/guides/text-comparison',
+});
 
 export default function Page() {
   return (

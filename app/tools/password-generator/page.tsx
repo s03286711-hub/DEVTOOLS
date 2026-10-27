@@ -1,12 +1,16 @@
+import { pageMetadata } from '@/lib/seo';
+import { tools } from '@/lib/site';
 import type { Metadata } from 'next';
 import ToolShell from '@/components/ToolShell';
 import { PasswordTool } from '@/components/NewTools';
 
-export const metadata: Metadata = {
-  title: 'Offline Strong Password Generator (CSPRNG & Shannon Entropy) — DevX Tool',
-  description: 'Create cryptographically strong random passwords with exact entropy calculation. Uses window.crypto.getRandomValues() locally so credentials never touch the internet.',
-  keywords: ['offline strong password generator', 'csprng password generator', 'password generator shannon entropy', 'client-side password creator', 'private password generator'],
-};
+const seoTool = tools.find((tool) => tool.slug === 'password-generator')!;
+
+export const metadata: Metadata = pageMetadata({
+  title: `${seoTool.title} Online — Free`,
+  description: `${seoTool.short} Free online tool with browser-based processing, examples, and a practical guide. No account required.`,
+  path: '/tools/password-generator',
+});
 
 export default function Page() {
   return (

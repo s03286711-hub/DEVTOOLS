@@ -1,13 +1,16 @@
+import { pageMetadata } from '@/lib/seo';
 import type { Metadata } from 'next';
 import BlogLayout from '@/components/blog/BlogLayout';
 import EmbeddedTool from '@/components/EmbeddedTool';
 import { UrlTool } from '@/components/Tools';
 import { blogPosts } from '@/lib/blog';
 
-export const metadata: Metadata = {
-  title: "Fixing CORS & Missing Chunk Errors in Next.js Server-Sent Events (SSE) AI Streaming Applications \u2014 DevX Tool Blog",
-  description: "In-depth engineering article: Fixing CORS & Missing Chunk Errors in Next.js Server-Sent Events (SSE) AI Streaming Applications. Read the complete technical guide, code examples, and debugging steps.",
-};
+const seoPost = blogPosts.find((post) => post.slug === 'fix-cors-and-origin-errors-in-nextjs-ai-streaming')!;
+
+export const metadata: Metadata = pageMetadata({
+  title: seoPost.title, description: seoPost.excerpt, path: '/blog/fix-cors-and-origin-errors-in-nextjs-ai-streaming',
+  article: { published: seoPost.date, modified: seoPost.modified, author: seoPost.author, tags: seoPost.tags },
+});
 
 export default function Page() {
   const post = blogPosts.find((p) => p.slug === 'fix-cors-and-origin-errors-in-nextjs-ai-streaming')!;

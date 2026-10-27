@@ -1,12 +1,15 @@
+import { pageMetadata } from '@/lib/seo';
+import { guides } from '@/lib/site';
 import type { Metadata } from 'next';
 import GuideArticle from '@/components/GuideArticle';
 import EmbeddedTool from '@/components/EmbeddedTool';
 import { PasswordTool } from '@/components/NewTools';
 
-export const metadata: Metadata = {
-  title: 'The Engineering of Strong Passwords: NIST SP 800-63B Guidelines, Shannon Entropy, and Modern Credential Defense',
-  description: 'A complete 1,200+ word guide to password security and entropy. Explore brute-force mathematics, passphrases vs random character strings, credential stuffing defense, and password manager design.',
-};
+const seoGuide = guides.find((guide) => guide.slug === 'strong-passwords')!;
+
+export const metadata: Metadata = pageMetadata({
+  title: seoGuide.title, description: seoGuide.description, path: '/guides/strong-passwords',
+});
 
 export default function Page() {
   return (

@@ -1,26 +1,15 @@
+import { pageMetadata } from '@/lib/seo';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft, ArrowUpRight, BookOpen, Calendar, Clock, Newspaper, Tag, Wrench } from 'lucide-react';
 import { blogPosts } from '@/lib/blog';
 import { tools, guides, siteConfig } from '@/lib/site';
 
-export const metadata: Metadata = {
-  title: 'Engineering Blog: Technical Debugging, System Architecture & Protocols — DevX Tool',
-  description: 'In-depth engineering articles resolving production runtime errors, explaining distributed system architectures, cryptography, Unicode standards, and web protocols.',
-  keywords: [
-    'developer blog',
-    'software engineering tutorials',
-    'debugging web errors',
-    'JWT signature error',
-    'btoa Latin1 error',
-    'B-tree index fragmentation UUID v7',
-    'ReDoS prevention',
-    'cryptographic hashes',
-  ],
-  alternates: {
-    canonical: `${siteConfig.url}/blog`,
-  },
-};
+export const metadata: Metadata = pageMetadata({
+  title: 'Developer Tutorials, Code Examples & Troubleshooting',
+  description: 'Practical tutorials for JSON, Base64, URL encoding, regex, timestamps, and SHA-256 checksums. Follow examples for Windows, macOS, Linux, and JavaScript.',
+  path: '/blog',
+});
 
 export default function BlogIndexPage() {
   const itemListJsonLd = {
@@ -84,13 +73,13 @@ export default function BlogIndexPage() {
         {/* Hero Topic Header */}
         <div className="mx-auto mb-14 max-w-3xl text-center">
           <span className="tag inline-flex items-center gap-1.5">
-            <Newspaper size={14} /> DevX Engineering Publication
+            <Newspaper size={14} /> Practical developer tutorials
           </span>
           <h1 className="mt-4 text-4xl font-black tracking-[-.05em] sm:text-5xl">
-            Tech Blog &amp; Error Solvers
+            Developer Tutorials &amp; Troubleshooting
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg leading-8 text-[#667085]">
-            Deep-dive architectural essays, error triage walkthroughs, and practical guides to debugging complex distributed web systems.
+            Find a working example, understand the result, and try the related free tool. Start with everyday file and text tasks, or explore detailed debugging guides.
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-2">
             {categories.map((c) => (
@@ -148,7 +137,7 @@ export default function BlogIndexPage() {
                   href={`/blog/${blogPosts[0].slug}`}
                   className="btn btn-primary !rounded-xl"
                 >
-                  Read full analysis <ArrowUpRight size={16} />
+                  Read tutorial <ArrowUpRight size={16} />
                 </Link>
               </div>
             </article>

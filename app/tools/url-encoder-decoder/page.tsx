@@ -1,12 +1,16 @@
+import { pageMetadata } from '@/lib/seo';
+import { tools } from '@/lib/site';
 import type { Metadata } from 'next';
 import ToolShell from '@/components/ToolShell';
 import { UrlTool } from '@/components/Tools';
 
-export const metadata: Metadata = {
-  title: 'Offline URL Encoder & Decoder (RFC 3986 Percent-Encoding) — DevX Tool',
-  description: 'Encode URI components and query parameters or decode percent-encoded strings locally in your browser. Handles complex multi-byte character strings with zero server communication.',
-  keywords: ['offline url encoder decoder', 'rfc 3986 percent encoding tool', 'browser url component encoder', 'decode query parameters offline', 'safe url encoder'],
-};
+const seoTool = tools.find((tool) => tool.slug === 'url-encoder-decoder')!;
+
+export const metadata: Metadata = pageMetadata({
+  title: `${seoTool.title} Online — Free`,
+  description: `${seoTool.short} Free online tool with browser-based processing, examples, and a practical guide. No account required.`,
+  path: '/tools/url-encoder-decoder',
+});
 
 export default function Page() {
   return (

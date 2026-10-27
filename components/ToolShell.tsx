@@ -1,3 +1,5 @@
+import RelatedArticles from '@/components/RelatedArticles';
+import { canonicalUrl } from '@/lib/seo';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 import { ArrowLeft, ArrowUpRight, BookOpen, ShieldCheck } from 'lucide-react';
@@ -24,7 +26,7 @@ export default function ToolShell({
     '@context': 'https://schema.org',
     '@type': 'WebApplication',
     name: title,
-    url: `${siteConfig.url}/tools/${slug}`,
+    url: canonicalUrl(`/tools/${slug}`),
     description: description,
     applicationCategory: 'DeveloperApplication',
     operatingSystem: 'All',
@@ -37,34 +39,9 @@ export default function ToolShell({
     featureList: [
       'Client-side execution',
       'Local browser-first processing',
-      'Zero server transmission',
-      'Instant real-time output',
+      'Free to use without an account',
     ],
     applicationSubCategory: current?.category || 'Developer Tool',
-  };
-
-  // Structured Data Schema for FAQPage Rich Snippet
-  const faqJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: `Does DevX Tool store my ${title} data?`,
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: `No, DevX Tool operates on a browser-first approach. All processing and computation happen locally on your computer, meaning your sensitive data never leaves your device.`,
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Is DevX Tool completely free to use?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Yes, all 11 utilities and developer tools on DevX Tool are 100% free to use with no account creation or subscription required.',
-        },
-      },
-    ],
   };
 
   const breadcrumbJsonLd = {
@@ -81,13 +58,13 @@ export default function ToolShell({
         '@type': 'ListItem',
         position: 2,
         name: 'Tools',
-        item: `${siteConfig.url}/#tools`,
+        item: `${siteConfig.url}/tools/`,
       },
       {
         '@type': 'ListItem',
         position: 3,
         name: title,
-        item: `${siteConfig.url}/tools/${slug}`,
+        item: canonicalUrl(`/tools/${slug}`),
       },
     ],
   };
@@ -100,15 +77,11 @@ export default function ToolShell({
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-      />
-      <script
-        type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <div className="container">
         <Link
-          href="/#tools"
+          href="/tools/"
           className="mb-7 inline-flex items-center gap-2 text-sm font-semibold text-[#667085] hover:text-[#0d9488]"
         >
           <ArrowLeft size={16} /> All tools
@@ -124,6 +97,7 @@ export default function ToolShell({
           </div>
 
           {children}
+          <RelatedArticles toolSlug={slug} />
 
           
           {/* Safe Ad Placement: Separated from Tool card and action buttons by 40px+ margin */}

@@ -1,12 +1,16 @@
+import { pageMetadata } from '@/lib/seo';
+import { tools } from '@/lib/site';
 import type { Metadata } from 'next';
 import ToolShell from '@/components/ToolShell';
 import { JwtTool } from '@/components/NewTools';
 
-export const metadata: Metadata = {
-  title: 'Private Client-Side JWT Decoder & Expiry Inspector (Zero Server Logging) — DevX Tool',
-  description: 'Decode JSON Web Token (JWT) headers and payloads without transmitting credentials over the network. Check claims and expiration timestamps in total privacy.',
-  keywords: ['private client-side jwt decoder', 'inspect jwt tokens without sending secrets', 'offline jwt debugger', 'jwt expiry timestamp checker', 'zero telemetry jwt tool'],
-};
+const seoTool = tools.find((tool) => tool.slug === 'jwt-decoder')!;
+
+export const metadata: Metadata = pageMetadata({
+  title: `${seoTool.title} Online — Free`,
+  description: `${seoTool.short} Free online tool with browser-based processing, examples, and a practical guide. No account required.`,
+  path: '/tools/jwt-decoder',
+});
 
 export default function Page() {
   return (

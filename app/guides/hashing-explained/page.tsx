@@ -1,12 +1,15 @@
+import { pageMetadata } from '@/lib/seo';
+import { guides } from '@/lib/site';
 import type { Metadata } from 'next';
 import GuideArticle from '@/components/GuideArticle';
 import EmbeddedTool from '@/components/EmbeddedTool';
 import { HashTool } from '@/components/NewTools';
 
-export const metadata: Metadata = {
-  title: 'Cryptographic Hash Functions Explained: SHA-256, SHA-3, Collision Resistance, Merkle Trees, and Password Security',
-  description: 'A complete 1,200+ word engineering guide to cryptographic hashing algorithms. Learn the Merkle-Damgard construction, SHA-256 bitwise rotations, collision attacks, and HMAC signatures.',
-};
+const seoGuide = guides.find((guide) => guide.slug === 'hashing-explained')!;
+
+export const metadata: Metadata = pageMetadata({
+  title: seoGuide.title, description: seoGuide.description, path: '/guides/hashing-explained',
+});
 
 export default function Page() {
   return (

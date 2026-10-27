@@ -1,13 +1,16 @@
+import { pageMetadata } from '@/lib/seo';
 import type { Metadata } from 'next';
 import BlogLayout from '@/components/blog/BlogLayout';
 import EmbeddedTool from '@/components/EmbeddedTool';
 import { Base64Tool } from '@/components/Tools';
 import { blogPosts } from '@/lib/blog';
 
-export const metadata: Metadata = {
-  title: "The Hidden 33% Network Overhead: When to Use Base64 Data URLs vs Blob URLs and CDN Assets \u2014 DevX Tool Blog",
-  description: "In-depth engineering article: The Hidden 33% Network Overhead: When to Use Base64 Data URLs vs Blob URLs and CDN Assets. Read the complete technical guide, code examples, and debugging steps.",
-};
+const seoPost = blogPosts.find((post) => post.slug === 'base64-data-url-performance-overhead-in-web-apps')!;
+
+export const metadata: Metadata = pageMetadata({
+  title: seoPost.title, description: seoPost.excerpt, path: '/blog/base64-data-url-performance-overhead-in-web-apps',
+  article: { published: seoPost.date, modified: seoPost.modified, author: seoPost.author, tags: seoPost.tags },
+});
 
 export default function Page() {
   const post = blogPosts.find((p) => p.slug === 'base64-data-url-performance-overhead-in-web-apps')!;

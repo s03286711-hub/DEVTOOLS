@@ -1,3 +1,4 @@
+import { canonicalUrl } from '@/lib/seo';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 import { ArrowLeft, ArrowUpRight, BookOpen, Calendar, Clock, Tag, User, Wrench } from 'lucide-react';
@@ -14,7 +15,9 @@ export default function BlogLayout({
 }) {
   const relatedTool = tools.find((t) => t.slug === post.relatedTool);
   const relatedGuide = guides.find((g) => g.slug === post.relatedGuide);
-  const recentPosts = blogPosts.filter((p) => p.slug !== post.slug).slice(0, 4);
+  const recentPosts = blogPosts.filter((p) => p.slug !== post.slug)
+    .sort((a, b) => Number(b.relatedTool === post.relatedTool) - Number(a.relatedTool === post.relatedTool) || b.date.localeCompare(a.date))
+    .slice(0, 4);
 
   const articleJsonLd = {
     '@context': 'https://schema.org',
@@ -22,9 +25,9 @@ export default function BlogLayout({
     headline: post.title,
     description: post.excerpt,
     inLanguage: 'en',
-    url: `${siteConfig.url}/blog/${post.slug}`,
+    url: canonicalUrl(`/blog/${post.slug}`),
     datePublished: post.date,
-    dateModified: post.date,
+    dateModified: post.modified ?? post.date,
     author: {
       '@type': 'Organization',
       name: post.author,
@@ -40,7 +43,7 @@ export default function BlogLayout({
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `${siteConfig.url}/blog/${post.slug}`,
+      '@id': canonicalUrl(`/blog/${post.slug}`),
     },
     keywords: post.tags.join(', '),
   };
@@ -58,14 +61,14 @@ export default function BlogLayout({
       {
         '@type': 'ListItem',
         position: 2,
-        name: 'Engineering Blog',
-        item: `${siteConfig.url}/blog`,
+        name: 'Developer Tutorials',
+        item: canonicalUrl('/blog'),
       },
       {
         '@type': 'ListItem',
         position: 3,
         name: post.title,
-        item: `${siteConfig.url}/blog/${post.slug}`,
+        item: canonicalUrl(`/blog/${post.slug}`),
       },
     ],
   };
@@ -98,7 +101,7 @@ export default function BlogLayout({
               {post.category}
             </span>
             <span className="flex items-center gap-1 text-[#667085]">
-              <Calendar size={13} /> {post.date}
+              <Calendar size={13} /> <time dateTime={post.date}>{post.date}</time>
             </span>
             <span className="flex items-center gap-1 text-[#667085]">
               <Clock size={13} /> {post.readingTime}
@@ -200,7 +203,7 @@ export default function BlogLayout({
 
           {/* More Engineering Articles */}
           <section className="mt-14 border-t border-[#e4e7ec] pt-10">
-            <h2 className="!mt-0 text-2xl font-black">Recommended Engineering Articles</h2>
+            <h2 className="!mt-0 text-2xl font-black">Related tutorials and articles</h2>
             <div className="mt-6 grid gap-4 sm:grid-cols-2">
               {recentPosts.map((p) => (
                 <Link

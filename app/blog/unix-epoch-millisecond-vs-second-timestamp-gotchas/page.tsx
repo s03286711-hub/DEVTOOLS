@@ -1,13 +1,16 @@
+import { pageMetadata } from '@/lib/seo';
 import type { Metadata } from 'next';
 import BlogLayout from '@/components/blog/BlogLayout';
 import EmbeddedTool from '@/components/EmbeddedTool';
 import { TimestampTool } from '@/components/NewTools';
 import { blogPosts } from '@/lib/blog';
 
-export const metadata: Metadata = {
-  title: "The 10-Digit vs 13-Digit Disaster: Debugging Unix Epoch Millisecond and Microsecond Serialization Across Distributed APIs \u2014 DevX Tool Blog",
-  description: "In-depth engineering article: The 10-Digit vs 13-Digit Disaster: Debugging Unix Epoch Millisecond and Microsecond Serialization Across Distributed APIs. Read the complete technical guide, code examples, and debugging steps.",
-};
+const seoPost = blogPosts.find((post) => post.slug === 'unix-epoch-millisecond-vs-second-timestamp-gotchas')!;
+
+export const metadata: Metadata = pageMetadata({
+  title: seoPost.title, description: seoPost.excerpt, path: '/blog/unix-epoch-millisecond-vs-second-timestamp-gotchas',
+  article: { published: seoPost.date, modified: seoPost.modified, author: seoPost.author, tags: seoPost.tags },
+});
 
 export default function Page() {
   const post = blogPosts.find((p) => p.slug === 'unix-epoch-millisecond-vs-second-timestamp-gotchas')!;

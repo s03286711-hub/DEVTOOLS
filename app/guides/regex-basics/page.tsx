@@ -1,12 +1,15 @@
+import { pageMetadata } from '@/lib/seo';
+import { guides } from '@/lib/site';
 import type { Metadata } from 'next';
 import GuideArticle from '@/components/GuideArticle';
 import EmbeddedTool from '@/components/EmbeddedTool';
 import { RegexTool } from '@/components/Tools';
 
-export const metadata: Metadata = {
-  title: 'Regular Expressions Deep Dive: Engine Internals, Character Classes, Lookaround Assertions, and ReDoS Prevention',
-  description: 'A complete 1,200+ word engineering guide to regular expressions. Master quantifiers, non-capturing groups, positive/negative lookaheads, catastrophic backtracking prevention, and multi-language code.',
-};
+const seoGuide = guides.find((guide) => guide.slug === 'regex-basics')!;
+
+export const metadata: Metadata = pageMetadata({
+  title: seoGuide.title, description: seoGuide.description, path: '/guides/regex-basics',
+});
 
 export default function Page() {
   return (

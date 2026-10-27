@@ -1,13 +1,16 @@
+import { pageMetadata } from '@/lib/seo';
 import type { Metadata } from 'next';
 import BlogLayout from '@/components/blog/BlogLayout';
 import EmbeddedTool from '@/components/EmbeddedTool';
 import { PasswordTool } from '@/components/NewTools';
 import { blogPosts } from '@/lib/blog';
 
-export const metadata: Metadata = {
-  title: "Password Entropy Mathematics: Why a 16-Character Passphrase Beats an 8-Character Cryptic Symbol String \u2014 DevX Tool Blog",
-  description: "In-depth engineering article: Password Entropy Mathematics: Why a 16-Character Passphrase Beats an 8-Character Cryptic Symbol String. Read the complete technical guide, code examples, and debugging steps.",
-};
+const seoPost = blogPosts.find((post) => post.slug === 'password-entropy-math-length-vs-character-complexity')!;
+
+export const metadata: Metadata = pageMetadata({
+  title: seoPost.title, description: seoPost.excerpt, path: '/blog/password-entropy-math-length-vs-character-complexity',
+  article: { published: seoPost.date, modified: seoPost.modified, author: seoPost.author, tags: seoPost.tags },
+});
 
 export default function Page() {
   const post = blogPosts.find((p) => p.slug === 'password-entropy-math-length-vs-character-complexity')!;

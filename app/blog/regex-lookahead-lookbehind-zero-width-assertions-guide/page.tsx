@@ -1,13 +1,16 @@
+import { pageMetadata } from '@/lib/seo';
 import type { Metadata } from 'next';
 import BlogLayout from '@/components/blog/BlogLayout';
 import EmbeddedTool from '@/components/EmbeddedTool';
 import { RegexTool } from '@/components/Tools';
 import { blogPosts } from '@/lib/blog';
 
-export const metadata: Metadata = {
-  title: "Mastering Lookaround Assertions: Positive/Negative Lookaheads and Lookbehinds with Zero-Width Matches \u2014 DevX Tool Blog",
-  description: "In-depth engineering article: Mastering Lookaround Assertions: Positive/Negative Lookaheads and Lookbehinds with Zero-Width Matches. Read the complete technical guide, code examples, and debugging steps.",
-};
+const seoPost = blogPosts.find((post) => post.slug === 'regex-lookahead-lookbehind-zero-width-assertions-guide')!;
+
+export const metadata: Metadata = pageMetadata({
+  title: seoPost.title, description: seoPost.excerpt, path: '/blog/regex-lookahead-lookbehind-zero-width-assertions-guide',
+  article: { published: seoPost.date, modified: seoPost.modified, author: seoPost.author, tags: seoPost.tags },
+});
 
 export default function Page() {
   const post = blogPosts.find((p) => p.slug === 'regex-lookahead-lookbehind-zero-width-assertions-guide')!;

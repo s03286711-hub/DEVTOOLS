@@ -1,13 +1,16 @@
+import { pageMetadata } from '@/lib/seo';
 import type { Metadata } from 'next';
 import BlogLayout from '@/components/blog/BlogLayout';
 import EmbeddedTool from '@/components/EmbeddedTool';
 import { UrlTool } from '@/components/Tools';
 import { blogPosts } from '@/lib/blog';
 
-export const metadata: Metadata = {
-  title: "The Plus (+) vs %20 Dilemma: RFC 3986 Uniform Resource Identifiers vs application/x-www-form-urlencoded \u2014 DevX Tool Blog",
-  description: "In-depth engineering article: The Plus (+) vs %20 Dilemma: RFC 3986 Uniform Resource Identifiers vs application/x-www-form-urlencoded. Read the complete technical guide, code examples, and debugging steps.",
-};
+const seoPost = blogPosts.find((post) => post.slug === 'url-query-parameter-encoding-rfc-3986-vs-application-x-www-form-urlencoded')!;
+
+export const metadata: Metadata = pageMetadata({
+  title: seoPost.title, description: seoPost.excerpt, path: '/blog/url-query-parameter-encoding-rfc-3986-vs-application-x-www-form-urlencoded',
+  article: { published: seoPost.date, modified: seoPost.modified, author: seoPost.author, tags: seoPost.tags },
+});
 
 export default function Page() {
   const post = blogPosts.find((p) => p.slug === 'url-query-parameter-encoding-rfc-3986-vs-application-x-www-form-urlencoded')!;

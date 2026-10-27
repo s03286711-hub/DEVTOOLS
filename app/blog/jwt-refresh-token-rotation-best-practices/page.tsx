@@ -1,13 +1,16 @@
+import { pageMetadata } from '@/lib/seo';
 import type { Metadata } from 'next';
 import BlogLayout from '@/components/blog/BlogLayout';
 import EmbeddedTool from '@/components/EmbeddedTool';
 import { JwtTool } from '@/components/NewTools';
 import { blogPosts } from '@/lib/blog';
 
-export const metadata: Metadata = {
-  title: "Designing Bulletproof JWT Refresh Token Rotation: Detection of Replay Attacks in Single Page Applications (SPAs) \u2014 DevX Tool Blog",
-  description: "In-depth engineering article: Designing Bulletproof JWT Refresh Token Rotation: Detection of Replay Attacks in Single Page Applications (SPAs). Read the complete technical guide, code examples, and debugging steps.",
-};
+const seoPost = blogPosts.find((post) => post.slug === 'jwt-refresh-token-rotation-best-practices')!;
+
+export const metadata: Metadata = pageMetadata({
+  title: seoPost.title, description: seoPost.excerpt, path: '/blog/jwt-refresh-token-rotation-best-practices',
+  article: { published: seoPost.date, modified: seoPost.modified, author: seoPost.author, tags: seoPost.tags },
+});
 
 export default function Page() {
   const post = blogPosts.find((p) => p.slug === 'jwt-refresh-token-rotation-best-practices')!;

@@ -1,12 +1,16 @@
+import { pageMetadata } from '@/lib/seo';
+import { tools } from '@/lib/site';
 import type { Metadata } from 'next';
 import ToolShell from '@/components/ToolShell';
 import { TimestampTool } from '@/components/NewTools';
 
-export const metadata: Metadata = {
-  title: 'Offline Unix Timestamp Converter & Epoch Debugger (Seconds & Millis) — DevX Tool',
-  description: 'Convert Unix epoch timestamps to human-readable UTC/ISO-8601 dates and vice versa. Operates 100% offline with instant timezone breakdowns.',
-  keywords: ['offline unix timestamp converter', 'epoch time debugger', 'convert unix seconds to milliseconds', 'local epoch to date converter', 'browser timestamp tool'],
-};
+const seoTool = tools.find((tool) => tool.slug === 'timestamp-converter')!;
+
+export const metadata: Metadata = pageMetadata({
+  title: `${seoTool.title} Online — Free`,
+  description: `${seoTool.short} Free online tool with browser-based processing, examples, and a practical guide. No account required.`,
+  path: '/tools/timestamp-converter',
+});
 
 export default function Page() {
   return (

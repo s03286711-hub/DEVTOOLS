@@ -1,11 +1,12 @@
+import { canonicalUrl } from '@/lib/seo';
 import type { MetadataRoute } from 'next';
-import { siteConfig, tools, guides } from '@/lib/site';
+import { tools, guides } from '@/lib/site';
 import { blogPosts } from '@/lib/blog';
 
 export const dynamic = 'force-static';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const releaseDate = new Date('2026-10-16T00:00:00.000Z');
+  const releaseDate = new Date('2026-10-27T00:00:00.000Z');
 
   const staticPages = [
     { path: '', priority: 1.0, freq: 'daily' as const },
@@ -20,26 +21,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     ...staticPages.map((item) => ({
-      url: `${siteConfig.url}${item.path}/`,
+      url: canonicalUrl(item.path),
       lastModified: releaseDate,
       changeFrequency: item.freq,
       priority: item.priority,
     })),
     ...tools.map((t) => ({
-      url: `${siteConfig.url}/tools/${t.slug}/`,
+      url: canonicalUrl(`/tools/${t.slug}`),
       lastModified: releaseDate,
       changeFrequency: 'weekly' as const,
       priority: 0.9,
     })),
     ...guides.map((g) => ({
-      url: `${siteConfig.url}/guides/${g.slug}/`,
+      url: canonicalUrl(`/guides/${g.slug}`),
       lastModified: releaseDate,
       changeFrequency: 'daily' as const,
       priority: 0.9,
     })),
     ...blogPosts.map((b) => ({
-      url: `${siteConfig.url}/blog/${b.slug}/`,
-      lastModified: new Date(`${b.date}T00:00:00.000Z`),
+      url: canonicalUrl(`/blog/${b.slug}`),
+      lastModified: new Date(`${b.modified ?? b.date}T00:00:00.000Z`),
       changeFrequency: 'weekly' as const,
       priority: 0.85,
     })),

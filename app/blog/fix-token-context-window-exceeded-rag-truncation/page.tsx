@@ -1,13 +1,16 @@
+import { pageMetadata } from '@/lib/seo';
 import type { Metadata } from 'next';
 import BlogLayout from '@/components/blog/BlogLayout';
 import EmbeddedTool from '@/components/EmbeddedTool';
 import { TextDiff } from '@/components/Tools';
 import { blogPosts } from '@/lib/blog';
 
-export const metadata: Metadata = {
-  title: "Fixing \"InvalidRequestError: This model's maximum context length is X tokens, however your messages resulted in Y tokens\" \u2014 DevX Tool Blog",
-  description: "In-depth engineering article: Fixing \"InvalidRequestError: This model's maximum context length is X tokens, however your messages resulted in Y tokens\". Read the complete technical guide, code examples, and debugging steps.",
-};
+const seoPost = blogPosts.find((post) => post.slug === 'fix-token-context-window-exceeded-rag-truncation')!;
+
+export const metadata: Metadata = pageMetadata({
+  title: seoPost.title, description: seoPost.excerpt, path: '/blog/fix-token-context-window-exceeded-rag-truncation',
+  article: { published: seoPost.date, modified: seoPost.modified, author: seoPost.author, tags: seoPost.tags },
+});
 
 export default function Page() {
   const post = blogPosts.find((p) => p.slug === 'fix-token-context-window-exceeded-rag-truncation')!;

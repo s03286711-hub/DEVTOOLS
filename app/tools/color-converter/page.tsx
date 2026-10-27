@@ -1,12 +1,16 @@
+import { pageMetadata } from '@/lib/seo';
+import { tools } from '@/lib/site';
 import type { Metadata } from 'next';
 import ToolShell from '@/components/ToolShell';
 import { ColorTool } from '@/components/NewTools';
 
-export const metadata: Metadata = {
-  title: 'Client-Side Color Converter & WCAG Contrast Checker — DevX Tool',
-  description: 'Convert HEX, RGB, and HSL values instantly with real-time WCAG 2.1 AAA accessibility contrast analysis. Operates 100% in-browser with zero latency.',
-  keywords: ['client-side color converter', 'wcag contrast checker offline', 'convert hex to rgb private', 'browser color space calculator', 'accessible text contrast tool'],
-};
+const seoTool = tools.find((tool) => tool.slug === 'color-converter')!;
+
+export const metadata: Metadata = pageMetadata({
+  title: `${seoTool.title} Online — Free`,
+  description: `${seoTool.short} Free online tool with browser-based processing, examples, and a practical guide. No account required.`,
+  path: '/tools/color-converter',
+});
 
 export default function Page() {
   return (

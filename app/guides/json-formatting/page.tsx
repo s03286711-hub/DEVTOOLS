@@ -1,12 +1,15 @@
+import { pageMetadata } from '@/lib/seo';
+import { guides } from '@/lib/site';
 import type { Metadata } from 'next';
 import GuideArticle from '@/components/GuideArticle';
 import EmbeddedTool from '@/components/EmbeddedTool';
 import { JsonFormatter } from '@/components/Tools';
 
-export const metadata: Metadata = {
-  title: 'How to Format, Validate, and Debug JSON: RFC 8259 Specifications, Parser Internals, and BigInt Precision Gotchas',
-  description: 'A complete 1,200+ word engineering guide to JSON serialization, RFC 8259 rules, tokenizer errors, schema validation, streaming parsers, and multi-language implementation code.',
-};
+const seoGuide = guides.find((guide) => guide.slug === 'json-formatting')!;
+
+export const metadata: Metadata = pageMetadata({
+  title: seoGuide.title, description: seoGuide.description, path: '/guides/json-formatting',
+});
 
 export default function Page() {
   return (

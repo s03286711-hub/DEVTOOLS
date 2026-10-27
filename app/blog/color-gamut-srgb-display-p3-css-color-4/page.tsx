@@ -1,13 +1,16 @@
+import { pageMetadata } from '@/lib/seo';
 import type { Metadata } from 'next';
 import BlogLayout from '@/components/blog/BlogLayout';
 import EmbeddedTool from '@/components/EmbeddedTool';
 import { ColorTool } from '@/components/NewTools';
 import { blogPosts } from '@/lib/blog';
 
-export const metadata: Metadata = {
-  title: "Beyond sRGB: Modern Display-P3 Wide Gamuts and High Dynamic Range (HDR) Colors in CSS \u2014 DevX Tool Blog",
-  description: "In-depth engineering article: Beyond sRGB: Modern Display-P3 Wide Gamuts and High Dynamic Range (HDR) Colors in CSS. Read the complete technical guide, code examples, and debugging steps.",
-};
+const seoPost = blogPosts.find((post) => post.slug === 'color-gamut-srgb-display-p3-css-color-4')!;
+
+export const metadata: Metadata = pageMetadata({
+  title: seoPost.title, description: seoPost.excerpt, path: '/blog/color-gamut-srgb-display-p3-css-color-4',
+  article: { published: seoPost.date, modified: seoPost.modified, author: seoPost.author, tags: seoPost.tags },
+});
 
 export default function Page() {
   const post = blogPosts.find((p) => p.slug === 'color-gamut-srgb-display-p3-css-color-4')!;

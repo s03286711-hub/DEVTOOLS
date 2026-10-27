@@ -1,13 +1,16 @@
+import { pageMetadata } from '@/lib/seo';
 import type { Metadata } from 'next';
 import BlogLayout from '@/components/blog/BlogLayout';
 import EmbeddedTool from '@/components/EmbeddedTool';
 import { Base64Tool } from '@/components/Tools';
 import { blogPosts } from '@/lib/blog';
 
-export const metadata: Metadata = {
-  title: "Resolving \"The string to be encoded contains characters outside of the Latin1 range\" (DOMException: Failed to execute 'btoa') \u2014 DevX Tool Blog",
-  description: "In-depth engineering article: Resolving \"The string to be encoded contains characters outside of the Latin1 range\" (DOMException: Failed to execute 'btoa'). Read the complete technical guide, code examples, and debugging steps.",
-};
+const seoPost = blogPosts.find((post) => post.slug === 'resolving-btoa-latin1-character-out-of-range')!;
+
+export const metadata: Metadata = pageMetadata({
+  title: seoPost.title, description: seoPost.excerpt, path: '/blog/resolving-btoa-latin1-character-out-of-range',
+  article: { published: seoPost.date, modified: seoPost.modified, author: seoPost.author, tags: seoPost.tags },
+});
 
 export default function Page() {
   const post = blogPosts.find((p) => p.slug === 'resolving-btoa-latin1-character-out-of-range')!;

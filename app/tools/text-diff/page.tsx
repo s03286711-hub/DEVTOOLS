@@ -1,12 +1,16 @@
+import { pageMetadata } from '@/lib/seo';
+import { tools } from '@/lib/site';
 import type { Metadata } from 'next';
 import ToolShell from '@/components/ToolShell';
 import { TextDiff } from '@/components/Tools';
 
-export const metadata: Metadata = {
-  title: 'Private Text & Code Diff Checker (100% In-Browser Comparison) — DevX Tool',
-  description: 'Compare source code, API responses, or documents side-by-side. Uses the Myers diff algorithm directly inside your browser so sensitive proprietary code never leaves your computer.',
-  keywords: ['private text diff checker', 'offline code comparison tool', 'compare two files locally', 'browser side text difference', 'confidential diff tool'],
-};
+const seoTool = tools.find((tool) => tool.slug === 'text-diff')!;
+
+export const metadata: Metadata = pageMetadata({
+  title: `${seoTool.title} Online — Free`,
+  description: `${seoTool.short} Free online tool with browser-based processing, examples, and a practical guide. No account required.`,
+  path: '/tools/text-diff',
+});
 
 export default function Page() {
   return (

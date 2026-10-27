@@ -1,10 +1,12 @@
+import { pageMetadata } from '@/lib/seo';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: 'About DevX Tool — Mission & Privacy-First Developer Tools',
   description: 'Learn about DevX Tool, our commitment to client-side data privacy, and our mission to provide lightning-fast web developer utilities.',
-};
+  path: '/about',
+});
 
 export default function About() {
   return (
@@ -33,25 +35,23 @@ export default function About() {
           </ol>
 
           
-          <h2>Our Editorial Standards & Original Content Guarantee</h2>
+          <h2>How to Use Our Tutorials</h2>
           <p>
-            To prevent repetitive, generic documentation on the web, every single tutorial, architectural benchmark, and troubleshooting guide on DevX Tool is produced through independent research and empirical testing by our engineering staff:
+            Our tutorials explain developer tasks with examples, expected results, and links to reference documentation.
+            New step-by-step tutorials identify the relevant operating system or programming language and explain
+            limitations such as text-only decoding, number precision, and timezone handling.
           </p>
-          <ul>
-            <li><strong>First-Party Benchmarks:</strong> When comparing algorithms (such as UUID v4 vs. RFC 9562 UUID v7 B-Tree index fragmentation or Argon2id vs. BCrypt GPU resilience), our conclusions are drawn from local test clusters and real database profiling rather than aggregated summaries.</li>
-            <li><strong>Standards-First Grounding:</strong> Every guide cites official RFC specifications (IETF RFC 8259, RFC 9562, RFC 7519, RFC 3986, RFC 4648) and NIST security standards (NIST SP 800-63B), ensuring accurate, verifiable technical guidance.</li>
-            <li><strong>Original Code Implementations:</strong> All code examples (across TypeScript, Python 3, Go, and cURL) are custom written, tested against modern language runtimes, and licensed for unrestricted developer use.</li>
-          </ul>
-
-          <h2>Advertising Transparency & Policy Compliance</h2>
           <p>
-            DevX Tool participates in the Google AdSense partner network. In strict compliance with Google's Advertising Policies and the Better Ads Standards:
+            Example inputs are for learning. Check commands against your environment before using them with production
+            data. If you find an error, use our <Link href="/contact" className="text-[#0d9488] underline">contact page</Link>
+            {' '}and include the article URL and the result you expected.
           </p>
-          <ul>
-            <li>Advertisements are clearly delimited from interactive tool controls to prevent accidental clicks.</li>
-            <li>No invasive popups, interstitial blockers, or auto-redirecting ad units are permitted on this website.</li>
-            <li>Tools remain 100% accessible and fully functional regardless of whether visitors run ad-blocking software.</li>
-          </ul>
+          <h2>Advertising</h2>
+          <p>
+            Advertising may help fund the free tools and tutorials. Advertisement areas are labeled separately from
+            our content. Read our <Link href="/privacy" className="text-[#0d9488] underline">privacy policy</Link>
+            {' '}for information about advertising cookies and third-party services.
+          </p>
 
           <h2>Get in Touch</h2>
           <p>

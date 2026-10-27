@@ -1,12 +1,16 @@
+import { pageMetadata } from '@/lib/seo';
+import { tools } from '@/lib/site';
 import type { Metadata } from 'next';
 import ToolShell from '@/components/ToolShell';
 import { JsonFormatter } from '@/components/Tools';
 
-export const metadata: Metadata = {
-  title: 'Local Browser-First JSON Validator & Formatter (100% Private, Zero Server Uploads) — DevX Tool',
-  description: 'Format, validate, and beautify your JSON data instantly. Spot syntax errors locally in your browser with zero server roundtrips or data logging. 100% private and offline.',
-  keywords: ['local browser-first json validator', 'offline json formatter', 'private json beautifier', 'spot json syntax errors locally', 'json validator zero telemetry'],
-};
+const seoTool = tools.find((tool) => tool.slug === 'json-formatter')!;
+
+export const metadata: Metadata = pageMetadata({
+  title: `${seoTool.title} Online — Free`,
+  description: `${seoTool.short} Free online tool with browser-based processing, examples, and a practical guide. No account required.`,
+  path: '/tools/json-formatter',
+});
 
 export default function Page() {
   return (

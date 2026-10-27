@@ -1,12 +1,15 @@
+import { pageMetadata } from '@/lib/seo';
+import { guides } from '@/lib/site';
 import type { Metadata } from 'next';
 import GuideArticle from '@/components/GuideArticle';
 import EmbeddedTool from '@/components/EmbeddedTool';
 import { UuidTool } from '@/components/NewTools';
 
-export const metadata: Metadata = {
-  title: 'What Is a UUID? RFC 9562 Versions (v1 to v8), Internal Bit Layouts, Collision Probabilities, and High-Throughput Database Indexing',
-  description: 'A definitive technical deep-dive into Universally Unique Identifiers (UUID/GUID). Explore RFC 4122 and RFC 9562 specs, bit structures, UUID v4 vs v7 comparison, B-Tree index fragmentation mitigation, and multi-language implementation code.',
-};
+const seoGuide = guides.find((guide) => guide.slug === 'uuid-guide')!;
+
+export const metadata: Metadata = pageMetadata({
+  title: seoGuide.title, description: seoGuide.description, path: '/guides/uuid-guide',
+});
 
 export default function Page() {
   return (

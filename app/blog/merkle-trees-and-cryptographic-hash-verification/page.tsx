@@ -1,13 +1,16 @@
+import { pageMetadata } from '@/lib/seo';
 import type { Metadata } from 'next';
 import BlogLayout from '@/components/blog/BlogLayout';
 import EmbeddedTool from '@/components/EmbeddedTool';
 import { HashTool } from '@/components/NewTools';
 import { blogPosts } from '@/lib/blog';
 
-export const metadata: Metadata = {
-  title: "How Merkle Trees and Cryptographic Hashes Power Git, BitTorrent, and Blockchain Consensus \u2014 DevX Tool Blog",
-  description: "In-depth engineering article: How Merkle Trees and Cryptographic Hashes Power Git, BitTorrent, and Blockchain Consensus. Read the complete technical guide, code examples, and debugging steps.",
-};
+const seoPost = blogPosts.find((post) => post.slug === 'merkle-trees-and-cryptographic-hash-verification')!;
+
+export const metadata: Metadata = pageMetadata({
+  title: seoPost.title, description: seoPost.excerpt, path: '/blog/merkle-trees-and-cryptographic-hash-verification',
+  article: { published: seoPost.date, modified: seoPost.modified, author: seoPost.author, tags: seoPost.tags },
+});
 
 export default function Page() {
   const post = blogPosts.find((p) => p.slug === 'merkle-trees-and-cryptographic-hash-verification')!;

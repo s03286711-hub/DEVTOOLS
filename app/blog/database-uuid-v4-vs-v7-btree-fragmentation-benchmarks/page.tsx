@@ -1,13 +1,16 @@
+import { pageMetadata } from '@/lib/seo';
 import type { Metadata } from 'next';
 import BlogLayout from '@/components/blog/BlogLayout';
 import EmbeddedTool from '@/components/EmbeddedTool';
 import { UuidTool } from '@/components/NewTools';
 import { blogPosts } from '@/lib/blog';
 
-export const metadata: Metadata = {
-  title: "Why We Migrated from UUID v4 to UUID v7: Real PostgreSQL B-Tree Index Fragmentation Benchmarks \u2014 DevX Tool Blog",
-  description: "In-depth engineering article: Why We Migrated from UUID v4 to UUID v7: Real PostgreSQL B-Tree Index Fragmentation Benchmarks. Read the complete technical guide, code examples, and debugging steps.",
-};
+const seoPost = blogPosts.find((post) => post.slug === 'database-uuid-v4-vs-v7-btree-fragmentation-benchmarks')!;
+
+export const metadata: Metadata = pageMetadata({
+  title: seoPost.title, description: seoPost.excerpt, path: '/blog/database-uuid-v4-vs-v7-btree-fragmentation-benchmarks',
+  article: { published: seoPost.date, modified: seoPost.modified, author: seoPost.author, tags: seoPost.tags },
+});
 
 export default function Page() {
   const post = blogPosts.find((p) => p.slug === 'database-uuid-v4-vs-v7-btree-fragmentation-benchmarks')!;

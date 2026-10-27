@@ -1,12 +1,15 @@
+import { pageMetadata } from '@/lib/seo';
+import { guides } from '@/lib/site';
 import type { Metadata } from 'next';
 import GuideArticle from '@/components/GuideArticle';
 import EmbeddedTool from '@/components/EmbeddedTool';
 import { ColorTool } from '@/components/NewTools';
 
-export const metadata: Metadata = {
-  title: 'Modern Web Color Science: HEX, RGB, HSL, and the OKLCH Perceptual Revolution in CSS Color Module 4',
-  description: 'A complete 1,200+ word engineering guide to web color systems. Understand sRGB gamuts, Display-P3 wide gamut displays, WCAG 2.2 contrast mathematics, and perceptual uniformity.',
-};
+const seoGuide = guides.find((guide) => guide.slug === 'color-formats')!;
+
+export const metadata: Metadata = pageMetadata({
+  title: seoGuide.title, description: seoGuide.description, path: '/guides/color-formats',
+});
 
 export default function Page() {
   return (

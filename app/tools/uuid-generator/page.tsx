@@ -1,12 +1,16 @@
+import { pageMetadata } from '@/lib/seo';
+import { tools } from '@/lib/site';
 import type { Metadata } from 'next';
 import ToolShell from '@/components/ToolShell';
 import { UuidTool } from '@/components/NewTools';
 
-export const metadata: Metadata = {
-  title: 'Bulk UUID v4 & v7 Generator Offline (CSPRNG, Zero Telemetry) — DevX Tool',
-  description: 'Generate unique random UUID v4 and v7 identifiers in bulk instantly. Cryptographically secure client-side generation using Web Crypto API. 100% offline & private.',
-  keywords: ['bulk random uuid v4 generator offline', 'offline uuid generator', 'cryptographic uuid v4 bulk', 'private guid generator', 'zero telemetry uuid v7'],
-};
+const seoTool = tools.find((tool) => tool.slug === 'uuid-generator')!;
+
+export const metadata: Metadata = pageMetadata({
+  title: `${seoTool.title} Online — Free`,
+  description: `${seoTool.short} Free online tool with browser-based processing, examples, and a practical guide. No account required.`,
+  path: '/tools/uuid-generator',
+});
 
 export default function Page() {
   return (

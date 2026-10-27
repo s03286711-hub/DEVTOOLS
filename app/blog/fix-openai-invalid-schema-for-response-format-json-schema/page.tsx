@@ -1,13 +1,16 @@
+import { pageMetadata } from '@/lib/seo';
 import type { Metadata } from 'next';
 import BlogLayout from '@/components/blog/BlogLayout';
 import EmbeddedTool from '@/components/EmbeddedTool';
 import { JsonFormatter } from '@/components/Tools';
 import { blogPosts } from '@/lib/blog';
 
-export const metadata: Metadata = {
-  title: 'Fixing OpenAI 400 "Invalid schema for response_format: \'json_schema\'" — DevX Tool Blog',
-  description: 'Resolve OpenAI Structured Outputs 400 bad request errors. Fix missing additionalProperties: false, optional property definitions, and Pydantic v2 / Zod recursive schema constraints.',
-};
+const seoPost = blogPosts.find((post) => post.slug === 'fix-openai-invalid-schema-for-response-format-json-schema')!;
+
+export const metadata: Metadata = pageMetadata({
+  title: seoPost.title, description: seoPost.excerpt, path: '/blog/fix-openai-invalid-schema-for-response-format-json-schema',
+  article: { published: seoPost.date, modified: seoPost.modified, author: seoPost.author, tags: seoPost.tags },
+});
 
 export default function Page() {
   const post = blogPosts.find((p) => p.slug === 'fix-openai-invalid-schema-for-response-format-json-schema')!;

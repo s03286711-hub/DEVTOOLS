@@ -1,12 +1,15 @@
+import { pageMetadata } from '@/lib/seo';
+import { guides } from '@/lib/site';
 import type { Metadata } from 'next';
 import GuideArticle from '@/components/GuideArticle';
 import EmbeddedTool from '@/components/EmbeddedTool';
 import { Base64Tool } from '@/components/Tools';
 
-export const metadata: Metadata = {
-  title: 'Base64 Encoding and Decoding Explained: RFC 4648 Specifications, 6-Bit Binary Mechanics, and Unicode UTF-8 Engineering',
-  description: 'A complete 1,200+ word engineering guide to Base64 encoding. Learn 6-bit translation tables, bit-shift mechanics, padding calculations, URL-safe variants, and multi-language implementation code.',
-};
+const seoGuide = guides.find((guide) => guide.slug === 'base64-encoding')!;
+
+export const metadata: Metadata = pageMetadata({
+  title: seoGuide.title, description: seoGuide.description, path: '/guides/base64-encoding',
+});
 
 export default function Page() {
   return (

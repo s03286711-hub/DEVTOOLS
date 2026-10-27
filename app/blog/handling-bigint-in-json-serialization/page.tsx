@@ -1,13 +1,16 @@
+import { pageMetadata } from '@/lib/seo';
 import type { Metadata } from 'next';
 import BlogLayout from '@/components/blog/BlogLayout';
 import EmbeddedTool from '@/components/EmbeddedTool';
 import { JsonFormatter } from '@/components/Tools';
 import { blogPosts } from '@/lib/blog';
 
-export const metadata: Metadata = {
-  title: "Preventing Precision Loss: How to Safely Handle 64-Bit Integers and BigInt in JSON REST APIs \u2014 DevX Tool Blog",
-  description: "In-depth engineering article: Preventing Precision Loss: How to Safely Handle 64-Bit Integers and BigInt in JSON REST APIs. Read the complete technical guide, code examples, and debugging steps.",
-};
+const seoPost = blogPosts.find((post) => post.slug === 'handling-bigint-in-json-serialization')!;
+
+export const metadata: Metadata = pageMetadata({
+  title: seoPost.title, description: seoPost.excerpt, path: '/blog/handling-bigint-in-json-serialization',
+  article: { published: seoPost.date, modified: seoPost.modified, author: seoPost.author, tags: seoPost.tags },
+});
 
 export default function Page() {
   const post = blogPosts.find((p) => p.slug === 'handling-bigint-in-json-serialization')!;

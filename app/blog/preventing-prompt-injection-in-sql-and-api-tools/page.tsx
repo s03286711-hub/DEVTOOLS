@@ -1,13 +1,16 @@
+import { pageMetadata } from '@/lib/seo';
 import type { Metadata } from 'next';
 import BlogLayout from '@/components/blog/BlogLayout';
 import EmbeddedTool from '@/components/EmbeddedTool';
 import { UrlTool } from '@/components/Tools';
 import { blogPosts } from '@/lib/blog';
 
-export const metadata: Metadata = {
-  title: "Preventing Prompt Injection in Autonomous AI Agents Calling External APIs & SQL Databases \u2014 DevX Tool Blog",
-  description: "In-depth engineering article: Preventing Prompt Injection in Autonomous AI Agents Calling External APIs & SQL Databases. Read the complete technical guide, code examples, and debugging steps.",
-};
+const seoPost = blogPosts.find((post) => post.slug === 'preventing-prompt-injection-in-sql-and-api-tools')!;
+
+export const metadata: Metadata = pageMetadata({
+  title: seoPost.title, description: seoPost.excerpt, path: '/blog/preventing-prompt-injection-in-sql-and-api-tools',
+  article: { published: seoPost.date, modified: seoPost.modified, author: seoPost.author, tags: seoPost.tags },
+});
 
 export default function Page() {
   const post = blogPosts.find((p) => p.slug === 'preventing-prompt-injection-in-sql-and-api-tools')!;

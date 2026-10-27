@@ -1,23 +1,15 @@
+import { pageMetadata } from '@/lib/seo';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft, ArrowUpRight, Wrench, ShieldCheck, Sparkles, BookOpen } from 'lucide-react';
 import { tools, guides, siteConfig } from '@/lib/site';
 import ToolSearchHub from '@/components/ToolSearchHub';
 
-export const metadata: Metadata = {
-  title: 'All Free Online Developer Tools — DevX Tool Directory',
+export const metadata: Metadata = pageMetadata({
+  title: 'All Free Online Developer Tools Directory',
   description: 'Browse the complete directory of free, client-side developer utilities. JSON formatter, regex tester, text diff checker, Base64 encoder, UUID generator, and more.',
-  keywords: [
-    'developer tools directory',
-    'free online developer utilities',
-    'online programming tools',
-    'web developer toolbox',
-    'client-side dev tools',
-  ],
-  alternates: {
-    canonical: `${siteConfig.url}/tools`,
-  },
-};
+  path: '/tools',
+});
 
 export default function ToolsPage() {
   const categories = Array.from(new Set(tools.map((t) => t.category)));

@@ -39,9 +39,6 @@ export const metadata: Metadata = {
     shortcut: '/favicon.svg',
     apple: '/favicon.svg',
   },
-  alternates: {
-    canonical: './',
-  },
   robots: {
     index: true,
     follow: true,
@@ -62,7 +59,7 @@ export const metadata: Metadata = {
     description: siteConfig.description,
   },
   twitter: {
-    card: 'summary_large_image',
+    card: 'summary',
     title: 'DevX Tool — Free Online Developer Tools & Utility Guides',
     description: siteConfig.description,
   },
@@ -74,80 +71,6 @@ const jsonLd = {
   name: siteConfig.name,
   url: siteConfig.url,
   description: siteConfig.description,
-  potentialAction: {
-    '@type': 'SearchAction',
-    target: `${siteConfig.url}/#tools`,
-    'query-input': 'required name=search_term_string',
-  },
-};
-
-const softwareAppJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'WebApplication',
-  name: 'DevX Tool — Free Online Developer Suite',
-  url: siteConfig.url,
-  description: siteConfig.description,
-  applicationCategory: 'DeveloperApplication',
-  operatingSystem: 'All',
-  browserRequirements: 'Requires HTML5 support',
-  offers: {
-    '@type': 'Offer',
-    price: '0',
-    priceCurrency: 'USD',
-  },
-  featureList: [
-    'JSON Formatter & Validator',
-    'Online Regex Tester & Debugger',
-    'Text Diff Checker',
-    'Base64 Encoder & Decoder',
-    'URL Encoder & Decoder',
-    'SHA Hash Generator (SHA-256, SHA-512)',
-    'JWT Decoder & Debugger',
-    'Unix Timestamp & Epoch Converter',
-    'UUID v4 Generator in bulk',
-    'Strong Random Password Generator',
-    'Color Converter & Contrast Checker',
-    '100% Client-side privacy-first execution',
-  ],
-};
-
-const homeFaqJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: [
-    {
-      '@type': 'Question',
-      name: 'What developer tools are available on DevX Tool?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'DevX Tool offers 11 free utilities: JSON Formatter & Validator, Regex Tester, Text Diff Checker, Base64 Encoder/Decoder, URL Encoder/Decoder, SHA Hash Generator, JWT Decoder, Unix Timestamp Converter, UUID Generator, Password Generator, and Color Converter.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Is DevX Tool free to use?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Yes, DevX Tool is 100% free with no subscription, no sign-up, and no usage limitations.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Does DevX Tool store or log my sensitive data (like JSON or JWTs)?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'No. DevX Tool runs entirely in your web browser using client-side JavaScript APIs. Your code, tokens, passwords, and data are never sent to or stored on any server.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Can I use DevX Tool on mobile or tablet devices?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Yes, all DevX Tool utilities are fully responsive and work seamlessly across smartphones, tablets, laptops, and desktop computers.',
-      },
-    },
-  ],
 };
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
@@ -164,14 +87,6 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareAppJsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(homeFaqJsonLd) }}
         />
       </head>
       <body>

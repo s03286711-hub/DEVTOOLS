@@ -1,12 +1,16 @@
+import { pageMetadata } from '@/lib/seo';
+import { tools } from '@/lib/site';
 import type { Metadata } from 'next';
 import ToolShell from '@/components/ToolShell';
 import { HashTool } from '@/components/NewTools';
 
-export const metadata: Metadata = {
-  title: 'Local Cryptographic Hash Generator (SHA-256, SHA-512, Web Crypto API) — DevX Tool',
-  description: 'Generate secure cryptographic SHA-1, SHA-256, SHA-384, and SHA-512 hashes using browser-native subtle crypto. Zero server roundtrips, offline and completely private.',
-  keywords: ['local cryptographic hash generator', 'sha256 hash generator offline', 'private sha512 generator', 'web crypto sha256 tool', 'client-side checksum calculator'],
-};
+const seoTool = tools.find((tool) => tool.slug === 'hash-generator')!;
+
+export const metadata: Metadata = pageMetadata({
+  title: `${seoTool.title} Online — Free`,
+  description: `${seoTool.short} Free online tool with browser-based processing, examples, and a practical guide. No account required.`,
+  path: '/tools/hash-generator',
+});
 
 export default function Page() {
   return (

@@ -1,12 +1,16 @@
+import { pageMetadata } from '@/lib/seo';
+import { tools } from '@/lib/site';
 import type { Metadata } from 'next';
 import ToolShell from '@/components/ToolShell';
 import { RegexTool } from '@/components/Tools';
 
-export const metadata: Metadata = {
-  title: 'Client-Side Regex Tester & Debugger (Zero-Telemetry Pattern Matching) — DevX Tool',
-  description: 'Test ECMAScript regular expressions and capture groups in real-time. Full client-side execution guarantees your confidential log text and patterns are never uploaded.',
-  keywords: ['client-side regex tester', 'private regex debugger', 'offline regular expression tester', 'safe regex matcher zero telemetry', 'ecmascript regex tool'],
-};
+const seoTool = tools.find((tool) => tool.slug === 'regex-tester')!;
+
+export const metadata: Metadata = pageMetadata({
+  title: `${seoTool.title} Online — Free`,
+  description: `${seoTool.short} Free online tool with browser-based processing, examples, and a practical guide. No account required.`,
+  path: '/tools/regex-tester',
+});
 
 export default function Page() {
   return (

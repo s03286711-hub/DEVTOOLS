@@ -1,13 +1,16 @@
+import { pageMetadata } from '@/lib/seo';
 import type { Metadata } from 'next';
 import BlogLayout from '@/components/blog/BlogLayout';
 import EmbeddedTool from '@/components/EmbeddedTool';
 import { UuidTool } from '@/components/NewTools';
 import { blogPosts } from '@/lib/blog';
 
-export const metadata: Metadata = {
-  title: "Distributed ID Architecture at Scale: Twitter Snowflake vs ULID vs UUID v7 Compared \u2014 DevX Tool Blog",
-  description: "In-depth engineering article: Distributed ID Architecture at Scale: Twitter Snowflake vs ULID vs UUID v7 Compared. Read the complete technical guide, code examples, and debugging steps.",
-};
+const seoPost = blogPosts.find((post) => post.slug === 'distributed-unique-ids-snowflake-ulid-uuidv7')!;
+
+export const metadata: Metadata = pageMetadata({
+  title: seoPost.title, description: seoPost.excerpt, path: '/blog/distributed-unique-ids-snowflake-ulid-uuidv7',
+  article: { published: seoPost.date, modified: seoPost.modified, author: seoPost.author, tags: seoPost.tags },
+});
 
 export default function Page() {
   const post = blogPosts.find((p) => p.slug === 'distributed-unique-ids-snowflake-ulid-uuidv7')!;
