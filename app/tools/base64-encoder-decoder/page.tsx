@@ -1,16 +1,9 @@
-import { pageMetadata } from '@/lib/seo';
-import { tools } from '@/lib/site';
+import { toolMetadata } from '@/lib/tool-seo';
 import type { Metadata } from 'next';
 import ToolShell from '@/components/ToolShell';
 import { Base64Tool } from '@/components/Tools';
 
-const seoTool = tools.find((tool) => tool.slug === 'base64-encoder-decoder')!;
-
-export const metadata: Metadata = pageMetadata({
-  title: `${seoTool.title} Online — Free`,
-  description: `${seoTool.short} Free online tool with browser-based processing, examples, and a practical guide. No account required.`,
-  path: '/tools/base64-encoder-decoder',
-});
+export const metadata: Metadata = toolMetadata('base64-encoder-decoder');
 
 export default function Page() {
   return (

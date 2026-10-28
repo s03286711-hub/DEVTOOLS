@@ -6,7 +6,7 @@ import { blogPosts } from '@/lib/blog';
 import { tools, guides, siteConfig } from '@/lib/site';
 
 export const metadata: Metadata = pageMetadata({
-  title: 'Tech Articles, AI Explainers & Developer Tutorials',
+  title: 'Tech Articles & Developer Tutorials',
   description: 'Practical tech articles about AI agents, passkeys, browser fixes, and safer links, plus developer tutorials with code examples and free online tools.',
   path: '/blog',
 });

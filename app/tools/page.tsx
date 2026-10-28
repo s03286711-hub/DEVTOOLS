@@ -6,7 +6,7 @@ import { tools, guides, siteConfig } from '@/lib/site';
 import ToolSearchHub from '@/components/ToolSearchHub';
 
 export const metadata: Metadata = pageMetadata({
-  title: 'All Free Online Developer Tools Directory',
+  title: 'Free Developer Tools: JSON, Base64, Regex & More',
   description: 'Browse the complete directory of free, client-side developer utilities. JSON formatter, regex tester, text diff checker, Base64 encoder, UUID generator, and more.',
   path: '/tools',
 });

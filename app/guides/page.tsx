@@ -5,7 +5,7 @@ import { ArrowLeft, ArrowUpRight, BookOpen, Sparkles, GraduationCap } from 'luci
 import { guides, tools, siteConfig } from '@/lib/site';
 
 export const metadata: Metadata = pageMetadata({
-  title: 'Developer Guides & Technical Tutorials Hub',
+  title: 'Developer Guides: JSON, Base64, Regex & JWT',
   description: 'In-depth engineering guides, protocol tutorials, and best practices. Learn JSON validation, Base64 encoding, regex patterns, JWT security, and password entropy.',
   path: '/guides',
 });

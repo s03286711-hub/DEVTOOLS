@@ -3,7 +3,7 @@ import type { Tutorial } from '@/lib/tutorials';
 export const developerArticles: Tutorial[] = [
   {
     slug: 'http-status-codes-400-401-403-404-429-500-explained',
-    title: 'HTTP Error Codes Explained: 400, 401, 403, 404, 429, and 500',
+    title: 'HTTP Error Codes: 400, 401, 403, 404, 429 & 500',
     excerpt: 'Find what common HTTP errors mean, what to check in an API response, and when a retry can help. Includes a status-code comparison and debugging steps.',
     date: '2026-10-28', category: 'Web troubleshooting', relatedTool: 'json-formatter', relatedGuide: 'json-formatting', tags: ['HTTP errors', 'API debugging', 'Status codes'],
     answer: 'An HTTP status code describes the outcome of a request. Start by recording the code, response headers, and body together. A 401 points to authentication, a 403 to refused access, a 429 to request limits, and a 5xx response to a server-side failure category.',

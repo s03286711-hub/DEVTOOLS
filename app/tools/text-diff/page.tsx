@@ -1,16 +1,9 @@
-import { pageMetadata } from '@/lib/seo';
-import { tools } from '@/lib/site';
+import { toolMetadata } from '@/lib/tool-seo';
 import type { Metadata } from 'next';
 import ToolShell from '@/components/ToolShell';
 import { TextDiff } from '@/components/Tools';
 
-const seoTool = tools.find((tool) => tool.slug === 'text-diff')!;
-
-export const metadata: Metadata = pageMetadata({
-  title: `${seoTool.title} Online — Free`,
-  description: `${seoTool.short} Free online tool with browser-based processing, examples, and a practical guide. No account required.`,
-  path: '/tools/text-diff',
-});
+export const metadata: Metadata = toolMetadata('text-diff');
 
 export default function Page() {
   return (

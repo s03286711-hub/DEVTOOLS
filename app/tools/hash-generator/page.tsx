@@ -1,16 +1,9 @@
-import { pageMetadata } from '@/lib/seo';
-import { tools } from '@/lib/site';
+import { toolMetadata } from '@/lib/tool-seo';
 import type { Metadata } from 'next';
 import ToolShell from '@/components/ToolShell';
 import { HashTool } from '@/components/NewTools';
 
-const seoTool = tools.find((tool) => tool.slug === 'hash-generator')!;
-
-export const metadata: Metadata = pageMetadata({
-  title: `${seoTool.title} Online — Free`,
-  description: `${seoTool.short} Free online tool with browser-based processing, examples, and a practical guide. No account required.`,
-  path: '/tools/hash-generator',
-});
+export const metadata: Metadata = toolMetadata('hash-generator');
 
 export default function Page() {
   return (

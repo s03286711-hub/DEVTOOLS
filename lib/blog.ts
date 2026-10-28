@@ -391,7 +391,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "fix-openai-invalid-schema-for-response-format-json-schema",
     title: "Fix Invalid JSON Schema Errors in Structured Outputs",
-    excerpt: "Resolve OpenAI Structured Outputs 400 bad request errors. Fix missing additionalProperties: false, optional property definitions, and Pydantic v2 / Zod recursive schema constraints.",
+    excerpt: "Fix Structured Outputs schema errors: additionalProperties, required fields, and Pydantic or Zod definitions. Includes JSON Schema debugging examples.",
     category: "AI & LLM Architecture",
     readingTime: "11 min read",
     date: "2026-10-17",

@@ -5,7 +5,7 @@ import { everydayTechArticles } from '@/lib/everyday-tech';
 import { canonicalUrl, pageMetadata } from '@/lib/seo';
 
 export const metadata = pageMetadata({
-  title: 'Tech News, AI Updates & Everyday Technology Explained',
+  title: 'Tech News & AI Updates Explained',
   description: 'Read technology news explainers and recent official headlines. Understand AI agents, apps, passkeys, browsers, and what changes mean for you.',
   path: '/news',
 });

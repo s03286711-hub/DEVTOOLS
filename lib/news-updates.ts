@@ -3,7 +3,7 @@ import type { NewsStory } from '@/lib/news';
 export const newsUpdates: NewsStory[] = [
   {
     slug: 'github-copilot-server-to-server-authentication-preview',
-    title: 'GitHub Copilot Adds Server-to-Server Authentication Preview',
+    title: 'GitHub Copilot Server-to-Server Authentication Preview',
     description: 'GitHub announced organization-owned authentication for Copilot SDK services. Understand the public preview, app permissions, and rollout checks.',
     topic: 'AI & developer tools', published: '2026-10-28', eventDate: '2026-10-27',
     source: { name: 'GitHub Changelog', url: 'https://github.blog/changelog/2026-10-27-github-copilot-supports-server-to-server-authentication/' },
@@ -33,7 +33,7 @@ export const newsUpdates: NewsStory[] = [
   },
   {
     slug: 'github-universe-2026-dates-online-watch-guide',
-    title: 'GitHub Universe 2026: Dates, Online Access, and What to Follow',
+    title: 'GitHub Universe 2026: Dates & Online Viewing Guide',
     description: 'GitHub Universe runs October 28–29 in San Francisco and online. Find the official virtual registration and a practical way to evaluate developer announcements.',
     topic: 'Developer events', published: '2026-10-28', eventDate: '2026-10-28',
     source: { name: 'GitHub Universe official event site', url: 'https://githubuniverse.com/' },

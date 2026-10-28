@@ -8,6 +8,7 @@ export const dynamic = 'force-static';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const releaseDate = new Date('2026-10-27T00:00:00.000Z');
+  const seoRevisionDate = new Date('2026-10-28T00:00:00.000Z');
   const contentDate = new Date(Math.max(...newsStories.map((story) => Date.parse(story.published)), ...blogPosts.map((post) => Date.parse(post.modified ?? post.date))));
   const newsDate = new Date(Math.max(contentDate.getTime(), headlineFeed.updatedAt ? Date.parse(headlineFeed.updatedAt) : 0));
 
@@ -27,13 +28,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...newsStories.map((story) => ({ url: canonicalUrl(`/news/${story.slug}`), lastModified: new Date(`${story.published}T00:00:00Z`), changeFrequency: 'monthly' as const, priority: 0.7 })),
     ...staticPages.map((item) => ({
       url: canonicalUrl(item.path),
-      lastModified: ['', '/blog'].includes(item.path) ? contentDate : releaseDate,
+      lastModified: ['', '/tools', '/guides', '/blog'].includes(item.path) ? new Date(Math.max(contentDate.getTime(), seoRevisionDate.getTime())) : releaseDate,
       changeFrequency: item.freq,
       priority: item.priority,
     })),
     ...tools.map((t) => ({
       url: canonicalUrl(`/tools/${t.slug}`),
-      lastModified: releaseDate,
+      lastModified: seoRevisionDate,
       changeFrequency: 'weekly' as const,
       priority: 0.9,
     })),

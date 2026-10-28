@@ -1,3 +1,4 @@
+import { toolSearchContent } from '@/lib/tool-seo';
 import RelatedArticles from '@/components/RelatedArticles';
 import { canonicalUrl } from '@/lib/seo';
 import Link from 'next/link';
@@ -17,6 +18,9 @@ export default function ToolShell({
   description: string;
   children: ReactNode;
 }) {
+  const searchCopy = toolSearchContent[slug];
+  const pageTitle = searchCopy?.heading ?? title;
+  const pageDescription = searchCopy?.intro ?? description;
   const current = tools.find((t) => t.slug === slug);
   const guide = guides.find((g) => g.slug === current?.guide);
   const others = tools.filter((t) => t.slug !== slug).slice(0, 6);
@@ -25,9 +29,9 @@ export default function ToolShell({
   const toolJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebApplication',
-    name: title,
+    name: pageTitle,
     url: canonicalUrl(`/tools/${slug}`),
-    description: description,
+    description: pageDescription,
     applicationCategory: 'DeveloperApplication',
     operatingSystem: 'All',
     browserRequirements: 'Requires HTML5 support',
@@ -63,7 +67,7 @@ export default function ToolShell({
       {
         '@type': 'ListItem',
         position: 3,
-        name: title,
+        name: pageTitle,
         item: canonicalUrl(`/tools/${slug}`),
       },
     ],
@@ -89,8 +93,8 @@ export default function ToolShell({
         <div className="mx-auto max-w-3xl">
           <div className="mb-7 text-center">
             <span className="tag">{current?.category || 'Free online tool'}</span>
-            <h1 className="mt-4 text-3xl font-black tracking-[-.045em] sm:text-4xl">{title}</h1>
-            <p className="mx-auto mt-3 max-w-2xl leading-7 text-[#667085]">{description}</p>
+            <h1 className="mt-4 text-3xl font-black tracking-[-.045em] sm:text-4xl">{pageTitle}</h1>
+            <p className="mx-auto mt-3 max-w-2xl leading-7 text-[#667085]">{pageDescription}</p>
             <p className="mt-3 inline-flex items-center gap-1.5 text-xs font-medium text-[#667085]">
               <ShieldCheck size={14} className="text-emerald-600" /> Designed for local browser processing
             </p>
