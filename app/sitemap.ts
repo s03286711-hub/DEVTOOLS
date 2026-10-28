@@ -1,3 +1,5 @@
+import { aiCategories } from '@/lib/ai-categories';
+import { aiToolsReviewedAt } from '@/lib/ai-tools';
 import { newsStories, headlineFeed, publisherStories } from '@/lib/news';
 import { canonicalUrl } from '@/lib/seo';
 import type { MetadataRoute } from 'next';
@@ -24,6 +26,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   return [
+    { url: canonicalUrl('/ai-tools'), lastModified: new Date(aiToolsReviewedAt), changeFrequency: 'weekly' as const, priority: 0.9 },
+    ...aiCategories.map((category) => ({ url: canonicalUrl(`/ai-tools/${category.id}`), lastModified: new Date(aiToolsReviewedAt), changeFrequency: 'weekly' as const, priority: 0.8 })),
     { url: canonicalUrl('/news'), lastModified: newsDate, changeFrequency: 'daily' as const, priority: 0.85 },
     ...(['google', 'microsoft'] as const).map((publisher) => ({ url: canonicalUrl(`/news/${publisher}`), lastModified: new Date(Math.max(...publisherStories(publisher).map((story) => Date.parse(story.published)))), changeFrequency: 'daily' as const, priority: 0.8 })),
     ...newsStories.map((story) => ({ url: canonicalUrl(`/news/${story.slug}`), lastModified: new Date(`${story.published}T00:00:00Z`), changeFrequency: 'monthly' as const, priority: 0.7 })),

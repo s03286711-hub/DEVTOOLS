@@ -30,11 +30,22 @@ export default function About() {
           <h2>Our Core Engineering Principles</h2>
           <ol>
             <li><strong>Browser-First Privacy:</strong> Wherever technically possible, data transformations are executed locally in your browser sandbox using modern Web APIs (such as the Web Crypto API, native JSON parser, and TextEncoder/TextDecoder). Your code, logs, and tokens never touch our backend servers.</li>
-            <li><strong>Zero Artificial Paywalls:</strong> Every tool and technical guide on DevX Tool is 100% free with no account creation, credit cards, or subscription tiers required.</li>
+            <li><strong>Zero Artificial Paywalls:</strong> Our built-in developer utilities and technical guides are free to use without an account.</li>
             <li><strong>Educational Clarity:</strong> Beyond simply producing an output, each utility includes detailed reference guides explaining the underlying protocols, RFC specifications, and common pitfalls.</li>
           </ol>
 
           
+          <h2>Creative AI Tools Directory</h2>
+          <p>
+            Our <Link href="/ai-tools/" className="text-[#0d9488] underline">AI tools directory</Link> helps visitors compare
+            external services for video, images, audio, editing, and cartoons. Listings include original descriptions,
+            official links, source-review dates, and notes about free access and its limits. They are based on provider
+            documentation and are not a claim that we have personally tested every service.
+          </p>
+          <p>
+            These services have their own accounts, pricing, data practices, and publishing conditions. Check the linked
+            provider details before uploading media or choosing a plan. Directory links do not contain affiliate parameters.
+          </p>
           <h2>How to Use Our Tutorials</h2>
           <p>
             Our tutorials explain developer tasks with examples, expected results, and links to reference documentation.

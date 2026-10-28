@@ -16,6 +16,7 @@ class Page(HTMLParser):
         self.title_count = 0
         self.hrefs = []
         self.ids = set()
+        self.tool_ids = []
         self.h1 = 0
         self.title = ''
         self.in_title = False
@@ -28,6 +29,8 @@ class Page(HTMLParser):
         attrs = dict(attrs)
         if 'id' in attrs:
             self.ids.add(attrs['id'])
+        if 'data-tool-id' in attrs:
+            self.tool_ids.append(attrs['data-tool-id'])
         if tag == 'a' and 'href' in attrs:
             self.hrefs.append(attrs['href'])
         if tag == 'link' and attrs.get('rel') == 'canonical':
@@ -92,6 +95,17 @@ def audit():
         assert page.title and page.title not in titles, f'{path}: missing or duplicate title'
         titles.add(page.title)
         assert expected in locations, f'{path}: absent from sitemap'
+        if path.startswith('/ai-tools/'):
+            collections = [schema for schema in page.schemas if schema.get('@type') == 'CollectionPage']
+            assert len(collections) == 1, f'{path}: expected one AI collection'
+            collection = collections[0]
+            assert collection['url'] == expected, f'{path}: incorrect collection URL'
+            items = collection['mainEntity']['itemListElement']
+            assert collection['mainEntity']['numberOfItems'] == len(page.tool_ids) == len(items), f'{path}: collection count differs from visible tools'
+            assert len(page.tool_ids) == len(set(page.tool_ids)), f'{path}: duplicate tool cards'
+            assert [item['position'] for item in items] == list(range(1, len(items) + 1)), f'{path}: invalid list positions'
+            assert [item['url'] for item in items] == [f'{expected}#{tool_id}' for tool_id in page.tool_ids], f'{path}: collection links differ from visible tools'
+            assert all(tool_id in page.ids for tool_id in page.tool_ids), f'{path}: missing tool anchors'
         for href in page.hrefs:
             target = urlsplit(href)
             if target.scheme or target.netloc:
