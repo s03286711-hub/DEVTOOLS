@@ -46,6 +46,14 @@ export default function About() {
             These services have their own accounts, pricing, data practices, and publishing conditions. Check the linked
             provider details before uploading media or choosing a plan. Directory links do not contain affiliate parameters.
           </p>
+          <h2>AI Research Questions</h2>
+          <p>
+            Our <Link href="/ai-questions/">AI questions section</Link> explains published research about jobs, robots,
+            intelligence, and future risks. We distinguish observed findings, task-exposure estimates, and forecasts,
+            show original source dates and limitations, and label our practical analysis. These editorial guides are
+            not independent experiments or a claim of scientific peer review. Read our
+            {' '}<Link href="/ai-questions/#editorial-method">research and corrections approach</Link> for more detail.
+          </p>
           <h2>How to Use Our Tutorials</h2>
           <p>
             Our tutorials explain developer tasks with examples, expected results, and links to reference documentation.

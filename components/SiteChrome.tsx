@@ -24,6 +24,7 @@ export function Header() {
         <nav className="hidden items-center gap-5 text-sm font-semibold text-[#475467] lg:flex">
           <Link href="/tools" prefetch={false} className="hover:text-[#0d9488]">All tools</Link>
           <Link href="/ai-tools/" prefetch={false} className="hover:text-[#0d9488]">AI Tools</Link>
+          <Link href="/ai-questions/" prefetch={false} className="hover:text-[#0d9488]">AI Questions</Link>
           <Link href="/guides" prefetch={false} className="hover:text-[#0d9488] flex items-center gap-1.5">
             <BookOpen size={15} className="text-[#0d9488]" /> Guides
           </Link>
@@ -59,6 +60,7 @@ export function Header() {
           <nav className="flex flex-col space-y-4 text-base font-bold text-[#475467]">
             <Link href="/tools" prefetch={false} onClick={() => setOpen(false)} className="hover:text-[#0d9488]">All tools</Link>
             <Link href="/ai-tools/" prefetch={false} onClick={() => setOpen(false)} className="hover:text-[#0d9488]">Creative AI Tools</Link>
+            <Link href="/ai-questions/" prefetch={false} onClick={() => setOpen(false)} className="hover:text-[#0d9488]">AI Questions &amp; Research</Link>
             <Link href="/guides" prefetch={false} onClick={() => setOpen(false)} className="hover:text-[#0d9488]">Developer Guides</Link>
             <Link href="/blog" prefetch={false} onClick={() => setOpen(false)} className="hover:text-[#0d9488]">Engineering Tech Blog</Link>
             <Link href="/news/" prefetch={false} onClick={() => setOpen(false)} className="hover:text-[#0d9488]">Tech News</Link>
@@ -112,6 +114,7 @@ export function Footer() {
           <h3 className="mb-4 text-sm font-bold">Educational Hub</h3>
           <ul className="space-y-3 text-sm text-[#667085]">
             <li><Link href="/ai-tools/" className="hover:text-[#0d9488]">Creative AI Tools Directory</Link></li>
+            <li><Link href="/ai-questions/" className="hover:text-[#0d9488]">AI Questions &amp; Research</Link></li>
             <li><Link href="/news/" className="hover:text-[#0d9488]">Tech News &amp; Explainers</Link></li>
             <li><Link href="/news/google/" className="hover:text-[#0d9488]">Google AI &amp; Gemini News</Link></li>
             <li><Link href="/news/microsoft/" className="hover:text-[#0d9488]">Microsoft &amp; Copilot News</Link></li>

@@ -28,6 +28,7 @@ export default function NewsPage() {
             <a href="#explained" className="rounded-full bg-white px-4 py-2 text-[#134e4a]">News explained</a>
             <a href="#headlines" className="rounded-full border border-white/30 px-4 py-2">Publisher headlines</a>
             <a href="#learn" className="rounded-full border border-white/30 px-4 py-2">Everyday tech</a>
+            <Link href="/ai-questions/" className="rounded-full border border-white/30 px-4 py-2">AI questions &amp; research</Link>
             <a href="/feed.xml" className="inline-flex items-center gap-2 rounded-full border border-white/30 px-4 py-2"><Rss size={15} /> RSS feed</a>
           </nav>
         </div>

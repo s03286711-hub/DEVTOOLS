@@ -17,6 +17,12 @@ class Page(HTMLParser):
         self.hrefs = []
         self.ids = set()
         self.tool_ids = []
+        self.question_ids = []
+        self.answer_ids = []
+        self.source_ids = []
+        self.source_urls = []
+        self.times = []
+        self.all_ids = []
         self.h1 = 0
         self.title = ''
         self.in_title = False
@@ -29,8 +35,19 @@ class Page(HTMLParser):
         attrs = dict(attrs)
         if 'id' in attrs:
             self.ids.add(attrs['id'])
+            self.all_ids.append(attrs['id'])
         if 'data-tool-id' in attrs:
             self.tool_ids.append(attrs['data-tool-id'])
+        if 'data-question-id' in attrs:
+            self.question_ids.append(attrs['data-question-id'])
+        if 'data-answer-id' in attrs:
+            self.answer_ids.append(attrs['data-answer-id'])
+        if 'data-source-id' in attrs:
+            self.source_ids.append(attrs['data-source-id'])
+        if tag == 'a' and 'data-research-source' in attrs:
+            self.source_urls.append(attrs['href'])
+        if tag == 'time' and 'datetime' in attrs:
+            self.times.append(attrs['datetime'])
         if tag == 'a' and 'href' in attrs:
             self.hrefs.append(attrs['href'])
         if tag == 'link' and attrs.get('rel') == 'canonical':
@@ -95,6 +112,25 @@ def audit():
         assert page.title and page.title not in titles, f'{path}: missing or duplicate title'
         titles.add(page.title)
         assert expected in locations, f'{path}: absent from sitemap'
+        if path.startswith('/ai-questions/'):
+            assert len(page.all_ids) == len(page.ids), f'{path}: duplicate IDs break answer links'
+            if path == '/ai-questions/':
+                collection = next(schema for schema in page.schemas if schema.get('@type') == 'CollectionPage')
+                entries = collection['mainEntity']['itemListElement']
+                assert collection['mainEntity']['numberOfItems'] == len(page.question_ids) == len(entries), 'AI question collection count mismatch'
+                assert [item['url'] for item in entries] == [f'{expected}{slug}/' for slug in page.question_ids], 'AI question collection differs from visible guides'
+            else:
+                articles = [schema for schema in page.schemas if schema.get('@type') == 'Article']
+                assert len(articles) == 1, f'{path}: expected one research Article'
+                article = articles[0]
+                assert article['url'] == expected == article['mainEntityOfPage']['@id'], f'{path}: incorrect article URL'
+                assert article['datePublished'] in page.times and article['dateModified'] in page.times, f'{path}: dates differ from visible dates'
+                assert article['datePublished'] <= article['dateModified'], f'{path}: review date before publication'
+                assert set(article['citation']) == set(page.source_urls), f'{path}: schema citations differ from visible citations'
+                assert page.source_ids and len(page.source_ids) == len(set(page.source_ids)), f'{path}: missing or duplicated source entries'
+                assert page.answer_ids and all(answer in page.ids for answer in page.answer_ids), f'{path}: missing answer anchors'
+                assert all(url.startswith('https://') for url in page.source_urls), f'{path}: insecure source link'
+                assert any(schema.get('@type') == 'BreadcrumbList' for schema in page.schemas), f'{path}: missing research breadcrumbs'
         if path.startswith('/ai-tools/'):
             collections = [schema for schema in page.schemas if schema.get('@type') == 'CollectionPage']
             assert len(collections) == 1, f'{path}: expected one AI collection'
@@ -115,6 +151,8 @@ def audit():
                 continue
             route = target.path.rstrip('/') + '/'
             assert route in pages or (root / target.path.lstrip('/')).is_file(), f'{path}: broken link {href}'
+            if route in pages and target.fragment:
+                assert unquote(target.fragment) in pages[route].ids, f'{path}: broken cross-page anchor {href}'
     for url in locations:
         assert urlsplit(url).path in pages, f'Sitemap route not exported: {url}'
     feed = ET.parse(root / 'feed.xml')

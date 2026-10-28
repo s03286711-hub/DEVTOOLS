@@ -81,6 +81,7 @@ export default function BlogIndexPage() {
           <p className="mx-auto mt-4 max-w-2xl text-lg leading-8 text-[#667085]">
             Find a working example, understand the result, and try the related free tool. Start with everyday file and text tasks, or explore detailed debugging guides.
           </p>
+          <Link href="/ai-questions/" className="mt-5 inline-flex items-center gap-1 text-sm font-bold text-[#0f766e]">Explore AI research questions about jobs, robots, and the future <ArrowUpRight size={15} aria-hidden="true" /></Link>
           <div className="mt-6 flex flex-wrap justify-center gap-2">
             {categories.map((c) => (
               <span
