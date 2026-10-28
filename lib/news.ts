@@ -1,3 +1,4 @@
+import { newsUpdates } from '@/lib/news-updates';
 import headlineData from '@/data/tech-headlines.json';
 
 export interface NewsStory {
@@ -16,6 +17,7 @@ export interface NewsStory {
 }
 
 export const newsStories: NewsStory[] = [
+  ...newsUpdates,
   {
     slug: 'github-copilot-assisted-permissions-explained',
     title: 'GitHub Copilot Assisted Permissions: What Changed',

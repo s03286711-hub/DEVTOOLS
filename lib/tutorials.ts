@@ -12,6 +12,7 @@ export interface TutorialSection {
 }
 
 export interface Tutorial {
+  date?: string;
   slug: string;
   title: string;
   excerpt: string;
@@ -268,7 +269,7 @@ export const tutorialPosts: BlogPost[] = tutorials.map((tutorial) => {
   return {
     slug: tutorial.slug, title: tutorial.title, excerpt: tutorial.excerpt,
     category: tutorial.category, relatedTool: tutorial.relatedTool, relatedGuide: tutorial.relatedGuide,
-    tags: tutorial.tags, date: '2026-10-27', author: 'DevX Tool Team',
+    tags: tutorial.tags, date: tutorial.date ?? '2026-10-27', author: 'DevX Tool Team',
     readingTime: `${Math.max(1, Math.ceil(words / 200))} min read`,
   };
 });

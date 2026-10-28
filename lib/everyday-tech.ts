@@ -1,6 +1,8 @@
+import { developerArticles } from '@/lib/developer-articles';
 import type { Tutorial } from '@/lib/tutorials';
 
 export const everydayTechArticles: Tutorial[] = [
+  ...developerArticles,
   {
     slug: 'clear-browser-cache-without-deleting-passwords',
     title: 'How to Clear Browser Cache Without Deleting Passwords',

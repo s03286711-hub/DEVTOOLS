@@ -15,7 +15,7 @@ export default function NewsPreview() {
           <Link href="/news/" className="inline-flex items-center gap-1 text-sm font-bold text-[#0f766e]">Explore tech news <ArrowUpRight size={16} /></Link>
         </div>
         <div className="grid gap-5 md:grid-cols-3">
-          {newsStories.map((story) => (
+          {newsStories.slice(0, 3).map((story) => (
             <article key={story.slug} className="rounded-2xl border border-[#cce6df] bg-white p-6">
               <div className="text-xs font-bold text-[#0f766e]">{story.topic}</div>
               <h3 className="mt-3 text-xl font-extrabold leading-snug"><Link href={`/news/${story.slug}/`} className="hover:text-[#0d9488]">{story.title}</Link></h3>
