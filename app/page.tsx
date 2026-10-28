@@ -1,3 +1,4 @@
+import NewsPreview from '@/components/NewsPreview';
 import { pageMetadata } from '@/lib/seo';
 import Link from 'next/link';
 import { ArrowRight, ArrowUpRight, Newspaper, BookOpen, CheckCircle2, Code2, LockKeyhole, Zap } from 'lucide-react';
@@ -11,6 +12,7 @@ export default function Home(){return <main><section className="relative overflo
 <section id="tools" className="section"><div className="container"><div className="mb-9 flex flex-wrap items-end justify-between gap-4"><div><p className="eyebrow">The toolbox</p><h2 className="mt-3 text-3xl font-black tracking-[-.045em] sm:text-4xl">The right tool for the task.</h2><p className="mt-3 max-w-xl leading-7 text-[#667085]">Focused utilities that do one job well, with clear controls and no account required.</p></div><div className="flex items-center gap-3"><Link href="/tools" prefetch={false} className="inline-flex items-center gap-1.5 text-sm font-bold text-[#0d9488] hover:underline">View full directory <ArrowUpRight size={16}/></Link><span className="tag">{tools.length} free tools available</span></div></div><ToolSearchHub initialTools={tools}/></div></section>
 <section id="how-it-works" className="border-y border-[#eef0f7] bg-[#f8f9fc] py-16"><div className="container"><div className="mx-auto mb-10 max-w-2xl text-center"><p className="eyebrow">Simple by design</p><h2 className="mt-3 text-3xl font-black tracking-[-.04em]">Useful tools, without the friction.</h2><p className="mt-3 leading-7 text-[#667085]">Open a tool, enter your data, and get a result. No account or setup required.</p></div><div className="grid gap-5 md:grid-cols-3"><div className="rounded-2xl border border-[#e8eaf2] bg-white p-6"><span className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#e6f7f3] text-[#0d9488]"><Zap size={21}/></span><h3 className="mt-4 font-extrabold">Quick to use</h3><p className="mt-2 text-sm leading-6 text-[#667085]">Focused interfaces help you complete common tasks without navigating a complicated app.</p></div><div className="rounded-2xl border border-[#e8eaf2] bg-white p-6"><span className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#eafbf2] text-[#13865b]"><LockKeyhole size={21}/></span><h3 className="mt-4 font-extrabold">Browser-first approach</h3><p className="mt-2 text-sm leading-6 text-[#667085]">The included tools process inputs locally where practical. Avoid entering secrets into any online tool.</p></div><div className="rounded-2xl border border-[#e8eaf2] bg-white p-6"><span className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#fff2e8] text-[#b65b19]"><Code2 size={21}/></span><h3 className="mt-4 font-extrabold">Made for real tasks</h3><p className="mt-2 text-sm leading-6 text-[#667085]">Helpful defaults, clear error messages, and straightforward output controls.</p></div></div></div></section>
 <section id="guides" className="section"><div className="container"><div className="mb-8"><p className="eyebrow">Learn as you go</p><h2 className="mt-3 text-3xl font-black tracking-[-.045em]">Practical guides, not guesswork.</h2><p className="mt-3 text-[#667085]">Understand the concepts behind the tools and avoid common mistakes.</p></div><div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">{guides.map((g,i)=><Link key={g.slug} href={`/guides/${g.slug}`} prefetch={false} className="group rounded-2xl border border-[#e6e8ef] p-5 transition duration-300 hover:-translate-y-1 hover:border-[#8fd8cd] hover:shadow-soft"><span className="text-xs font-bold uppercase tracking-wider text-[#5f938a]">Guide 0{i+1}</span><h3 className="mt-3 text-lg font-extrabold leading-snug">{g.title}</h3><p className="mt-2 text-sm leading-6 text-[#667085]">{g.description}</p><span className="mt-5 inline-flex items-center gap-1 text-sm font-bold text-[#0d9488]">Read guide <ArrowUpRight size={15}/></span></Link>)}</div></div></section>
+      <NewsPreview />
       {/* Featured Engineering Tech Blog Section */}
       <section id="blog" className="border-t border-[#eef0f7] bg-[#fbfcfe] py-20">
         <div className="container">
@@ -20,10 +22,10 @@ export default function Home(){return <main><section className="relative overflo
                 <Newspaper size={14} /> Practical tutorials
               </span>
               <h2 className="mt-3 text-3xl font-black tracking-[-.045em] sm:text-4xl">
-                Developer tutorials &amp; troubleshooting
+                Tech explainers &amp; practical tutorials
               </h2>
               <p className="mt-3 max-w-2xl leading-7 text-[#667085]">
-                Step-by-step help with JSON files, Base64 commands, URL encoding, timestamps, regular expressions, and file checksums on Windows, Mac, and Linux.
+                Understand AI agents, passkeys, browser fixes, and suspicious links, alongside practical developer tutorials.
               </p>
             </div>
             <Link

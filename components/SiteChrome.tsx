@@ -21,7 +21,7 @@ export function Header() {
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden items-center gap-7 text-sm font-semibold text-[#475467] md:flex">
+        <nav className="hidden items-center gap-5 text-sm font-semibold text-[#475467] lg:flex">
           <Link href="/tools" prefetch={false} className="hover:text-[#0d9488]">All tools</Link>
           <Link href="/guides" prefetch={false} className="hover:text-[#0d9488] flex items-center gap-1.5">
             <BookOpen size={15} className="text-[#0d9488]" /> Guides
@@ -29,21 +29,23 @@ export function Header() {
           <Link href="/blog" prefetch={false} className="hover:text-[#0d9488] flex items-center gap-1.5">
             <Newspaper size={15} className="text-[#0d9488]" /> Tech Blog
           </Link>
+          <Link href="/news/" prefetch={false} className="hover:text-[#0d9488]">Tech News</Link>
           <Link href="/about" prefetch={false} className="hover:text-[#0d9488]">About</Link>
           <Link href="/contact" prefetch={false} className="hover:text-[#0d9488]">Contact</Link>
         </nav>
 
         <div className="flex items-center gap-3">
-          <Link className="btn btn-primary hidden !rounded-[10px] !px-3.5 !py-2.5 sm:inline-flex" href="/#tools" prefetch={false}>
+          <Link className="btn btn-primary hidden !rounded-[10px] !px-3.5 !py-2.5 xl:inline-flex" href="/#tools" prefetch={false}>
             <Wrench size={16} /> Explore tools
           </Link>
           
           {/* Mobile Menu Toggle */}
           <button
             type="button"
-            className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#dfe2eb] text-[#475467] md:hidden hover:bg-[#f8f9fc]"
+            className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#dfe2eb] text-[#475467] lg:hidden hover:bg-[#f8f9fc]"
             onClick={() => setOpen(!open)}
             aria-label="Toggle navigation menu"
+            aria-expanded={open}
           >
             {open ? <X size={20} /> : <Menu size={20} />}
           </button>
@@ -52,11 +54,12 @@ export function Header() {
 
       {/* Mobile Drawer */}
       {open && (
-        <div className="border-b border-[#eceef4] bg-white px-5 py-6 md:hidden anim-fade-up">
+        <div className="border-b border-[#eceef4] bg-white px-5 py-6 lg:hidden anim-fade-up">
           <nav className="flex flex-col space-y-4 text-base font-bold text-[#475467]">
             <Link href="/tools" prefetch={false} onClick={() => setOpen(false)} className="hover:text-[#0d9488]">All tools</Link>
             <Link href="/guides" prefetch={false} onClick={() => setOpen(false)} className="hover:text-[#0d9488]">Developer Guides</Link>
             <Link href="/blog" prefetch={false} onClick={() => setOpen(false)} className="hover:text-[#0d9488]">Engineering Tech Blog</Link>
+            <Link href="/news/" prefetch={false} onClick={() => setOpen(false)} className="hover:text-[#0d9488]">Tech News</Link>
             <Link href="/about" prefetch={false} onClick={() => setOpen(false)} className="hover:text-[#0d9488]">About DevX</Link>
             <Link href="/contact" prefetch={false} onClick={() => setOpen(false)} className="hover:text-[#0d9488]">Contact Support</Link>
             <Link href="/privacy" prefetch={false} onClick={() => setOpen(false)} className="hover:text-[#0d9488]">Privacy Policy</Link>
@@ -106,6 +109,8 @@ export function Footer() {
         <div>
           <h3 className="mb-4 text-sm font-bold">Educational Hub</h3>
           <ul className="space-y-3 text-sm text-[#667085]">
+            <li><Link href="/news/" className="hover:text-[#0d9488]">Tech News &amp; Explainers</Link></li>
+            <li><a href="/feed.xml" className="hover:text-[#0d9488]">Subscribe with RSS</a></li>
             <li><Link href="/guides" prefetch={false} className="hover:text-[#0d9488]">Developer Knowledge Base</Link></li>
             <li><Link href="/blog" prefetch={false} className="hover:text-[#0d9488]">Engineering Tech Blog</Link></li>
             <li><Link href="/guides/uuid-guide" prefetch={false} className="hover:text-[#0d9488]">RFC 9562 UUID Deep Dive</Link></li>

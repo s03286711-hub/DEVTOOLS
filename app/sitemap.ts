@@ -1,3 +1,4 @@
+import { newsStories, headlineFeed } from '@/lib/news';
 import { canonicalUrl } from '@/lib/seo';
 import type { MetadataRoute } from 'next';
 import { tools, guides } from '@/lib/site';
@@ -20,6 +21,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   return [
+    { url: canonicalUrl('/news'), lastModified: new Date(headlineFeed.updatedAt ?? '2026-10-27T00:00:00Z'), changeFrequency: 'daily' as const, priority: 0.85 },
+    ...newsStories.map((story) => ({ url: canonicalUrl(`/news/${story.slug}`), lastModified: new Date(`${story.published}T00:00:00Z`), changeFrequency: 'monthly' as const, priority: 0.7 })),
     ...staticPages.map((item) => ({
       url: canonicalUrl(item.path),
       lastModified: releaseDate,

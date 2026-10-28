@@ -25,14 +25,14 @@ export default function TutorialPage({ params }: { params: { slug: string } }) {
   const tutorial = tutorials.find((item) => item.slug === params.slug);
   const post = tutorialPosts.find((item) => item.slug === params.slug);
   if (!tutorial || !post) notFound();
-  const tool = tools.find((item) => item.slug === tutorial.relatedTool)!;
+  const tool = tools.find((item) => item.slug === tutorial.relatedTool);
 
   return (
     <BlogLayout post={post}>
       <aside className="rounded-2xl border border-[#99f6e4] bg-[#f0fdfa] p-5" aria-label="Quick answer">
         <h2 className="!mt-0">Quick answer</h2>
         <p>{tutorial.answer}</p>
-        <Link className="btn btn-primary mt-3" href={`/tools/${tool.slug}/`}>Open {tool.title}</Link>
+        {tool && <Link className="btn btn-primary mt-3" href={`/tools/${tool.slug}/`}>Open {tool.title}</Link>}
       </aside>
       <nav aria-label="Article contents" className="my-8 rounded-xl border border-[#e4e7ec] p-5">
         <h2 className="!mt-0">On this page</h2>

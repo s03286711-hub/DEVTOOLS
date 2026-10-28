@@ -2,7 +2,30 @@
   "name": "devtoolbox",
   "version": "1.0.0",
   "private": true,
-  "scripts": {"dev":"next dev","build":"next build","start":"next start","lint":"next lint"},
-  "dependencies": {"lucide-react":"^0.468.0","next":"14.2.24","react":"^18.3.1","react-dom":"^18.3.1"},
-  "devDependencies": {"@types/node":"^22.10.2","@types/react":"^18.3.12","@types/react-dom":"^18.3.1","autoprefixer":"^10.4.20","eslint":"^8.57.1","eslint-config-next":"14.2.24","postcss":"^8.4.49","tailwindcss":"^3.4.16","typescript":"^5.7.2"}
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "news:update": "python3 scripts/update-tech-news.py",
+    "news:test": "python3 -m unittest discover -s scripts -p 'test_*.py'",
+    "check:export": "python3 scripts/check-export.py"
+  },
+  "dependencies": {
+    "lucide-react": "^0.468.0",
+    "next": "14.2.24",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "14.2.24",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.16",
+    "typescript": "^5.7.2"
+  }
 }

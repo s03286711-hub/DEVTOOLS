@@ -141,7 +141,7 @@ export default function BlogLayout({
           </div>
 
           {/* Cross-linking interactive block: Tool & Guide integration */}
-          <div className="my-12 rounded-2xl border-2 border-[#8fd8cd] bg-[#f0fdfa] p-6 sm:p-8">
+          {(relatedTool || relatedGuide) && <div className="my-12 rounded-2xl border-2 border-[#8fd8cd] bg-[#f0fdfa] p-6 sm:p-8">
             <span className="text-xs font-black uppercase tracking-wider text-[#0f766e]">
               Put Knowledge Into Practice
             </span>
@@ -199,7 +199,7 @@ export default function BlogLayout({
                 </Link>
               )}
             </div>
-          </div>
+          </div>}
 
           {/* More Engineering Articles */}
           <section className="mt-14 border-t border-[#e4e7ec] pt-10">

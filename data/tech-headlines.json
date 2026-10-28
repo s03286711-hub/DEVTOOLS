@@ -1,0 +1,76 @@
+{
+  "updatedAt": "2026-10-27T15:53:38.083599Z",
+  "sources": [
+    {
+      "name": "Google Blog",
+      "feedUrl": "https://blog.google/rss/",
+      "checkedAt": "2026-10-27T15:53:38.083599Z"
+    },
+    {
+      "name": "Microsoft Blog",
+      "feedUrl": "https://blogs.microsoft.com/feed/",
+      "checkedAt": "2026-10-27T15:53:38.083599Z"
+    },
+    {
+      "name": "Apple Developer",
+      "feedUrl": "https://developer.apple.com/news/rss/news.rss",
+      "checkedAt": "2026-10-27T15:53:38.083599Z"
+    }
+  ],
+  "items": [
+    {
+      "title": "8 examples of Gemini 4 Argon in action",
+      "url": "https://blog.google/products-and-platforms/products/gemini/gemini-4-argon-in-action/",
+      "source": "Google Blog",
+      "publishedAt": "2026-10-27T15:00:00Z"
+    },
+    {
+      "title": "Fitbit Edge: Premium design for an active life",
+      "url": "https://blog.google/products-and-platforms/devices/fitbit/fitbit-edge-design/",
+      "source": "Google Blog",
+      "publishedAt": "2026-10-27T13:00:00Z"
+    },
+    {
+      "title": "15 college students share their favorite Gemini features",
+      "url": "https://blog.google/products-and-platforms/products/gemini/college-student-favorite-features/",
+      "source": "Google Blog",
+      "publishedAt": "2026-10-26T16:00:00Z"
+    },
+    {
+      "title": "Introducing a Voluntary Exit Offer",
+      "url": "https://blogs.microsoft.com/blog/2026/10/26/introducing-a-voluntary-exit-offer/",
+      "source": "Microsoft Blog",
+      "publishedAt": "2026-10-26T15:33:56Z"
+    },
+    {
+      "title": "Offer your subscriptions to businesses and schools",
+      "url": "https://developer.apple.com/news/?id=yfo21auu",
+      "source": "Apple Developer",
+      "publishedAt": "2026-10-22T18:00:08Z"
+    },
+    {
+      "title": "Advancing digital sovereignty with greater control and choice",
+      "url": "https://blogs.microsoft.com/blog/2026/10/20/advancing-digital-sovereignty-with-greater-control-and-choice/",
+      "source": "Microsoft Blog",
+      "publishedAt": "2026-10-20T08:20:02Z"
+    },
+    {
+      "title": "Securing the agentic insider",
+      "url": "https://blogs.microsoft.com/blog/2026/10/19/securing-the-agentic-insider/",
+      "source": "Microsoft Blog",
+      "publishedAt": "2026-10-19T13:00:02Z"
+    },
+    {
+      "title": "Updated App Review Guidelines are now available",
+      "url": "https://developer.apple.com/news/?id=92th7e5i",
+      "source": "Apple Developer",
+      "publishedAt": "2026-10-16T20:05:42Z"
+    },
+    {
+      "title": "Strengthening App Review Guidelines against nonconsensual intimate imagery and bait-and-switch apps",
+      "url": "https://developer.apple.com/news/?id=vvzx6cul",
+      "source": "Apple Developer",
+      "publishedAt": "2026-10-16T20:00:56Z"
+    }
+  ]
+}

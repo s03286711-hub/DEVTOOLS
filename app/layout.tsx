@@ -14,6 +14,7 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   applicationName: siteConfig.name,
+  alternates: { types: { 'application/rss+xml': '/feed.xml' } },
   keywords: [
     'DevX Tool',
     'devx tool',

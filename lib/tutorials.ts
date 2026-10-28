@@ -1,3 +1,4 @@
+import { everydayTechArticles } from '@/lib/everyday-tech';
 import type { BlogPost } from '@/lib/blog';
 
 export interface TutorialSection {
@@ -15,8 +16,8 @@ export interface Tutorial {
   title: string;
   excerpt: string;
   category: string;
-  relatedTool: string;
-  relatedGuide: string;
+  relatedTool?: string;
+  relatedGuide?: string;
   tags: string[];
   answer: string;
   sections: TutorialSection[];
@@ -25,6 +26,7 @@ export interface Tutorial {
 }
 
 export const tutorials: Tutorial[] = [
+  ...everydayTechArticles,
   {
     slug: 'how-to-open-format-json-file',
     title: 'How to Open and Format a JSON File',

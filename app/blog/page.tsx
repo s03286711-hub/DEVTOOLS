@@ -6,8 +6,8 @@ import { blogPosts } from '@/lib/blog';
 import { tools, guides, siteConfig } from '@/lib/site';
 
 export const metadata: Metadata = pageMetadata({
-  title: 'Developer Tutorials, Code Examples & Troubleshooting',
-  description: 'Practical tutorials for JSON, Base64, URL encoding, regex, timestamps, and SHA-256 checksums. Follow examples for Windows, macOS, Linux, and JavaScript.',
+  title: 'Tech Articles, AI Explainers & Developer Tutorials',
+  description: 'Practical tech articles about AI agents, passkeys, browser fixes, and safer links, plus developer tutorials with code examples and free online tools.',
   path: '/blog',
 });
 
@@ -76,7 +76,7 @@ export default function BlogIndexPage() {
             <Newspaper size={14} /> Practical developer tutorials
           </span>
           <h1 className="mt-4 text-4xl font-black tracking-[-.05em] sm:text-5xl">
-            Developer Tutorials &amp; Troubleshooting
+            Tech Articles &amp; Practical Tutorials
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg leading-8 text-[#667085]">
             Find a working example, understand the result, and try the related free tool. Start with everyday file and text tasks, or explore detailed debugging guides.

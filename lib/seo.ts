@@ -19,7 +19,7 @@ export function pageMetadata({
   return {
     title,
     description,
-    alternates: { canonical: url },
+    alternates: { canonical: url, types: { 'application/rss+xml': '/feed.xml' } },
     openGraph: {
       title, description, url,
       siteName: siteConfig.name,
