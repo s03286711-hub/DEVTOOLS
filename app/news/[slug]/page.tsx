@@ -39,6 +39,7 @@ export default function NewsStoryPage({ params }: { params: { slug: string } }) 
           <ul>{story.facts.map((fact) => <li key={fact}>{fact}</li>)}</ul>
           <p className="mt-4 text-sm">Source: <a href={story.source.url}>Read the official {story.source.name} announcement</a>.</p>
           {story.analysis.map((section) => <section key={section.title}><h2>{section.title}</h2>{section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</section>)}
+          {story.questions && <section><h2>Questions readers ask</h2>{story.questions.map((item) => <div key={item.question}><h3>{item.question}</h3><p>{item.answer}</p></div>)}</section>}
           <h2>What to check next</h2>
           <ol>{story.checklist.map((step) => <li key={step}>{step}</li>)}</ol>
           <section className="mt-10 rounded-2xl border border-[#e4e7ec] p-6">

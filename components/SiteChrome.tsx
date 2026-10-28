@@ -110,6 +110,8 @@ export function Footer() {
           <h3 className="mb-4 text-sm font-bold">Educational Hub</h3>
           <ul className="space-y-3 text-sm text-[#667085]">
             <li><Link href="/news/" className="hover:text-[#0d9488]">Tech News &amp; Explainers</Link></li>
+            <li><Link href="/news/google/" className="hover:text-[#0d9488]">Google AI &amp; Gemini News</Link></li>
+            <li><Link href="/news/microsoft/" className="hover:text-[#0d9488]">Microsoft &amp; Copilot News</Link></li>
             <li><a href="/feed.xml" className="hover:text-[#0d9488]">Subscribe with RSS</a></li>
             <li><Link href="/guides" prefetch={false} className="hover:text-[#0d9488]">Developer Knowledge Base</Link></li>
             <li><Link href="/blog" prefetch={false} className="hover:text-[#0d9488]">Engineering Tech Blog</Link></li>

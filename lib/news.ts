@@ -1,3 +1,4 @@
+import { googleMicrosoftNews } from '@/lib/google-microsoft-news';
 import { newsUpdates } from '@/lib/news-updates';
 import headlineData from '@/data/tech-headlines.json';
 
@@ -13,10 +14,12 @@ export interface NewsStory {
   facts: string[];
   analysis: { title: string; paragraphs: string[] }[];
   checklist: string[];
+  questions?: { question: string; answer: string }[];
   related: { title: string; href: string }[];
 }
 
 export const newsStories: NewsStory[] = [
+  ...googleMicrosoftNews,
   ...newsUpdates,
   {
     slug: 'github-copilot-assisted-permissions-explained',
@@ -102,4 +105,15 @@ export const headlineFeed: {
 
 export function displayDate(value: string) {
   return new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' }).format(new Date(value));
+}
+
+export type NewsPublisher = 'google' | 'microsoft';
+
+const publisherHosts: Record<NewsPublisher, string[]> = {
+  google: ['blog.google', 'deepmind.google', 'developers.googleblog.com'],
+  microsoft: ['blogs.microsoft.com', 'news.microsoft.com', 'www.microsoft.com', 'techcommunity.microsoft.com'],
+};
+
+export function publisherStories(publisher: NewsPublisher) {
+  return newsStories.filter((story) => publisherHosts[publisher].includes(new URL(story.source.url).hostname));
 }

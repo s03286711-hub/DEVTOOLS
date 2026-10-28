@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 from urllib.parse import urlsplit, unquote
 import xml.etree.ElementTree as ET
+from datetime import datetime, timedelta, timezone
 
 
 class Page(HTMLParser):
@@ -109,10 +110,36 @@ def audit():
     for item in items:
         assert urlsplit(item.findtext('link')).path in pages, 'RSS link does not resolve'
         assert item.findtext('title') and item.findtext('pubDate'), 'Incomplete RSS item'
-    news = [page for path, page in pages.items() if path.startswith('/news/') and path != '/news/']
+    news_pages = {path: page for path, page in pages.items() if path.startswith('/news/') and path != '/news/'}
+    news = [page for page in news_pages.values() if any(schema.get('@type') == 'NewsArticle' for schema in page.schemas)]
     assert len(news) >= 3, 'News explainers missing'
-    for page in news:
-        assert any(schema.get('@type') == 'NewsArticle' for schema in page.schemas), 'NewsArticle markup missing'
+    for path, page in news_pages.items():
+        assert any(schema.get('@type') in ['NewsArticle', 'CollectionPage'] for schema in page.schemas), f'{path}: missing news or collection markup'
+    news_ns = {**ns, 'n': 'http://www.google.com/schemas/sitemap-news/0.9'}
+    recent = ET.parse(root / 'news-sitemap.xml').findall('s:url', news_ns)
+    assert len(recent) <= 1000, 'Too many entries in news sitemap'
+    now = datetime.now(timezone.utc)
+    seen = set()
+    for entry in recent:
+        url = entry.findtext('s:loc', namespaces=news_ns)
+        assert url not in seen, 'Duplicate news sitemap URL'
+        seen.add(url)
+        assert urlsplit(url).path in news_pages, 'News sitemap route missing'
+        page = news_pages[urlsplit(url).path]
+        article = next((schema for schema in page.schemas if schema.get('@type') == 'NewsArticle'), None)
+        assert article, 'News sitemap contains a non-article'
+        block = entry.find('n:news', news_ns)
+        assert block is not None, 'News metadata missing'
+        assert block.findtext('n:publication/n:language', namespaces=news_ns) == 'en'
+        assert block.findtext('n:publication/n:name', namespaces=news_ns), 'Publication name missing'
+        assert block.findtext('n:title', namespaces=news_ns) == article['headline'], 'News headline mismatch'
+        date = block.findtext('n:publication_date', namespaces=news_ns)
+        assert date == article['datePublished'], 'News publication date mismatch'
+        published = datetime.fromisoformat(date.replace('Z', '+00:00'))
+        if published.tzinfo is None:
+            published = published.replace(tzinfo=timezone.utc)
+        assert now - timedelta(hours=48) <= published <= now, 'News sitemap includes an old or future article'
+    assert '/news-sitemap.xml' in (root / 'robots.txt').read_text(), 'News sitemap not advertised to crawlers'
     print(f'Export checks passed: {len(titles)} pages, {len(locations)} sitemap URLs, {len(items)} RSS items, and {len(news)} news explainers.')
 
 

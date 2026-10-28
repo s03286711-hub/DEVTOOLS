@@ -45,3 +45,16 @@ The static routes, news cards, RSS feed, and sitemap pick up the new entry. Add 
 No claim is made that these are the world's highest-volume keywords. Use Search Console queries and country reports to decide which topics to expand. Headline refreshes keep the page useful to returning visitors; original articles, reliable tools, and relevant links remain the content that can earn traffic.
 
 Reference: [GitHub scheduled workflows](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#schedule).
+
+
+## Google and Microsoft coverage — October 28 update
+
+Four additional explainers cover Google Genie 4, Gemini 4 Argon examples, Microsoft's Copilot/IQ/Agent 365 strategy, and the earlier Home/Code/Autopilot announcement. Each shows the original announcement date and a separate article date. Suggested evaluation steps are labeled as analysis, and no vendor demonstrations are presented as independent benchmarks.
+
+The `/news/google/` and `/news/microsoft/` topic pages group relevant original explainers. The homepage now features the latest news immediately after its introduction, ahead of the tools directory. Topic links also appear in the news section and footer.
+
+A separate `/news-sitemap.xml` lists original news articles in a conservative 48-hour publication window, with publication name, language, headline, and the original article date. It is regenerated during the scheduled build and advertised in robots.txt. Older articles remain in the regular sitemap and RSS selection. Because older entries are removed, the news sitemap can intentionally be empty when no recent articles have been added.
+
+After deployment, submit `https://devxtool.me/news-sitemap.xml` in Search Console once and check its status. A news sitemap helps discovery; it does not guarantee Google News inclusion or a preferred ranking. See [Google's news sitemap guidance](https://developers.google.com/search/docs/crawling-indexing/sitemaps/news-sitemap).
+
+Validation for this update: production build passed; 86 content pages and 30 RSS items passed export checks. Five publisher-feed tests and four news-sitemap tests passed. Browser checks covered phone layouts, topic hubs, representative articles, desktop layouts, and mobile navigation. Advertising requests were blocked during browser checks; advertising behavior was not tested.

@@ -9,9 +9,10 @@ export default function NewsPreview() {
         <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
           <div>
             <p className="eyebrow inline-flex items-center gap-2"><Newspaper size={15} /> The tech brief</p>
-            <h2 id="news-heading" className="mt-3 text-3xl font-black tracking-tight">What changed. Why it matters.</h2>
-            <p className="mt-3 max-w-2xl leading-7 text-[#475467]">Technology news explained, plus recent headlines from the companies building it.</p>
+            <h2 id="news-heading" className="mt-3 text-3xl font-black tracking-tight">Google, Microsoft &amp; AI news explained.</h2>
+            <p className="mt-3 max-w-2xl leading-7 text-[#475467]">Follow sourced Google and Microsoft updates, understand the announcements, and explore practical developer guides.</p>
           </div>
+          <div className="flex flex-wrap gap-4 text-sm font-bold text-[#0f766e]"><Link href="/news/google/">Google news</Link><Link href="/news/microsoft/">Microsoft news</Link></div>
           <Link href="/news/" className="inline-flex items-center gap-1 text-sm font-bold text-[#0f766e]">Explore tech news <ArrowUpRight size={16} /></Link>
         </div>
         <div className="grid gap-5 md:grid-cols-3">

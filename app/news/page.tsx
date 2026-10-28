@@ -22,7 +22,8 @@ export default function NewsPage() {
         <div className="container">
           <p className="text-xs font-bold uppercase tracking-[.15em] text-[#99f6e4]">The tech brief · DevX Tool</p>
           <h1 className="mt-5 max-w-3xl text-4xl font-black tracking-tight sm:text-5xl">Make sense of what’s next in tech.</h1>
-          <p className="mt-5 max-w-2xl text-lg leading-8 text-[#c4e4de]">Clear explanations of AI, apps, browsers, and digital security. Start with the news, understand the change, and find something useful to try.</p>
+          <p className="mt-5 max-w-2xl text-lg leading-8 text-[#c4e4de]">Follow Google and Microsoft AI updates alongside apps, browsers, and digital security. Read the sources, understand the changes, and find useful next steps.</p>
+          <div className="mt-6 flex flex-wrap gap-4 text-sm font-bold text-[#99f6e4]"><Link href="/news/google/">Google AI &amp; Gemini →</Link><Link href="/news/microsoft/">Microsoft &amp; Copilot →</Link></div>
           <nav aria-label="News sections" className="mt-7 flex flex-wrap gap-3 text-sm font-bold">
             <a href="#explained" className="rounded-full bg-white px-4 py-2 text-[#134e4a]">News explained</a>
             <a href="#headlines" className="rounded-full border border-white/30 px-4 py-2">Publisher headlines</a>

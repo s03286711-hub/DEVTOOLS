@@ -39,6 +39,8 @@ jobs:
       - name: Refresh official publisher headlines
         run: python3 scripts/update-tech-news.py
       - run: npm ci
+      - name: Test news sitemap dates and XML
+        run: node scripts/test-news-discovery.cjs
       - run: npm run build
         env:
           GITHUB_PAGES: 'true'
