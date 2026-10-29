@@ -2,6 +2,84 @@ import type { NewsStory } from '@/lib/news';
 
 export const newsUpdates: NewsStory[] = [
   {
+    slug: 'github-copilot-fusion-model-routing-explained',
+    title: 'GitHub Copilot Fusion: Model Routing and Effort Levels',
+    description: 'Copilot Fusion is generally available. Learn how model routing, Standard, High, and Max effort levels, organization policies, and billing fit together.',
+    topic: 'AI & developer tools', published: '2026-10-29', eventDate: '2026-10-28',
+    source: { name: 'GitHub Changelog', url: 'https://github.blog/changelog/2026-10-28-route-and-orchestrate-models-with-github-copilot-fusion/' },
+    summary: 'GitHub announced Copilot Fusion general availability on October 28. This October 29 explainer covers a system that chooses and coordinates models for a coding task, with the developer selecting an effort level.',
+    facts: [
+      'Fusion offers Standard, High, and Max effort settings. Its execution can involve one model, escalation after a quality check, or a separate model reviewing a draft.',
+      'GitHub lists support across Copilot plans in VS Code, the Copilot app, Copilot CLI, and JetBrains IDEs. Enterprise and organization model policies constrain the available models.',
+      'Usage is charged for each model involved at its standard rate. Check current billing documentation before estimating a workload; an effort setting does not promise a fixed price per task.',
+    ],
+    analysis: [
+      { title: 'Choose an effort level around a concrete coding task', paragraphs: [
+        'Our analysis: automatic routing moves the choice of model into the execution system. Developers still need to define the task and decide whether the result is acceptable. A small documentation edit and a change to a shared parser need different evidence before merging.',
+        'Start with a task whose expected behavior you can describe. Save the starting revision, give the tool the relevant constraints, and review both the resulting diff and the validation output. A longer reasoning process is useful only if it improves the work you need to ship.',
+      ] },
+      { title: 'Measure the complete workflow when comparing settings', paragraphs: [
+        'Try the same representative task at two effort levels in separate copies of a test project. Record correctness, review time, correction time, and reported usage. Include failed attempts so the comparison reflects the cost of reaching an acceptable result.',
+        'Keep the task description and acceptance checks consistent. Treat your observations as evidence about that task and setup. A result from one repository does not establish a universal ranking for every language, project, or team.',
+      ] },
+    ],
+    checklist: ['Update a supported client and check whether Fusion appears in its model picker.', 'Confirm which models your organization permits.', 'Compare effort settings on a repeatable task with clear acceptance checks.', 'Review recorded usage alongside the diff and validation results.'],
+    questions: [{ question: 'Is Copilot Fusion a single model?', answer: 'GitHub describes Fusion as a routing and orchestration system. Selecting it lets the system choose how to use available models for a task.' }, { question: 'Which effort levels can I choose?', answer: 'The announcement lists Standard, High, and Max. Check your updated client and organization settings for the options available to your account.' }],
+    related: [{ title: 'Understand AI agents and their tools', href: '/blog/what-is-an-ai-agent-vs-chatbot/' }, { title: 'Copilot assisted permissions explained', href: '/news/github-copilot-assisted-permissions-explained/' }, { title: 'Compare an AI-generated change', href: '/tools/text-diff/' }],
+  },
+  {
+    slug: 'github-agentic-workflows-general-availability',
+    title: 'GitHub Agentic Workflows: General Availability Explained',
+    description: 'GitHub Agentic Workflows is generally available for AI tasks in GitHub Actions. Understand Markdown workflows, permissions, safeguards, and pilot checks.',
+    topic: 'AI & automation', published: '2026-10-29', eventDate: '2026-10-28',
+    source: { name: 'GitHub Changelog', url: 'https://github.blog/changelog/2026-10-28-github-agentic-workflows-generally-available/' },
+    summary: 'GitHub announced general availability of Agentic Workflows on October 28. Teams can describe reasoning tasks in Markdown and compile them into Actions YAML for work such as issue triage or investigation of a failed CI run.',
+    facts: [
+      'The open source project runs coding agents through GitHub Actions and uses existing runner groups and policy constraints.',
+      'GitHub describes read-only defaults, sandboxing, a network firewall, output validation, and threat detection for proposed changes.',
+      'Availability includes GitHub Free, Team, and Enterprise on github.com. The default Copilot CLI engine requires a Copilot license. The release also adds model routing and expanded budget forecasting.',
+    ],
+    analysis: [
+      { title: 'Begin with an automation whose output you can review', paragraphs: [
+        'Our analysis: a useful first trial is a report that explains a failed test and links back to its evidence. Define which logs the agent can read and ask it to distinguish observed failures from possible causes. A clear report is easier to evaluate than an open-ended request to fix everything.',
+        'Collect a few previous failures with known causes. Compare the generated explanation against those cases and record where it misses a detail or invents a connection. Use those observations to decide whether the workflow helps the people maintaining the repository.',
+      ] },
+      { title: 'Review generated workflow files as executable configuration', paragraphs: [
+        'Read the compiled workflow alongside the Markdown instructions before enabling it. Check its triggers, inputs, permissions, and expected outputs. Decide who will receive a report and who can stop the workflow when its results are unhelpful.',
+        'For a pilot, set a bounded schedule and inspect actual usage after several runs. If one event produces repeated runs, investigate the trigger behavior before increasing the budget. These are suggested evaluation steps; we have not benchmarked this release.',
+      ] },
+    ],
+    checklist: ['Confirm the chosen engine and its license requirements.', 'Start with a small report or triage task and known example inputs.', 'Review compiled YAML, triggers, permissions, and output handling.', 'Check usage and document how to pause the workflow.'],
+    questions: [{ question: 'How are Agentic Workflows defined?', answer: 'GitHub describes natural-language Markdown files that compile into standard GitHub Actions YAML.' }, { question: 'Do the safeguards guarantee a correct result?', answer: 'No. Access controls and output checks address different concerns from whether an explanation or code change is correct. Review the result against the original evidence.' }],
+    related: [{ title: 'Copilot server-to-server authentication', href: '/news/github-copilot-server-to-server-authentication-preview/' }, { title: 'Understand prompt injection in tools', href: '/blog/preventing-prompt-injection-in-sql-and-api-tools/' }, { title: 'Inspect workflow configuration differences', href: '/tools/text-diff/' }],
+  },
+  {
+    slug: 'github-actions-workflow-lockfiles-general-availability',
+    title: 'GitHub Actions Workflow Lockfiles: What to Check',
+    description: 'GitHub Actions workflow lockfiles are generally available. Learn about pinned commits, transitive dependencies, Dependabot updates, and gradual adoption.',
+    topic: 'Developer security', published: '2026-10-29', eventDate: '2026-10-28',
+    source: { name: 'GitHub Changelog', url: 'https://github.blog/changelog/2026-10-28-github-actions-workflow-lockfiles-are-generally-available/' },
+    summary: 'GitHub announced general availability of Actions workflow dependency lockfiles on October 28. This October 29 guide explains how readable action references can be paired with recorded commits for more predictable workflow runs.',
+    facts: [
+      'The gh actions-lock CLI extension generates .github/workflows/actions.lock for actions and their transitive dependencies. Workflows can adopt locking individually.',
+      'Onboarded workflows must have their dependencies recorded and execute the locked commits. Dependabot action version updates also regenerate the corresponding lockfile entry.',
+      'Administrators can enforce adoption with a Require lockfile policy. GitHub lists support for Free, Team, Enterprise Cloud, and Enterprise Cloud with data residency, and cautions that locking does not establish dependency safety.',
+    ],
+    analysis: [
+      { title: 'Make the first adoption small enough to inspect', paragraphs: [
+        'Our analysis: start with a workflow that has a familiar set of actions and a reliable test result. Generate its lockfile in a branch, inspect the dependencies, and run the workflow. This gives reviewers a concrete before-and-after comparison.',
+        'Keep the first pull request focused on locking so an unexpected result is easier to diagnose. Record which workflow was onboarded and how dependencies will be updated. A predictable process is especially useful when several maintainers share responsibility for CI.',
+      ] },
+      { title: 'Treat a dependency update as a reviewable change', paragraphs: [
+        'When an action changes, inspect its release information and the recorded commit alongside the workflow diff. Confirm that the expected checks still run and that permissions remain appropriate for the job. A passing run gives evidence about your tested path.',
+        'After validating a few workflows, decide whether enforcement fits the repository. Ensure maintainers know how to regenerate the file and diagnose a stale entry before enabling a requirement across every workflow.',
+      ] },
+    ],
+    checklist: ['Choose one existing workflow for initial adoption.', 'Generate and review the lockfile with the official CLI extension.', 'Run the workflow and inspect a dependency update in a branch.', 'Document regeneration and stale-file checks before requiring lockfiles.'],
+    questions: [{ question: 'Where is the GitHub Actions lockfile stored?', answer: 'The announcement specifies .github/workflows/actions.lock, generated using the gh actions-lock extension.' }, { question: 'Does locking make an action safe?', answer: 'No. A lockfile records the commits to execute. Review the dependency and its requested permissions before adopting it.' }],
+    related: [{ title: 'GitHub Agentic Workflows explained', href: '/news/github-agentic-workflows-general-availability/' }, { title: 'Compare changes to a workflow', href: '/tools/text-diff/' }, { title: 'JSON, YAML, and TOML configuration formats', href: '/blog/json-vs-yaml-vs-toml-config-files/' }],
+  },
+  {
     slug: 'github-copilot-server-to-server-authentication-preview',
     title: 'GitHub Copilot Server-to-Server Authentication Preview',
     description: 'GitHub announced organization-owned authentication for Copilot SDK services. Understand the public preview, app permissions, and rollout checks.',

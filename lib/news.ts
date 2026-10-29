@@ -95,7 +95,7 @@ export const newsStories: NewsStory[] = [
     checklist: ['Check the availability of the particular feature, not just the Windows version.', 'Confirm whether the task needs cloud access.', 'Review file-access permissions before connecting personal documents.', 'Compare results on your own workload before making a purchase decision.'],
     related: [{ title: 'What an AI agent can do', href: '/blog/what-is-an-ai-agent-vs-chatbot/' }, { title: 'Try a browser-based text tool', href: '/tools/text-diff/' }],
   },
-];
+].sort((a, b) => b.published.localeCompare(a.published));
 
 export const headlineFeed: {
   updatedAt: string | null;

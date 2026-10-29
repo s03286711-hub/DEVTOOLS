@@ -1,46 +1,58 @@
 {
-  "updatedAt": "2026-10-28T11:52:32.101465Z",
+  "updatedAt": "2026-10-29T12:55:54.179564Z",
   "sources": [
     {
       "name": "Google Blog",
       "feedUrl": "https://blog.google/rss/",
-      "checkedAt": "2026-10-28T11:52:32.101465Z"
+      "checkedAt": "2026-10-29T12:55:54.179564Z"
     },
     {
       "name": "Microsoft Blog",
       "feedUrl": "https://blogs.microsoft.com/feed/",
-      "checkedAt": "2026-10-28T11:52:32.101465Z"
+      "checkedAt": "2026-10-29T12:55:54.179564Z"
     },
     {
       "name": "Apple Developer",
       "feedUrl": "https://developer.apple.com/news/rss/news.rss",
-      "checkedAt": "2026-10-28T11:52:32.101465Z"
+      "checkedAt": "2026-10-29T12:55:54.179564Z"
     }
   ],
   "items": [
+    {
+      "title": "Partnering with Singapore to bring frontier AI to public health",
+      "url": "https://blog.google/innovation-and-ai/technology/health/google-for-health-summit-singapore/",
+      "source": "Google Blog",
+      "publishedAt": "2026-10-29T03:30:00Z"
+    },
+    {
+      "title": "Ads in AI Mode expand to new markets.",
+      "url": "https://blog.google/products/ads-commerce/ads-in-ai-mode-global/",
+      "source": "Google Blog",
+      "publishedAt": "2026-10-28T21:30:00Z"
+    },
+    {
+      "title": "Q3 2026 earnings call: Remarks from our CEO",
+      "url": "https://blog.google/company-news/inside-google/message-ceo/alphabet-earnings-q3-2026/",
+      "source": "Google Blog",
+      "publishedAt": "2026-10-28T21:05:00Z"
+    },
+    {
+      "title": "Say hello to Touch on Mac",
+      "url": "https://developer.apple.com/news/?id=i9boeiqc",
+      "source": "Apple Developer",
+      "publishedAt": "2026-10-28T17:00:55Z"
+    },
+    {
+      "title": "Introducing the Microsoft Copilot harness: Unlocking the potential of truly multi-model agentic work",
+      "url": "https://blogs.microsoft.com/blog/2026/10/28/introducing-the-microsoft-copilot-harness-unlocking-the-potential-of-truly-multi-model-agentic-work/",
+      "source": "Microsoft Blog",
+      "publishedAt": "2026-10-28T16:51:35Z"
+    },
     {
       "title": "The platform approach to becoming Frontier",
       "url": "https://blogs.microsoft.com/blog/2026/10/27/the-platform-approach-to-becoming-frontier/",
       "source": "Microsoft Blog",
       "publishedAt": "2026-10-27T16:01:38Z"
-    },
-    {
-      "title": "We’re announcing Genie 4, our new world model for real-time interactive simulation.",
-      "url": "https://blog.google/innovation-and-ai/models-and-research/google-deepmind/introducing-genie-4/",
-      "source": "Google Blog",
-      "publishedAt": "2026-10-27T16:00:00Z"
-    },
-    {
-      "title": "8 examples of Gemini 4 Argon in action",
-      "url": "https://blog.google/products-and-platforms/products/gemini/gemini-4-argon-in-action/",
-      "source": "Google Blog",
-      "publishedAt": "2026-10-27T15:00:00Z"
-    },
-    {
-      "title": "Fitbit Edge: Premium design for an active life",
-      "url": "https://blog.google/products-and-platforms/devices/fitbit/fitbit-edge-design/",
-      "source": "Google Blog",
-      "publishedAt": "2026-10-27T13:00:00Z"
     },
     {
       "title": "Introducing a Voluntary Exit Offer",
@@ -55,22 +67,10 @@
       "publishedAt": "2026-10-22T18:00:08Z"
     },
     {
-      "title": "Advancing digital sovereignty with greater control and choice",
-      "url": "https://blogs.microsoft.com/blog/2026/10/20/advancing-digital-sovereignty-with-greater-control-and-choice/",
-      "source": "Microsoft Blog",
-      "publishedAt": "2026-10-20T08:20:02Z"
-    },
-    {
       "title": "Updated App Review Guidelines are now available",
       "url": "https://developer.apple.com/news/?id=92th7e5i",
       "source": "Apple Developer",
       "publishedAt": "2026-10-16T20:05:42Z"
-    },
-    {
-      "title": "Strengthening App Review Guidelines against nonconsensual intimate imagery and bait-and-switch apps",
-      "url": "https://developer.apple.com/news/?id=vvzx6cul",
-      "source": "Apple Developer",
-      "publishedAt": "2026-10-16T20:00:56Z"
     }
   ]
 }

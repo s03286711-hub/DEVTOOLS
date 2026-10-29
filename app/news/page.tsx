@@ -5,24 +5,30 @@ import { everydayTechArticles } from '@/lib/everyday-tech';
 import { canonicalUrl, pageMetadata } from '@/lib/seo';
 
 export const metadata = pageMetadata({
-  title: 'Tech News & AI Updates Explained',
-  description: 'Read technology news explainers and recent official headlines. Understand AI agents, apps, passkeys, browsers, and what changes mean for you.',
+  title: 'Latest Tech News, AI & Developer Updates Explained',
+  description: 'Follow GitHub Copilot, Google AI, Microsoft, and developer news with official sources, announcement dates, and practical explanations of what changed.',
   path: '/news',
 });
 
 export default function NewsPage() {
   const list = {
-    '@context': 'https://schema.org', '@type': 'ItemList', name: 'DevX Tool tech news explainers',
+    '@type': 'ItemList', name: 'DevX Tool tech news explainers', numberOfItems: newsStories.length,
     itemListElement: newsStories.map((story, index) => ({ '@type': 'ListItem', position: index + 1, name: story.title, url: canonicalUrl(`/news/${story.slug}`) })),
   };
+  const latestPublished = newsStories[0]?.published;
+  const schemas = [
+    { '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'Tech news, AI and developer updates', description: metadata.description, url: canonicalUrl('/news'), inLanguage: 'en', dateModified: latestPublished, mainEntity: list },
+    { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: canonicalUrl('/') }, { '@type': 'ListItem', position: 2, name: 'Tech news', item: canonicalUrl('/news') }] },
+  ];
   return (
     <main>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(list).replace(/</g, '\\u003c') }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas).replace(/</g, '\\u003c') }} />
       <section className="bg-[#0b2523] py-16 text-white sm:py-20">
         <div className="container">
           <p className="text-xs font-bold uppercase tracking-[.15em] text-[#99f6e4]">The tech brief · DevX Tool</p>
           <h1 className="mt-5 max-w-3xl text-4xl font-black tracking-tight sm:text-5xl">Make sense of what’s next in tech.</h1>
-          <p className="mt-5 max-w-2xl text-lg leading-8 text-[#c4e4de]">Follow Google and Microsoft AI updates alongside apps, browsers, and digital security. Read the sources, understand the changes, and find useful next steps.</p>
+          <p className="mt-5 max-w-2xl text-lg leading-8 text-[#c4e4de]">Follow GitHub, Google, and Microsoft AI updates alongside apps, browsers, and digital security. Read the sources, understand the changes, and find useful next steps.</p>
+          {latestPublished && <p className="mt-4 text-sm text-[#c4e4de]">Latest explainers published <time dateTime={latestPublished}>{displayDate(latestPublished)}</time></p>}
           <div className="mt-6 flex flex-wrap gap-4 text-sm font-bold text-[#99f6e4]"><Link href="/news/google/">Google AI &amp; Gemini →</Link><Link href="/news/microsoft/">Microsoft &amp; Copilot →</Link></div>
           <nav aria-label="News sections" className="mt-7 flex flex-wrap gap-3 text-sm font-bold">
             <a href="#explained" className="rounded-full bg-white px-4 py-2 text-[#134e4a]">News explained</a>
